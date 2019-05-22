@@ -18,6 +18,7 @@
     "@types/react-dom": "^16.8.4",
     "gatsby": "2.5.5",
     "gatsby-mdx": "^0.6.3",
+    "gatsby-plugin-dark-mode": "^1.1.0",
     "gatsby-plugin-page-creator": "^2.0.12",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-typescript": "^2.0.13",
