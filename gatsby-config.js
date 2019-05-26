@@ -1,13 +1,21 @@
 const path = require('path')
 
 module.exports = {
-  plugins: [
-    {
+  plugins: [{
       resolve: `gatsby-mdx`,
       options: {
+        extensions: ['.mdx', '.md'],
         defaultLayouts: {
           default: require.resolve(`./src/components/layout.tsx`),
-        }
+        },
+        gatsbyRemarkPlugins: [{
+          resolve: `gatsby-remark-prismjs`,
+          options: {
+            classPrefix: 'language-',
+            inlineCodeMarker: null,
+            aliases: {},
+          },
+        }, ]
       }
     },
     {
@@ -30,6 +38,22 @@ module.exports = {
         name: `data`,
         path: `data`,
         ignore: [`**/\.*`], // ignore files starting with a dot
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `img`,
+        path: `${__dirname}/src/img/`
+      }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `assets`,
+        name: `assets`,
       },
     },
     'gatsby-plugin-react-helmet',
