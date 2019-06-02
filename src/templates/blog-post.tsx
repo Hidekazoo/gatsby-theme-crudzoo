@@ -17,6 +17,7 @@ interface IProps {
           node: {
             relativePath: string;
             name: string;
+            changeTime: Date;
             childMdx: {
               code: {
                 body: string;
@@ -37,6 +38,7 @@ interface IProps {
 }
 
 const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
+  const lastUpdate = data.allFile.edges[0].node.changeTime;
   const pageData = data.allFile.edges[0].node.childMdx;
   return (
     <Layout location={location}>
@@ -57,8 +59,7 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
         }}
       >
         公開日：{pageData.frontmatter.date} <br />
-        {pageData.frontmatter.update &&
-          `最終更新日：${pageData.frontmatter.update}`}
+        {pageData.frontmatter.update && `最終更新日：${lastUpdate}`}
       </p>
       <MDXRenderer>{pageData.code.body}</MDXRenderer>
       <Bio />
@@ -74,6 +75,7 @@ export const query = graphql`
         node {
           relativePath
           name
+          changeTime(formatString: "YYYY年MM月DD日")
           childMdx {
             frontmatter {
               title

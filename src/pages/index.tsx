@@ -29,6 +29,7 @@ interface IProps {
               name: string;
               absolutePath: string;
               relativePath: string;
+              relativeDirectory: string;
             };
             timeToRead: number;
             frontmatter: {
@@ -86,7 +87,10 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
                 marginTop: `15px`
               }}
             >
-              <Link style={{ boxShadow: `none` }} to={node.parent.name}>
+              <Link
+                style={{ boxShadow: `none` }}
+                to={node.parent.relativeDirectory}
+              >
                 {title}
               </Link>
             </h3>
@@ -132,6 +136,7 @@ export const query = graphql`
               name
               absolutePath
               relativePath
+              relativeDirectory
             }
           }
           timeToRead
