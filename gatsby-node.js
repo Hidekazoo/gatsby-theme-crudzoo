@@ -9,7 +9,7 @@ exports.createPages = async ({
         title
       }
     }
-    allMdx(sort: {fields: [frontmatter___date], order: DESC}) {
+    allMdx {
       edges {
         node {
           id

@@ -125,7 +125,7 @@ export const query = graphql`
         author
       }
     }
-    allMdx {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           code {
