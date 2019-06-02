@@ -69,7 +69,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
           </label>
         )}
       </ThemeToggler>
-      {/* <h1>{siteTitle}</h1> */}
+
       <Bio />
       {postData.map(({ node }) => {
         const title = node.frontmatter.title;
