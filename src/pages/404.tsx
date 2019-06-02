@@ -27,7 +27,7 @@ const NotFoundPage: React.FC = () => {
         data.site;
         const title = data.site.siteMetadata.title;
         return (
-          <Layout location={location} title={title}>
+          <Layout location={location}>
             <SEO title="404: Not Found">
               <h1>該当のページが見つかりませんでした</h1>
             </SEO>

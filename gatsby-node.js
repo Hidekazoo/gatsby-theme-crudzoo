@@ -9,11 +9,12 @@ exports.createPages = async ({
           title
         }
       }
-      allFile(filter: { sourceInstanceName: {eq:"data"}}) {
+      allFile(filter: { sourceInstanceName: {eq:"content"}}) {
         edges {
           node {
             relativePath
             name
+            id
             childMdx {
               frontmatter {
                 title
@@ -34,22 +35,22 @@ exports.createPages = async ({
   const pages = result.data.allFile.edges.map(({
     node
   }) => node)
-  const siteTitle = result.data.site.siteMetadata.title
 
   pages.forEach(page => {
-    const pageInfo = page.childMdx.frontmatter
-
+    // const pageInfo = page.childMdx.frontmatter
+    const id = page.id
     actions.createPage({
       path: `/${page.name}`,
       component: require.resolve('./src/templates/blog-post.tsx'),
       context: {
-        siteTitle: siteTitle,
-        title: pageInfo.title,
-        body: page.childMdx.code.body,
-        date: pageInfo.date,
-        update: pageInfo.update,
-        tags: pageInfo.tags,
-        spoiler: pageInfo.spoiler,
+        slug: id,
+        // siteTitle: siteTitle,
+        // title: pageInfo.title,
+        // body: page.childMdx.code.body,
+        // date: pageInfo.date,
+        // update: pageInfo.update,
+        // tags: pageInfo.tags,
+        // spoiler: pageInfo.spoiler,
       }
     });
   });

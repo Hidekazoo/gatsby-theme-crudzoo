@@ -45,8 +45,6 @@ const Bio: React.FC = () => {
         }
       `}
       render={(data: BioData) => {
-        // data.site;
-        const title = data.site.siteMetadata.title;
         const author = data.site.siteMetadata.author;
         const description = data.site.siteMetadata.description;
         return (

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    // "allowJs": true,
+    "allowJs": true,
     "target": "es6",
     "module": "commonjs",
     "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
@@ -20,7 +20,7 @@
     "allowSyntheticDefaultImports": false,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "declaration": true
+    // "declaration": true
   },
   "include": ["./src/**/*"]
 }

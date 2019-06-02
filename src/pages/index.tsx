@@ -44,7 +44,7 @@ const TopPage: React.FC<IProps> = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title;
   const postData = data.allMdx.edges;
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <SEO title="CrudZoo" keywords={[`gatsby`, `javascript`, `react`]} />
       <ThemeToggler>
         {({ theme, toggleTheme }: { theme: string; toggleTheme: any }) => (
@@ -68,7 +68,6 @@ const TopPage: React.FC<IProps> = ({ data }) => {
       {/* <h1>{siteTitle}</h1> */}
       <Bio />
       {postData.map(({ node }) => {
-        console.log(node);
         const title = node.frontmatter.title;
         return (
           <div

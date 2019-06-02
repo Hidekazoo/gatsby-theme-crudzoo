@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+import { Link, StaticQuery, graphql, useStaticQuery } from 'gatsby';
 // import 'prismjs/themes/prism-okaidia.css';
 import '../styles/code.css';
 const { MDXProvider } = require('@mdx-js/react');
@@ -33,12 +33,22 @@ interface LayoutInterface {
   location: {
     pathname: string | undefined;
   };
-  title?: string;
 }
 const Layout: React.FC<LayoutInterface> = props => {
-  const { location, title, children } = props;
+  const { location, children } = props;
   const rootPath = `/`;
-  console.log(props);
+
+  const siteData = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
+
+  const siteTitle = siteData.site.siteMetadata.title;
   let header;
   if (location.pathname === rootPath) {
     header = (
@@ -57,7 +67,7 @@ const Layout: React.FC<LayoutInterface> = props => {
           }}
           to={`/`}
         >
-          {title}
+          {siteTitle}
         </Link>
       </h1>
     );
@@ -78,7 +88,7 @@ const Layout: React.FC<LayoutInterface> = props => {
           }}
           to={`/`}
         >
-          {title}
+          {siteTitle}
         </Link>
       </h3>
     );

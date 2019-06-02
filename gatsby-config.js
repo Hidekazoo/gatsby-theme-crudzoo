@@ -9,6 +9,12 @@ module.exports = {
           default: require.resolve(`./src/components/layout.tsx`),
         },
         gatsbyRemarkPlugins: [{
+          resolve: 'gatsby-remark-images',
+          options: {
+            maxWidth: 1035,
+            sizeByPixelDensity: true,
+          },
+        }, {
           resolve: `gatsby-remark-prismjs`,
           options: {
             classPrefix: 'language-',
@@ -35,18 +41,18 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `data`,
-        path: `data`,
+        name: `content`,
+        path: path.resolve('content'),
         ignore: [`**/\.*`], // ignore files starting with a dot
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `img`,
-        path: `${__dirname}/src/img/`
-      }
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `img`,
+    //     path: `${__dirname}/src/img/`
+    //   }
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
