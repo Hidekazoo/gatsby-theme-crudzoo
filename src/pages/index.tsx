@@ -49,7 +49,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
   const postData = data.allMdx.edges;
   return (
     <Layout location={location}>
-      <SEO title="CrudZoo" keywords={[`gatsby`, `javascript`, `react`]} />
+      <SEO title={siteTitle} keywords={[`gatsby`, `javascript`, `react`]} />
       <ThemeToggler>
         {({ theme, toggleTheme }: { theme: string; toggleTheme: any }) => (
           <label
@@ -89,7 +89,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
             >
               <Link
                 style={{ boxShadow: `none` }}
-                to={node.parent.relativeDirectory + '/'}
+                to={'/' + node.parent.relativeDirectory + '/'}
               >
                 {title}
               </Link>
