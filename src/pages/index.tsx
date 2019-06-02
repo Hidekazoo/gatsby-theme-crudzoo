@@ -8,6 +8,9 @@ import '../styles/code.css';
 const { ThemeToggler } = require('gatsby-plugin-dark-mode');
 
 interface IProps {
+  location: {
+    pathname: string | undefined;
+  };
   data: {
     site: {
       siteMetadata: {
@@ -40,7 +43,7 @@ interface IProps {
   };
 }
 
-const TopPage: React.FC<IProps> = ({ data }) => {
+const TopPage: React.FC<IProps> = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
   const postData = data.allMdx.edges;
   return (

@@ -7,6 +7,9 @@ import SEO from '../components/seo';
 const MDXRenderer = require('gatsby-mdx/mdx-renderer');
 
 interface IProps {
+  location: {
+    pathname: string | undefined;
+  };
   data: {
     allFile: {
       edges: [
@@ -33,7 +36,7 @@ interface IProps {
   };
 }
 
-const BlogPostTemplate: React.FC<IProps> = ({ data }) => {
+const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   const pageData = data.allFile.edges[0].node.childMdx;
   return (
     <Layout location={location}>

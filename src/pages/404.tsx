@@ -10,7 +10,13 @@ interface QueryData {
     };
   };
 }
-const NotFoundPage: React.FC = () => {
+
+interface IProps {
+  location: {
+    pathname: string | undefined;
+  };
+}
+const NotFoundPage: React.FC<IProps> = ({ location }) => {
   return (
     <StaticQuery
       query={graphql`

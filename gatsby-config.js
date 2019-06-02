@@ -43,7 +43,7 @@ module.exports = {
       options: {
         name: `content`,
         path: path.resolve('content'),
-        ignore: [`**/\.*`], // ignore files starting with a dot
+        ignore: [`**/\.*`, `**/\*.jpg`], // ignore files starting with a dot
       },
     },
     // {
