@@ -42,17 +42,11 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
+        // path: `${__dirname}/src/content`,
         path: path.resolve('content'),
-        ignore: [`**/\.*`, `**/\*.jpg`], // ignore files starting with a dot
+        ignore: [`**/\.*`], // ignore files starting with a dot
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `img`,
-    //     path: `${__dirname}/src/img/`
-    //   }
-    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

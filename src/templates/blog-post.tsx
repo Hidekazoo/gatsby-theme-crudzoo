@@ -11,24 +11,25 @@ interface IProps {
     pathname: string | undefined;
   };
   data: {
-    allFile: {
+    allMdx: {
       edges: [
         {
           node: {
-            relativePath: string;
-            name: string;
-            changeTime: Date;
-            childMdx: {
-              code: {
-                body: string;
-              };
-              frontmatter: {
-                title: string;
-                date: Date;
-                update: Date;
-                tags: string[];
-                spoiler: string;
-              };
+            parent: {
+              relativePath: string;
+              relativeDirectory: string;
+              name: string;
+              changeTime: Date;
+            };
+            code: {
+              body: string;
+            };
+            frontmatter: {
+              title: string;
+              date: Date;
+              update: Date;
+              tags: string[];
+              spoiler: string;
             };
           };
         }
@@ -38,8 +39,9 @@ interface IProps {
 }
 
 const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
-  const lastUpdate = data.allFile.edges[0].node.changeTime;
-  const pageData = data.allFile.edges[0].node.childMdx;
+  const lastUpdate = data.allMdx.edges[0].node.parent.changeTime;
+
+  const pageData = data.allMdx.edges[0].node;
   return (
     <Layout location={location}>
       <SEO
@@ -70,23 +72,26 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
 export default BlogPostTemplate;
 export const query = graphql`
   query BlogPostQuery($slug: String) {
-    allFile(filter: { id: { eq: $slug } }) {
+    allMdx(filter: { id: { eq: $slug } }) {
       edges {
         node {
-          relativePath
-          name
-          changeTime(formatString: "YYYY年MM月DD日")
-          childMdx {
-            frontmatter {
-              title
-              date(formatString: "YYYY年MM月DD日")
-              update(formatString: "YYYY年MM月DD日")
-              tags
-              spoiler
+          parent {
+            ... on File {
+              relativePath
+              relativeDirectory
+              name
+              changeTime(formatString: "YYYY年MM月DD日")
             }
-            code {
-              body
-            }
+          }
+          frontmatter {
+            title
+            date(formatString: "YYYY年MM月DD日")
+            update(formatString: "YYYY年MM月DD日")
+            tags
+            spoiler
+          }
+          code {
+            body
           }
         }
       }

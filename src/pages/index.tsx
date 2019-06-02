@@ -75,7 +75,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
         const title = node.frontmatter.title;
         return (
           <div
-            key={node.parent.name}
+            key={node.parent.relativeDirectory}
             style={{
               marginBottom: `30px`
             }}
@@ -89,7 +89,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
             >
               <Link
                 style={{ boxShadow: `none` }}
-                to={node.parent.relativeDirectory}
+                to={node.parent.relativeDirectory + '/'}
               >
                 {title}
               </Link>
