@@ -35,16 +35,14 @@ module.exports = {
       resolve: `gatsby-plugin-page-creator`,
       options: {
         path: path.join(__dirname, `src/pages`),
-        // path: `pages`
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        // path: `${__dirname}/src/content`,
         path: path.resolve('content'),
-        ignore: [`**/\.*`], // ignore files starting with a dot
+        ignore: [`**/\.*`],
       },
     },
     `gatsby-transformer-sharp`,
@@ -58,5 +56,11 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-dark-mode`,
+    {
+      resolve: "gatsby-plugin-compile-es6-packages",
+      options: {
+        modules: ["gatsby-crudzoo"],
+      },
+    },
   ]
 }

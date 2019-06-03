@@ -1,7 +1,7 @@
 {
   "name": "gatsby-crudzoo",
   "version": "1.0.0",
-  "description": "theme for gatsby",
+  "description": "gatsby theme for crudzoo",
   "main": "index.ts",
   "license": "MIT",
   "repository": {
@@ -12,10 +12,14 @@
   "scripts": {
     "build": "gatsby build"
   },
+  "peerDependencies": {
+    "gatsby": "^2.7.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
   "devDependencies": {
-    "@hot-loader/react-dom": "^16.8.6",
     "@types/react-helmet": "^5.0.8",
-    "gatsby": "2.3.1",
+    "gatsby": "^2.7.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
