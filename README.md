@@ -19,23 +19,15 @@ yarn add gatsby react react-dom https://github.com/Hidekazoo/gatsby-crudzoo
 
 ### package.json
 
+Add a new Scripts "develop" and "build" to your package.json
+
 #### Example
 
 ```
 {
-  "name": "your site name",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "private": true,
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
-  },
-  "dependencies": {
-    "gatsby": "2.7.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
   }
 }
 ```
@@ -49,6 +41,7 @@ create gatsby-config.js and write your site settings
 **gatsby-config.js**
 
 ```javascript
+//gatsby-config.js
 module.exports = {
   siteMetadata: {
     title: `Crudzoo`,
