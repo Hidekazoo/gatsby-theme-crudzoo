@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Link, StaticQuery, graphql, useStaticQuery } from 'gatsby';
-// import 'prismjs/themes/prism-okaidia.css';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import '../styles/code.css';
 const { MDXProvider } = require('@mdx-js/react');
 const systemFont =

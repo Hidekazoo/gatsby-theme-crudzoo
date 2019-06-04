@@ -1,24 +1,24 @@
-import * as React from 'react'
-import Helmet from 'react-helmet'
+import * as React from 'react';
+import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 interface SEO {
-  description?: string
-  lang?: string
-  keywords?: string[]
-  title?: string
+  description?: string;
+  lang?: string;
+  keywords?: string[];
+  title?: string;
 }
 
 interface Site {
   site: {
     siteMetadata: {
-      title: string
-      description: string
-      author: string
-    }
-  }
+      title: string;
+      description: string;
+      author: string;
+    };
+  };
 }
-const SEO:React.FC<SEO> = ({
+const SEO: React.FC<SEO> = ({
   description,
   lang = `jp`,
   keywords = [],
@@ -35,12 +35,13 @@ const SEO:React.FC<SEO> = ({
           }
         }
       }
-    `)
-  const metaDescription = description || site.siteMetadata.description
+    `
+  );
+  const metaDescription = description || site.siteMetadata.description;
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
@@ -51,44 +52,42 @@ const SEO:React.FC<SEO> = ({
         },
         {
           property: `og:title`,
-          content: title,
+          content: title
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: metaDescription
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: `website`
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary`
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.author
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: title
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
-        },
+          content: metaDescription
+        }
       ].concat(
         keywords.length > 0
           ? {
               name: `keywords`,
-              content: keywords.join(`, `),
+              content: keywords.join(`, `)
             }
           : []
       )}
-      >
-
-    </Helmet>
-  )
-}
+    />
+  );
+};
 
 export default SEO;

@@ -61,7 +61,7 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
         }}
       >
         公開日：{pageData.frontmatter.date} <br />
-        {pageData.frontmatter.update && `最終更新日：${lastUpdate}`}
+        {`最終更新日：${lastUpdate}`}
       </p>
       <MDXRenderer>{pageData.code.body}</MDXRenderer>
       <Bio />

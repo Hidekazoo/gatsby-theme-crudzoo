@@ -30,8 +30,6 @@ const NotFoundPage: React.FC<IProps> = ({ location }) => {
         }
       `}
       render={(data: QueryData) => {
-        data.site;
-        const title = data.site.siteMetadata.title;
         return (
           <Layout location={location}>
             <SEO title="404: Not Found">

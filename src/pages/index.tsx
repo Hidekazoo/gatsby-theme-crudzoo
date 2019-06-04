@@ -106,8 +106,6 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
             <small style={{ color: `var(--textNormal)` }}>
               {node.frontmatter.spoiler}
             </small>
-
-            {/* <p dangerouslySetInnerHTML={{ __html: node.frontmatter.spoiler }} /> */}
           </div>
         );
       })}
