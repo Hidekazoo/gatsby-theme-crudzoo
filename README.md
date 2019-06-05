@@ -1,4 +1,5 @@
 Gatsby-crudzoo is Gatsby theme.
+
 Used in [https://crudzoo.com](https://crudzoo.com)
 
 ## Getting started
@@ -7,14 +8,14 @@ Used in [https://crudzoo.com](https://crudzoo.com)
 
 ```
 npm init -y
-npm install gatsby react react-dom https://github.com/Hidekazoo/gatsby-crudzoo
+npm install gatsby react react-dom gatsby-crudzoo
 ```
 
 or using yarn
 
 ```
 yarn init -y
-yarn add gatsby react react-dom https://github.com/Hidekazoo/gatsby-crudzoo
+yarn add gatsby react react-dom gatsby-crudzoo
 ```
 
 ### Update package.json
@@ -42,12 +43,12 @@ create gatsby-config.js and write your site settings
 //gatsby-config.js
 module.exports = {
   siteMetadata: {
-    title: `Crudzoo`,
-    author: `hidekazoo`,
-    description: ``,
-    siteUrl: `https://crudzoo.com`,
+    title: `site title`,
+    author: `your name`,
+    description: `site description`,
+    siteUrl: `site url`,
     social: {
-      twitter: `hidekazoo`
+      twitter: `your twitter name`
     }
   },
   __experimentalThemes: [`gatsby-crudzoo`]
@@ -64,13 +65,12 @@ Write your first post at markdown
 
 #### Example
 
-**content/hello-world/index.mdx**
-
 ```
+// content/hello-world/index.mdx**
 ---
 title: Hello world
 date: '2019-06-03T16:58:03.284Z'
-tags: ['hello world']
+tags: ['blog']
 spoiler: 'hello world'
 ---
 

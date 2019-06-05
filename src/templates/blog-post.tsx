@@ -27,7 +27,6 @@ interface IProps {
             frontmatter: {
               title: string;
               date: Date;
-              update: Date;
               tags: string[];
               spoiler: string;
             };
@@ -86,7 +85,6 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "YYYY年MM月DD日")
-            update(formatString: "YYYY年MM月DD日")
             tags
             spoiler
           }

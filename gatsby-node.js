@@ -4,11 +4,6 @@ exports.createPages = async ({
 }) => {
   const result = await graphql(`
   {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMdx {
       edges {
         node {
@@ -17,16 +12,6 @@ exports.createPages = async ({
             ... on File {
               relativeDirectory
             }
-          }
-          frontmatter {
-            title
-            date(formatString: "YYYY年MM月DD日")
-            update(formatString: "YYYY年MM月DD日")
-            tags
-            spoiler
-          }
-          code {
-            body
           }
         }
       }
@@ -45,13 +30,6 @@ exports.createPages = async ({
       component: require.resolve('./src/templates/blog-post.tsx'),
       context: {
         slug: id,
-        // siteTitle: siteTitle,
-        // title: pageInfo.title,
-        // body: page.childMdx.code.body,
-        // date: pageInfo.date,
-        // update: pageInfo.update,
-        // tags: pageInfo.tags,
-        // spoiler: pageInfo.spoiler,
       }
     });
   });
