@@ -28,7 +28,7 @@ Add a new Scripts "develop" and "build" to your package.json
 {
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build",
+    "build": "gatsby build"
   }
 }
 ```
