@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Img, { FixedObject } from 'gatsby-image';
-
+import { getLocalizedData } from '../utils/i18n';
 interface BioData {
   avatar: {
     childImageSharp: {
@@ -13,6 +13,7 @@ interface BioData {
       title: string;
       author: string;
       description: string;
+      language: string;
       social: {
         twitter: string;
       };
@@ -40,13 +41,17 @@ const Bio: React.FC = () => {
               title
               author
               description
+              language
             }
           }
         }
       `}
       render={(data: BioData) => {
         const author = data.site.siteMetadata.author;
+        const language = data.site.siteMetadata.language;
         const description = data.site.siteMetadata.description;
+
+        const localizedData = getLocalizedData(language);
         return (
           <div
             style={{
@@ -70,7 +75,7 @@ const Bio: React.FC = () => {
             />
             <div>
               <div>
-                作者: <strong>{author}</strong>
+                {localizedData.Bio.author}: <strong>{author}</strong>
               </div>
               {` `}
               <div>{description}</div>

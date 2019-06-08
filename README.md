@@ -43,6 +43,7 @@ create gatsby-config.js and write your site settings
 //gatsby-config.js
 module.exports = {
   siteMetadata: {
+    language: 'en',
     title: `site title`,
     author: `your name`,
     description: `site description`,

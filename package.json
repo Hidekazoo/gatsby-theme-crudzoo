@@ -9,6 +9,9 @@
     "url": "git+https://github.com/Hidekazoo/gatsby-crudzoo"
   },
   "author": "hidekazoo",
+  "keywords": [
+    "gatsby"
+  ],
   "scripts": {
     "build": "gatsby build"
   },

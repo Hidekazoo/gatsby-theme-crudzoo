@@ -1,32 +1,10 @@
 import * as React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import { getLocalizedData } from '../utils/i18n';
 import '../styles/code.css';
 const { MDXProvider } = require('@mdx-js/react');
-const systemFont =
-  '-apple-system,BlinkMacSystemFont,Helvetica Neue,Segoe UI,Hiragino Kaku Gothic ProN,Hiragino Sans,ヒラギノ角ゴ ProN W3,Arial,メイリオ,Meiryo,sans-serif';
-const components = {
-  h1: (props: React.Props<{}>) => (
-    <h1
-      style={{
-        color: `var(--textNormal)`,
-        fontFamily: systemFont,
-        fontSize: '2rem'
-      }}
-    >
-      {props.children}
-    </h1>
-  ),
-  p: (props: React.Props<{}>) => (
-    <p
-      style={{
-        fontFamily: systemFont,
-        fontSize: '18px'
-      }}
-    >
-      {props.children}
-    </p>
-  )
-};
+// const systemFont =
+//   '-apple-system,BlinkMacSystemFont,Helvetica Neue,Segoe UI,Hiragino Kaku Gothic ProN,Hiragino Sans,ヒラギノ角ゴ ProN W3,Arial,メイリオ,Meiryo,sans-serif';
 
 interface LayoutInterface {
   location: {
@@ -42,12 +20,41 @@ const Layout: React.FC<LayoutInterface> = props => {
       site {
         siteMetadata {
           title
+          language
         }
       }
     }
   `);
 
+  const language = siteData.site.siteMetadata.language;
+  const localizedData = getLocalizedData(language);
+
+  const components = {
+    h1: (props: React.Props<{}>) => (
+      <h1
+        style={{
+          color: `var(--textNormal)`,
+          fontFamily: localizedData.Font.fontFamily,
+          fontSize: '2rem'
+        }}
+      >
+        {props.children}
+      </h1>
+    ),
+    p: (props: React.Props<{}>) => (
+      <p
+        style={{
+          fontFamily: localizedData.Font.fontFamily,
+          fontSize: '18px'
+        }}
+      >
+        {props.children}
+      </p>
+    )
+  };
+
   const siteTitle = siteData.site.siteMetadata.title;
+
   let header;
   if (location.pathname === rootPath) {
     header = (
@@ -55,7 +62,8 @@ const Layout: React.FC<LayoutInterface> = props => {
         style={{
           color: `var(--textNormal)`,
           marginBottom: `30px`,
-          marginTop: 0
+          marginTop: 0,
+          fontFamily: localizedData.Font.fontFamily
         }}
       >
         <Link
@@ -75,7 +83,7 @@ const Layout: React.FC<LayoutInterface> = props => {
       <h3
         style={{
           color: `var(--textNormal)`,
-          fontFamily: systemFont,
+          fontFamily: localizedData.Font.fontFamily,
           marginTop: 0
         }}
       >

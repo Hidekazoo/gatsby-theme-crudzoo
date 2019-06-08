@@ -13,22 +13,19 @@ interface Site {
   site: {
     siteMetadata: {
       title: string;
+      language: string;
       description: string;
       author: string;
     };
   };
 }
-const SEO: React.FC<SEO> = ({
-  description,
-  lang = `jp`,
-  keywords = [],
-  title
-}) => {
+const SEO: React.FC<SEO> = ({ description, lang, keywords = [], title }) => {
   const { site }: Site = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
+            language
             title
             description
             author
@@ -52,7 +49,7 @@ const SEO: React.FC<SEO> = ({
         },
         {
           property: `og:title`,
-          content: title
+          content: title || site.siteMetadata.title
         },
         {
           property: `og:description`,

@@ -3,6 +3,9 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import Bio from '../components/bio';
 import SEO from '../components/seo';
+
+import { formatPostDate } from '../utils/i18n';
+
 import '../styles/global.css';
 import '../styles/code.css';
 const { ThemeToggler } = require('gatsby-plugin-dark-mode');
@@ -16,6 +19,7 @@ interface IProps {
       siteMetadata: {
         title: string;
         author: string;
+        language: string;
       };
     };
     allMdx: {
@@ -45,11 +49,18 @@ interface IProps {
 }
 
 const TopPage: React.FC<IProps> = ({ data, location }) => {
+  const language = data.site.siteMetadata.language;
+
   const siteTitle = data.site.siteMetadata.title;
   const postData = data.allMdx.edges;
+
   return (
     <Layout location={location}>
-      <SEO title={siteTitle} keywords={[`gatsby`, `javascript`, `react`]} />
+      <SEO
+        lang={language}
+        title={siteTitle}
+        keywords={[`gatsby`, `javascript`, `react`]}
+      />
       <ThemeToggler>
         {({ theme, toggleTheme }: { theme: string; toggleTheme: any }) => (
           <label
@@ -101,7 +112,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
                 fontSize: `14px`
               }}
             >
-              {node.frontmatter.date}
+              {formatPostDate(node.frontmatter.date, language)}
             </p>
             <small style={{ color: `var(--textNormal)` }}>
               {node.frontmatter.spoiler}
@@ -121,6 +132,7 @@ export const query = graphql`
       siteMetadata {
         title
         author
+        language
       }
     }
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -140,7 +152,7 @@ export const query = graphql`
           timeToRead
           frontmatter {
             title
-            date(formatString: "YYYY年MM月DD日")
+            date(formatString: "MMMM DD, YYYY")
             spoiler
           }
         }

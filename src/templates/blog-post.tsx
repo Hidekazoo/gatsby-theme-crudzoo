@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-
+import { getLocalizedData, formatPostDate } from '../utils/i18n';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -11,6 +11,11 @@ interface IProps {
     pathname: string | undefined;
   };
   data: {
+    site: {
+      siteMetadata: {
+        language: string;
+      };
+    };
     allMdx: {
       edges: [
         {
@@ -38,29 +43,40 @@ interface IProps {
 }
 
 const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
-  const lastUpdate = data.allMdx.edges[0].node.parent.changeTime;
+  const lang = data.site.siteMetadata.language;
+  const localizedData = getLocalizedData(lang);
 
   const pageData = data.allMdx.edges[0].node;
+  const title = pageData.frontmatter.title;
+  const spoiler = pageData.frontmatter.spoiler;
+  const date = pageData.frontmatter.date;
+  const lastUpdate = pageData.parent.changeTime;
+
   return (
     <Layout location={location}>
-      <SEO
-        title={pageData.frontmatter.title}
-        description={pageData.frontmatter.spoiler}
-      />
+      <SEO lang={lang} title={title} description={spoiler} />
       <h1
         style={{
           color: `var(--textNormal)`
         }}
       >
-        {pageData.frontmatter.title}
+        {title}
       </h1>
       <p
         style={{
           color: `var(--textNormal)`
         }}
       >
-        公開日：{pageData.frontmatter.date} <br />
-        {`最終更新日：${lastUpdate}`}
+        {date &&
+          `${localizedData.BlogPost.update}：${formatPostDate(
+            date,
+            lang
+          )} <br />`}
+        {lastUpdate &&
+          `${localizedData.BlogPost.lastUpdate}: ${formatPostDate(
+            lastUpdate,
+            lang
+          )}`}
       </p>
       <MDXRenderer>{pageData.code.body}</MDXRenderer>
       <Bio />
@@ -71,6 +87,11 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
 export default BlogPostTemplate;
 export const query = graphql`
   query BlogPostQuery($slug: String) {
+    site {
+      siteMetadata {
+        language
+      }
+    }
     allMdx(filter: { id: { eq: $slug } }) {
       edges {
         node {
@@ -79,12 +100,12 @@ export const query = graphql`
               relativePath
               relativeDirectory
               name
-              changeTime(formatString: "YYYY年MM月DD日")
+              changeTime(formatString: "MMMM DD, YYYY")
             }
           }
           frontmatter {
             title
-            date(formatString: "YYYY年MM月DD日")
+            date(formatString: "MMMM DD, YYYY")
             tags
             spoiler
           }
