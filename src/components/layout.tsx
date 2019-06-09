@@ -3,8 +3,6 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import { getLocalizedData } from '../utils/i18n';
 import '../styles/code.css';
 const { MDXProvider } = require('@mdx-js/react');
-// const systemFont =
-//   '-apple-system,BlinkMacSystemFont,Helvetica Neue,Segoe UI,Hiragino Kaku Gothic ProN,Hiragino Sans,ヒラギノ角ゴ ProN W3,Arial,メイリオ,Meiryo,sans-serif';
 
 interface LayoutInterface {
   location: {
@@ -34,7 +32,6 @@ const Layout: React.FC<LayoutInterface> = props => {
       <h1
         style={{
           color: `var(--textNormal)`,
-          fontFamily: localizedData.Font.fontFamily,
           fontSize: '2rem'
         }}
       >
@@ -44,7 +41,6 @@ const Layout: React.FC<LayoutInterface> = props => {
     p: (props: React.Props<{}>) => (
       <p
         style={{
-          fontFamily: localizedData.Font.fontFamily,
           fontSize: '18px'
         }}
       >
@@ -54,7 +50,6 @@ const Layout: React.FC<LayoutInterface> = props => {
   };
 
   const siteTitle = siteData.site.siteMetadata.title;
-
   let header;
   if (location.pathname === rootPath) {
     header = (
@@ -62,8 +57,7 @@ const Layout: React.FC<LayoutInterface> = props => {
         style={{
           color: `var(--textNormal)`,
           marginBottom: `30px`,
-          marginTop: 0,
-          fontFamily: localizedData.Font.fontFamily
+          marginTop: 0
         }}
       >
         <Link
@@ -83,7 +77,6 @@ const Layout: React.FC<LayoutInterface> = props => {
       <h3
         style={{
           color: `var(--textNormal)`,
-          fontFamily: localizedData.Font.fontFamily,
           marginTop: 0
         }}
       >
@@ -105,6 +98,7 @@ const Layout: React.FC<LayoutInterface> = props => {
     <div
       style={{
         display: 'block',
+        fontFamily: localizedData.Font.fontFamily,
         maxWidth: '90%',
         width: '650px',
         margin: '2rem auto'

@@ -38,7 +38,7 @@ export function getLocalizedData(lang: string): ILocale {
         },
         Font: {
           fontFamily:
-            'Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif'
+            '"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif'
         }
       };
       return localizedData;
