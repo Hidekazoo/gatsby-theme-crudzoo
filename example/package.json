@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "clean": "rm -rf node_modules .cache public"
   },
   "dependencies": {
     "react": "^16.8.6",
