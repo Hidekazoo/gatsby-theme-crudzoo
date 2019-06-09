@@ -64,19 +64,21 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
       </h1>
       <p
         style={{
-          color: `var(--textNormal)`
+          color: `var(--textNormal)`,
+          margin: 0
         }}
       >
         {date &&
-          `${localizedData.BlogPost.update}：${formatPostDate(
-            date,
-            lang
-          )} <br />`}
-        {lastUpdate &&
-          `${localizedData.BlogPost.lastUpdate}: ${formatPostDate(
-            lastUpdate,
-            lang
-          )}`}
+          `${localizedData.BlogPost.update}：${formatPostDate(date, lang)}`}
+
+        {lastUpdate && (
+          <span style={{ marginLeft: '10px' }}>
+            {`${localizedData.BlogPost.lastUpdate}: ${formatPostDate(
+              lastUpdate,
+              lang
+            )}`}
+          </span>
+        )}
       </p>
       <MDXRenderer>{pageData.code.body}</MDXRenderer>
       <Bio />

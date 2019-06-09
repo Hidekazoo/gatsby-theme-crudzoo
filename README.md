@@ -28,7 +28,8 @@ Add a new Scripts "develop" and "build" to your package.json
 {
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "clean": "rm -rf node_modules .cache public"
   }
 }
 ```
@@ -43,9 +44,10 @@ create gatsby-config.js and write your site settings
 //gatsby-config.js
 module.exports = {
   siteMetadata: {
-    language: 'en',
+    language: `en`, // or `ja`
     title: `site title`,
     author: `your name`,
+    keywords: [`blog`, `gatsby`],
     description: `site description`,
     siteUrl: `site url`,
     social: {

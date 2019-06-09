@@ -18,8 +18,8 @@ interface IProps {
     site: {
       siteMetadata: {
         title: string;
-        author: string;
         language: string;
+        keywords: string[];
       };
     };
     allMdx: {
@@ -31,8 +31,6 @@ interface IProps {
             };
             parent: {
               name: string;
-              absolutePath: string;
-              relativePath: string;
               relativeDirectory: string;
             };
             timeToRead: number;
@@ -54,13 +52,11 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
   const postData = data.allMdx.edges;
 
+  const keywords = data.site.siteMetadata.keywords;
+
   return (
     <Layout location={location}>
-      <SEO
-        lang={language}
-        title={siteTitle}
-        keywords={[`gatsby`, `javascript`, `react`]}
-      />
+      <SEO lang={language} title={siteTitle} keywords={keywords} />
       <ThemeToggler>
         {({ theme, toggleTheme }: { theme: string; toggleTheme: any }) => (
           <label
@@ -99,7 +95,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
               }}
             >
               <Link
-                style={{ boxShadow: `none` }}
+                style={{ boxShadow: `none`, textDecoration: `none` }}
                 to={'/' + node.parent.relativeDirectory + '/'}
               >
                 {title}
@@ -131,8 +127,8 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-        author
         language
+        keywords
       }
     }
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -144,8 +140,6 @@ export const query = graphql`
           parent {
             ... on File {
               name
-              absolutePath
-              relativePath
               relativeDirectory
             }
           }

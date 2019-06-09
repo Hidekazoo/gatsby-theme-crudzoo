@@ -28,6 +28,7 @@ const SEO: React.FC<SEO> = ({ description, lang, keywords = [], title }) => {
             language
             title
             description
+            keywords
             author
           }
         }

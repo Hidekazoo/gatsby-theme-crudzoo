@@ -17,7 +17,7 @@ export function getLocalizedData(lang: string): ILocale {
       author: 'author'
     },
     BlogPost: {
-      update: 'update',
+      update: 'date',
       lastUpdate: 'last update'
     },
     Font: {
