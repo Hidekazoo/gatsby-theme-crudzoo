@@ -13,6 +13,9 @@ exports.createPages = async ({
               relativeDirectory
             }
           }
+          frontmatter {
+            tags
+          }
         }
       }
     }
@@ -21,9 +24,9 @@ exports.createPages = async ({
 
   const pages = result.data.allMdx.edges.map(({
     node
-  }) => node)
+  }) => node);
+  let tags = [];
   pages.forEach(page => {
-    // const pageInfo = page.childMdx.frontmatter
     const id = page.id
     actions.createPage({
       path: `/${page.parent.relativeDirectory}`,
@@ -32,5 +35,19 @@ exports.createPages = async ({
         slug: id,
       }
     });
+    if (page.frontmatter.tags !== null) {
+      tags = [...tags, ...page.frontmatter.tags]
+    }
   });
+
+  const uniqueTags = tags.filter((v, i) => tags.indexOf(v) === i)
+  uniqueTags.forEach(tag => {
+    actions.createPage({
+      path: `/tags/${tag}`,
+      component: require.resolve('./src/templates/tags.tsx'),
+      context: {
+        tag,
+      }
+    })
+  })
 }

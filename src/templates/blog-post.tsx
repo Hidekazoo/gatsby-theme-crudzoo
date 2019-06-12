@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
+
 import { getLocalizedData, formatPostDate } from '../utils/i18n';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import TagList from '../components/tagList';
 const MDXRenderer = require('gatsby-mdx/mdx-renderer');
 
 interface IProps {
@@ -42,6 +45,15 @@ interface IProps {
   };
 }
 
+const SiteTitle = styled.div`
+  color: var(--textNormal);
+`;
+
+const PostDate = styled.p`
+  color: var(--textNormal);
+  margin: 0;
+`;
+
 const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   const lang = data.site.siteMetadata.language;
   const localizedData = getLocalizedData(lang);
@@ -55,19 +67,9 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={lang} title={title} description={spoiler} />
-      <h1
-        style={{
-          color: `var(--textNormal)`
-        }}
-      >
-        {title}
-      </h1>
-      <p
-        style={{
-          color: `var(--textNormal)`,
-          margin: 0
-        }}
-      >
+      <SiteTitle>{title}</SiteTitle>
+
+      <PostDate>
         {date &&
           `${localizedData.BlogPost.update}：${formatPostDate(date, lang)}`}
 
@@ -79,8 +81,11 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
             )}`}
           </span>
         )}
-      </p>
+      </PostDate>
+
       <MDXRenderer>{pageData.code.body}</MDXRenderer>
+      <hr />
+      <TagList tags={pageData.frontmatter.tags} />
       <Bio />
     </Layout>
   );
