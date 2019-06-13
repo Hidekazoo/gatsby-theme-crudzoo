@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { getLocalizedData, formatPostDate } from '../utils/i18n';
 import Bio from '../components/bio';
+import ToggleDarkMode from '../components/toggleDarkMode';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import TagList from '../components/tagList';
@@ -45,7 +46,7 @@ interface IProps {
   };
 }
 
-const SiteTitle = styled.div`
+const PostTitle = styled.h1`
   color: var(--textNormal);
 `;
 
@@ -67,8 +68,9 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={lang} title={title} description={spoiler} />
-      <SiteTitle>{title}</SiteTitle>
+      <ToggleDarkMode />
 
+      <PostTitle>{title}</PostTitle>
       <PostDate>
         {date &&
           `${localizedData.BlogPost.update}：${formatPostDate(date, lang)}`}

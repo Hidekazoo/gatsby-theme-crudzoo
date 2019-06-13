@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { graphql, Link } from 'gatsby';
+import styled from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import Bio from '../components/bio';
 import { formatPostDate } from '../utils/i18n';
-const { ThemeToggler } = require('gatsby-plugin-dark-mode');
+import ToggleDarkMode from '../components/toggleDarkMode';
 import '../styles/global.css';
-import '../styles/code.css';
 
 interface IProps {
   pageContext: {
@@ -46,37 +45,54 @@ interface IProps {
     };
   };
 }
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--textNormal);
+  border-bottom: 1px solid var(--textNormal);
+  margin-bottom: 30px;
+`;
+const TagPageTitle = styled.h1`
+  font-size: 20px;
+  padding: 3px 5px;
+  text-decoration: none;
+  margin-right: 10px;
+  width: fit-content;
+`;
+
+const PostTitle = styled.h3`
+  font-size: 20px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+`;
+
+const PostDate = styled.p`
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 14px;
+`;
+
+const PostSpoiler = styled.small`
+  color: var(--textNormal);
+`;
 const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
   const language = data.site.siteMetadata.language;
 
-  const title = pageContext.tag;
+  const pageTitle = pageContext.tag;
   const keywords = ['key'];
 
   const pageData = data.allMdx.edges;
   return (
     <Layout location={location}>
-      <SEO lang={language} title={title} keywords={keywords} />
-      <ThemeToggler>
-        {({ theme, toggleTheme }: { theme: string; toggleTheme: any }) => (
-          <label
-            style={{
-              textAlign: 'right',
-              margin: '15px 0',
-              display: 'block',
-              color: `var(--textNormal)`
-            }}
-          >
-            <input
-              type="checkbox"
-              onChange={e => toggleTheme(e.target.checked ? 'dark' : 'light')}
-              checked={theme === 'dark'}
-            />{' '}
-            Dark Mode
-          </label>
-        )}
-      </ThemeToggler>
+      <SEO lang={language} title={pageTitle} keywords={keywords} />
+      <ToggleDarkMode />
+      <Header>
+        <TagPageTitle>{pageTitle}</TagPageTitle>
+      </Header>
 
-      <Bio />
       {pageData.map(({ node }) => {
         const title = node.frontmatter.title;
         return (
@@ -86,32 +102,18 @@ const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
               marginBottom: `30px`
             }}
           >
-            <h3
-              style={{
-                fontSize: `20px`,
-                marginBottom: `5px`,
-                marginTop: `15px`
-              }}
-            >
+            <PostTitle>
               <Link
                 style={{ boxShadow: `none`, textDecoration: `none` }}
                 to={'/' + node.parent.relativeDirectory + '/'}
               >
                 {title}
               </Link>
-            </h3>
-            <p
-              style={{
-                marginTop: `5px`,
-                marginBottom: 0,
-                fontSize: `14px`
-              }}
-            >
+            </PostTitle>
+            <PostDate>
               {formatPostDate(node.frontmatter.date, language)}
-            </p>
-            <small style={{ color: `var(--textNormal)` }}>
-              {node.frontmatter.spoiler}
-            </small>
+            </PostDate>
+            <PostSpoiler>{node.frontmatter.spoiler}</PostSpoiler>
           </div>
         );
       })}

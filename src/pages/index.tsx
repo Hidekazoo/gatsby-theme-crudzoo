@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { Link, graphql } from 'gatsby';
 import Layout from '../components/layout';
+import ToggleDarkMode from '../components/toggleDarkMode';
 import Bio from '../components/bio';
 import SEO from '../components/seo';
-
 import { formatPostDate } from '../utils/i18n';
-
 import '../styles/global.css';
-import '../styles/code.css';
-const { ThemeToggler } = require('gatsby-plugin-dark-mode');
 
 interface IProps {
   location: {
@@ -57,25 +54,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={language} title={siteTitle} keywords={keywords} />
-      <ThemeToggler>
-        {({ theme, toggleTheme }: { theme: string; toggleTheme: any }) => (
-          <label
-            style={{
-              textAlign: 'right',
-              margin: '15px 0',
-              display: 'block',
-              color: `var(--textNormal)`
-            }}
-          >
-            <input
-              type="checkbox"
-              onChange={e => toggleTheme(e.target.checked ? 'dark' : 'light')}
-              checked={theme === 'dark'}
-            />{' '}
-            Dark Mode
-          </label>
-        )}
-      </ThemeToggler>
+      <ToggleDarkMode />
 
       <Bio />
       {postData.map(({ node }) => {

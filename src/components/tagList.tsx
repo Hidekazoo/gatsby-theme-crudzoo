@@ -10,7 +10,7 @@ const TagListContainer = styled.div`
   margin: 15px 0 30px;
 `;
 const Tag = styled(Link)`
-  background: #fff;
+  background: var(--tagBg);
   padding: 5px 10px;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.87);

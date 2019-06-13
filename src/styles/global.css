@@ -1,5 +1,6 @@
 body {
   --bg: white;
+  --tagBg: rgba(0, 0, 0, .05);
   --textNormal: rgba(0, 0, 0, .84);
   --textTitle: rgba(0, 0, 0, .84);
   --textLink: rgba(0, 0, 0, .84);
@@ -9,8 +10,8 @@ body {
 
 body.dark {
   -webkit-font-smoothing: antialiased;
-
   --bg: #282c35;
+  --tagBg: #fff;
   --textNormal: hsla(0, 0%, 100%, 0.88);
   --textTitle: hsla(0, 0%, 100%, 0.88);
   --textLink: hsla(0, 0%, 100%, 0.88);
