@@ -1,6 +1,6 @@
-Gatsby-crudzoo is Gatsby theme.
+Gatsby-crudzoo is Gatsby theme for blog site.
 
-Used in [https://crudzoo.com](https://crudzoo.com)
+Demo: [https://crudzoo.com](https://crudzoo.com)
 
 ## Getting started
 
