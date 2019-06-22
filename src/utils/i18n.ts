@@ -33,7 +33,7 @@ export function getLocalizedData(lang: string): ILocale {
           author: '作者'
         },
         BlogPost: {
-          update: '更新日',
+          update: '公開日',
           lastUpdate: '最終更新日'
         },
         Font: {

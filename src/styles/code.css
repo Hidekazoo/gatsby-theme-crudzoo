@@ -148,6 +148,5 @@ pre[data-line] {
 }
 
 .gatsby-highlight pre[class*='language-'] {
-  float: left;
-  min-width: 100%;
+  margin: 0;
 }

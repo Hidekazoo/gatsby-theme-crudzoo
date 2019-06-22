@@ -6,6 +6,7 @@ body {
   --textLink: rgba(0, 0, 0, .84);
   --hr: hsla(0, 0%, 0%, 0.2);
   background-color: var(--bg);
+  font-size: 16px;
 }
 
 body.dark {
@@ -24,26 +25,13 @@ h1 {
 
 h2,
 h3,
-h4 {
+h4,
+p {
   color: var(--textNormal) !important;
 }
 
 li {
   color: var(--textNormal) !important;
-}
-
-
-h1 {
-  font-size: 32px;
-  line-height: 1.5,
-}
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 20px;
 }
 
 a {
@@ -53,11 +41,4 @@ a {
 
 a.gatsby-resp-image-link {
   box-shadow: none;
-}
-
-p {
-  color: var(--textNormal);
-  font-size: 16px;
-  line-height: 32px;
-  margin: 32px 0;
 }

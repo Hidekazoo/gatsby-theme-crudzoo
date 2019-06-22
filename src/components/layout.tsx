@@ -1,8 +1,34 @@
 import * as React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import styled from 'styled-components';
 import { getLocalizedData } from '../utils/i18n';
 import '../styles/code.css';
 const { MDXProvider } = require('@mdx-js/react');
+
+const LayoutMain = styled.div<{ fontFamily: string }>`
+  display: block;
+  font-family: ${props => props.fontFamily};
+  max-width: 90%;
+  width: 650px;
+  margin: 2rem auto;
+
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin: 2.6rem 0 0.2rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+    margin: 2.2rem 0 0.1rem;
+  }
+  p {
+    font-size: 1rem;
+    margin: 1rem 0 1.2rem;
+    line-height: 1.8;
+  }
+`;
 
 interface LayoutInterface {
   location: {
@@ -26,28 +52,6 @@ const Layout: React.FC<LayoutInterface> = props => {
 
   const language = siteData.site.siteMetadata.language;
   const localizedData = getLocalizedData(language);
-
-  const components = {
-    h1: (props: React.Props<{}>) => (
-      <h1
-        style={{
-          color: `var(--textNormal)`,
-          fontSize: '2rem'
-        }}
-      >
-        {props.children}
-      </h1>
-    ),
-    p: (props: React.Props<{}>) => (
-      <p
-        style={{
-          fontSize: '18px'
-        }}
-      >
-        {props.children}
-      </p>
-    )
-  };
 
   const siteTitle = siteData.site.siteMetadata.title;
   let header;
@@ -95,20 +99,12 @@ const Layout: React.FC<LayoutInterface> = props => {
   }
 
   return (
-    <div
-      style={{
-        display: 'block',
-        fontFamily: localizedData.Font.fontFamily,
-        maxWidth: '90%',
-        width: '650px',
-        margin: '2rem auto'
-      }}
-    >
+    <LayoutMain fontFamily={localizedData.Font.fontFamily}>
       <header>{header}</header>
-      <MDXProvider components={components}>
+      <MDXProvider>
         <section>{children}</section>
       </MDXProvider>
-    </div>
+    </LayoutMain>
   );
 };
 
