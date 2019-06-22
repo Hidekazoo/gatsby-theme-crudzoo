@@ -62,5 +62,6 @@ module.exports = {
         modules: ["gatsby-crudzoo"],
       },
     },
+    `gatsby-plugin-styled-components`
   ]
 }

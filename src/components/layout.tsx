@@ -3,6 +3,7 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import { getLocalizedData } from '../utils/i18n';
 import '../styles/code.css';
+import '../styles/layout.css';
 const { MDXProvider } = require('@mdx-js/react');
 
 const LayoutMain = styled.div<{ fontFamily: string }>`
@@ -98,11 +99,15 @@ const Layout: React.FC<LayoutInterface> = props => {
     );
   }
 
+  const components = {
+    p: (props: React.Props<{}>) => <p className={`text`}>{props.children}</p>
+  };
+
   return (
     <LayoutMain fontFamily={localizedData.Font.fontFamily}>
       <header>{header}</header>
-      <MDXProvider>
-        <section>{children}</section>
+      <MDXProvider components={components}>
+        <section className={`container`}>{children}</section>
       </MDXProvider>
     </LayoutMain>
   );
