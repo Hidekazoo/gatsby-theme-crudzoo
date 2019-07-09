@@ -42,14 +42,20 @@ const Bio: React.FC = () => {
               author
               description
               language
+              social {
+                twitter
+              }
             }
           }
         }
       `}
       render={(data: BioData) => {
-        const author = data.site.siteMetadata.author;
-        const language = data.site.siteMetadata.language;
-        const description = data.site.siteMetadata.description;
+        const {
+          author,
+          language,
+          description,
+          social
+        } = data.site.siteMetadata;
 
         const localizedData = getLocalizedData(language);
         return (
@@ -75,7 +81,13 @@ const Bio: React.FC = () => {
             />
             <div>
               <div>
-                {localizedData.Bio.author}: <strong>{author}</strong>
+                {localizedData.Bio.author}: {author}
+                <a
+                  href={`https://twitter.com/${social.twitter}`}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Twitter
+                </a>
               </div>
               {` `}
               <div>{description}</div>

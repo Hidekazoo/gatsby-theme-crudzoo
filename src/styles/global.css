@@ -7,6 +7,12 @@ body {
   --hr: hsla(0, 0%, 0%, 0.2);
   background-color: var(--bg);
   font-size: 16px;
+
+  --duration: 0.5s;
+  --timing: ease;
+  transition:
+    color var(--duration) var(--timing),
+    background-color var(--duration) var(--timing);
 }
 
 body.dark {

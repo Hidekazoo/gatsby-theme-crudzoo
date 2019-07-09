@@ -100,7 +100,7 @@ const Layout: React.FC<LayoutInterface> = props => {
   }
 
   const components = {
-    p: (props: React.Props<{}>) => <p className={`text`}>{props.children}</p>
+    p: (props: React.Props<{}>) => <p>{props.children}</p>
   };
 
   return (

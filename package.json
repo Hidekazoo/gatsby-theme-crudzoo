@@ -33,7 +33,7 @@
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.16",
-    "gatsby": "^2.7.1",
+    "gatsby": "^2.13.8",
     "gatsby-image": "^2.1.0",
     "gatsby-mdx": "^0.6.3",
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
