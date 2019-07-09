@@ -54,7 +54,12 @@ module.exports = {
       twitter: `your twitter name`
     }
   },
-  __experimentalThemes: [`gatsby-crudzoo`]
+  plugins: [
+    {
+      resolve: 'gatsby-crudzoo',
+      options: {}
+    }
+  ]
 };
 ```
 
