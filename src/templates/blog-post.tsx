@@ -8,7 +8,7 @@ import ToggleDarkMode from '../components/toggleDarkMode';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import TagList from '../components/tagList';
-const MDXRenderer = require('gatsby-mdx/mdx-renderer');
+const MDXRenderer = require("gatsby-plugin-mdx");
 
 interface IProps {
   location: {
@@ -30,9 +30,7 @@ interface IProps {
               name: string;
               changeTime: Date;
             };
-            code: {
-              body: string;
-            };
+            body: string;
             frontmatter: {
               title: string;
               date: Date;
@@ -85,7 +83,7 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
         )}
       </PostDate>
 
-      <MDXRenderer>{pageData.code.body}</MDXRenderer>
+      <MDXRenderer>{pageData.body}</MDXRenderer>
       <hr />
       <TagList tags={pageData.frontmatter.tags} />
       <Bio />
@@ -118,9 +116,7 @@ export const query = graphql`
             tags
             spoiler
           }
-          code {
-            body
-          }
+          body
         }
       }
     }

@@ -23,9 +23,7 @@ interface IProps {
       edges: [
         {
           node: {
-            code: {
-              body: string;
-            };
+            body: string;
             parent: {
               name: string;
               relativeDirectory: string;
@@ -113,9 +111,7 @@ export const query = graphql`
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          code {
-            body
-          }
+          body
           parent {
             ... on File {
               name
