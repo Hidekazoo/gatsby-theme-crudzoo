@@ -8,7 +8,7 @@ import ToggleDarkMode from '../components/toggleDarkMode';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import TagList from '../components/tagList';
-const MDXRenderer = require("gatsby-plugin-mdx");
+const { MDXRenderer } = require("gatsby-plugin-mdx");
 
 interface IProps {
   location: {
