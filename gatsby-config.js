@@ -21,7 +21,8 @@ module.exports = {
             inlineCodeMarker: null,
             aliases: {},
           },
-        }, ]
+        }, ],
+        plugins: [ `gatsby-remark-images` ],
       }
     },
     {
