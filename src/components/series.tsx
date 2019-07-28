@@ -18,10 +18,11 @@ const SeriesContainer = styled.article<{ mainColor: string }>`
   margin: 0 10px;
   border: 2px solid ${props => props.mainColor};
   border-radius: 10px;
+  padding: 10px;
 `
 
 const SeriesTitle = styled.h2`
-  font-size: 18px;
+  font-size: 1rem !important;
   margin: 0;
 `
 

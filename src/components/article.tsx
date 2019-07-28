@@ -13,15 +13,13 @@ interface IProps {
 const ArticleContainer = styled.article`
   margin-bottom: 30px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
 `
 
-const LeftContainer = styled.div`
-  width: 75%;
-`
+const LeftContainer = styled.div``
 const RightContainer = styled.div`
-  width: 25%;
+  flex: 0 0 150px;
+  margin-left: 10px;
 `
 
 const ArticleTitle = styled.h2`
@@ -58,9 +56,11 @@ const Article: React.FC<IProps> = ({ title, date, spoiler, featuredImage }) => {
         <ArticleDate>{formatPostDate(date, language)}</ArticleDate>
         <ArticleLead>{spoiler}</ArticleLead>
       </LeftContainer>
-      <RightContainer>
-        {featuredImage && <Img sizes={featuredImage} />}
-      </RightContainer>
+      {featuredImage && (
+        <RightContainer>
+          <Img sizes={featuredImage} />
+        </RightContainer>
+      )}
     </ArticleContainer>
   )
 }

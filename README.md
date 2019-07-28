@@ -29,7 +29,7 @@ Add a new Scripts "develop" and "build" to your package.json. And It is convenie
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "clean": "rm -rf node_modules .cache public"
+    "clean": "rm -rf .cache public"
   }
 }
 ```
@@ -99,7 +99,7 @@ You can create a list of articles by adding a configuration file in the series f
   "title": "sample title",
   "spoiler": "my sample series",
   "image": "sample.png",
-  "articles": ["article-1"] // Article id in content folder
+  "articles": ["article-1"]
 }
 ```
 

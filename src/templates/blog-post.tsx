@@ -89,7 +89,8 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
           </span>
         )}
       </PostDate>
-      {featuredImage && <Img sizes={featuredImage} />}
+
+      {/* {featuredImage && <Img sizes={featuredImage} />} */}
       <MDXRenderer>{pageData.body}</MDXRenderer>
       <hr />
       <TagList tags={pageData.frontmatter.tags} />
