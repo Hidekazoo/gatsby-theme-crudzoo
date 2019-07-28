@@ -119,7 +119,6 @@ const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
       </Header>
 
       <Section>
-        <SectionTitle>ArticleList</SectionTitle>
         <ArticleList articles={postData} />
       </Section>
     </Layout>

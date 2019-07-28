@@ -13,11 +13,12 @@ const SeriesListContainer = styled.div`
   display: flex;
   width: fit-content;
   max-width: 100%;
+  overflow-x: auto;
 `
 
 const SeriesList: React.FC<IProps> = ({ series }) => {
   return (
-    <SeriesListContainer style={{ width: "fit-content" }}>
+    <SeriesListContainer>
       {series.map(item => {
         const frontmatter = item.node
         const featuredImage = frontmatter.image

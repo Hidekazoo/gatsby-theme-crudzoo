@@ -12,29 +12,40 @@ interface IProps {
 }
 
 const ArticleContainer = styled.article`
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   display: flex;
   align-items: center;
 
   @media (max-width: 480px) {
     flex-flow: column;
+    align-items: flex-start;
   }
 `
 
-const LeftContainer = styled.div``
+const LeftContainer = styled.div`
+  flex: 1 1 auto;
+`
 const RightContainer = styled.div`
   flex: 0 0 150px;
   min-width: 150px;
   margin-left: 10px;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `
 
 const ArticleTitle = styled.h2`
   font-size: 1.5rem !important;
   margin: 0;
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem !important;
+  }
 `
 const ArticleDate = styled.div`
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 14px;
 }}
 `

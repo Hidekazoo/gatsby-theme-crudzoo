@@ -130,7 +130,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
         <ArticleList articles={postData} />
       </Section>
 
-      <Section style={{ borderTop: "1px solid #ccc", paddingTop: "30px" }}>
+      <Section>
         <Bio />
       </Section>
     </Layout>

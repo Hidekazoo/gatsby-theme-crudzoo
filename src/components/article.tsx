@@ -14,22 +14,27 @@ const ArticleContainer = styled.article`
   margin-bottom: 30px;
   display: flex;
   align-items: center;
-
-  @media (max-width: 480px) {
-    flex-flow: column;
-  }
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
 `
 
-const LeftContainer = styled.div``
+const LeftContainer = styled.div`
+  flex: 1 1 auto;
+`
 const RightContainer = styled.div`
   flex: 0 0 150px;
   min-width: 150px;
   margin-left: 10px;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `
 
 const ArticleTitle = styled.h2`
   margin: 0;
-  flex: 1;
+  @media (max-width: 480px) {
+    font-size: 1.1rem !important;
+  }
 `
 const ArticleDate = styled.div`
   margin-top: 5px;
@@ -40,7 +45,9 @@ const ArticleDate = styled.div`
 const ArticleLead = styled.div`
   color: var(--textNormal);
   font-size: 16px;
-  margin-top: 15px;
+  margin-top: 10px;
+  @media (max-width: 480px) {
+  }
 `
 
 const Article: React.FC<IProps> = ({ title, date, spoiler, featuredImage }) => {
