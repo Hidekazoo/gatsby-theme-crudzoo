@@ -28,6 +28,8 @@ const SeriesList: React.FC<IProps> = ({ series }) => {
         return (
           <Link
             key={item.node.id}
+            tabIndex={-1}
+            aria-label={frontmatter.title}
             style={{
               boxShadow: `none`,
               textDecoration: `none`,

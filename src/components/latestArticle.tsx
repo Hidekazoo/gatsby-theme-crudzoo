@@ -9,6 +9,7 @@ interface IProps {
   date: Date
   spoiler: string | undefined
   featuredImage: any
+  path: string
 }
 
 const ArticleContainer = styled.article`
@@ -60,6 +61,7 @@ const LatestArticle: React.FC<IProps> = ({
   date,
   spoiler,
   featuredImage,
+  path,
 }) => {
   const siteData = useStaticQuery(graphql`
     query {
@@ -74,7 +76,12 @@ const LatestArticle: React.FC<IProps> = ({
   return (
     <ArticleContainer>
       <LeftContainer>
-        <ArticleTitle>{title}</ArticleTitle>
+        <Link
+          style={{ boxShadow: `none`, textDecoration: `none` }}
+          to={"/" + path}
+        >
+          <ArticleTitle>{title}</ArticleTitle>
+        </Link>
         <ArticleDate>{formatPostDate(date, language)}</ArticleDate>
         <ArticleLead>{spoiler}</ArticleLead>
       </LeftContainer>

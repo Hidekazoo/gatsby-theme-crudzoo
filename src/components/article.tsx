@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 import Img from "gatsby-image"
 import { formatPostDate } from "../utils/i18n"
@@ -8,6 +8,7 @@ interface IProps {
   date: Date
   spoiler: string | undefined
   featuredImage: any
+  path: string
 }
 
 const ArticleContainer = styled.article`
@@ -50,7 +51,13 @@ const ArticleLead = styled.div`
   }
 `
 
-const Article: React.FC<IProps> = ({ title, date, spoiler, featuredImage }) => {
+const Article: React.FC<IProps> = ({
+  title,
+  date,
+  spoiler,
+  featuredImage,
+  path,
+}) => {
   const siteData = useStaticQuery(graphql`
     query {
       site {
@@ -64,7 +71,12 @@ const Article: React.FC<IProps> = ({ title, date, spoiler, featuredImage }) => {
   return (
     <ArticleContainer>
       <LeftContainer>
-        <ArticleTitle>{title}</ArticleTitle>
+        <Link
+          style={{ boxShadow: `none`, textDecoration: `none` }}
+          to={"/" + path}
+        >
+          <ArticleTitle>{title}</ArticleTitle>
+        </Link>
         <ArticleDate>{formatPostDate(date, language)}</ArticleDate>
         <ArticleLead>{spoiler}</ArticleLead>
       </LeftContainer>

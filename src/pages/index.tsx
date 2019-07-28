@@ -106,17 +106,13 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
 
       <Section>
         <SectionTitle fontColor={mainColor}>Latest</SectionTitle>
-        <Link
-          style={{ boxShadow: `none`, textDecoration: `none` }}
-          to={"/" + latestArticle.node.parent.relativeDirectory + "/"}
-        >
-          <LatestArticle
-            title={latestArticleFrontmatter.title}
-            date={latestArticleFrontmatter.date}
-            spoiler={latestArticleFrontmatter.spoiler}
-            featuredImage={latestArticlefeaturedImage}
-          />
-        </Link>
+        <LatestArticle
+          path={latestArticle.node.id}
+          title={latestArticleFrontmatter.title}
+          date={latestArticleFrontmatter.date}
+          spoiler={latestArticleFrontmatter.spoiler}
+          featuredImage={latestArticlefeaturedImage}
+        />
       </Section>
 
       {seriesCount > 0 && (
@@ -158,7 +154,7 @@ export const query = graphql`
           seriesId
           image {
             childImageSharp {
-              fluid(maxWidth: 600) {
+              fluid(maxWidth: 300) {
                 ...GatsbyImageSharpFluid
               }
             }

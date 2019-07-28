@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Link } from "gatsby"
 import Article from "./article"
 import { IArticleNode } from "../pages/index"
 
@@ -17,18 +16,14 @@ const ArticleList: React.FC<IProps> = ({ articles }) => {
           : null
 
         return (
-          <Link
+          <Article
             key={article.node.id}
-            style={{ boxShadow: `none`, textDecoration: `none` }}
-            to={"/" + article.node.parent.relativeDirectory + "/"}
-          >
-            <Article
-              title={frontmatter.title}
-              date={frontmatter.date}
-              spoiler={frontmatter.spoiler}
-              featuredImage={featuredImage}
-            />
-          </Link>
+            title={frontmatter.title}
+            date={frontmatter.date}
+            spoiler={frontmatter.spoiler}
+            featuredImage={featuredImage}
+            path={article.node.parent.relativeDirectory}
+          />
         )
       })}
     </div>

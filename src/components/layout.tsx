@@ -6,6 +6,11 @@ import "../styles/code.css"
 import "../styles/layout.css"
 const { MDXProvider } = require("@mdx-js/react")
 
+const Header = styled.header`
+  max-width: 90%;
+  width: 650px;
+  margin: 2rem auto;
+`
 const LayoutMain = styled.div<{ fontFamily: string }>`
   display: block;
   font-family: ${props => props.fontFamily};
@@ -104,12 +109,14 @@ const Layout: React.FC<LayoutInterface> = props => {
   }
 
   return (
-    <LayoutMain fontFamily={localizedData.Font.fontFamily}>
-      <header>{header}</header>
-      <MDXProvider components={components}>
-        <section className={`container`}>{children}</section>
-      </MDXProvider>
-    </LayoutMain>
+    <>
+      <Header>{header}</Header>
+      <LayoutMain fontFamily={localizedData.Font.fontFamily} role="main">
+        <MDXProvider components={components}>
+          <section className={`container`}>{children}</section>
+        </MDXProvider>
+      </LayoutMain>
+    </>
   )
 }
 
