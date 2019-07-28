@@ -15,11 +15,16 @@ const ArticleContainer = styled.article`
   margin-bottom: 30px;
   display: flex;
   align-items: center;
+
+  @media (max-width: 480px) {
+    flex-flow: column;
+  }
 `
 
 const LeftContainer = styled.div``
 const RightContainer = styled.div`
   flex: 0 0 150px;
+  min-width: 150px;
   margin-left: 10px;
 `
 
