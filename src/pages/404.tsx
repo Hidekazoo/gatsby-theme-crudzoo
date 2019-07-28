@@ -1,20 +1,20 @@
-import * as React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import * as React from "react"
+import { StaticQuery, graphql } from "gatsby"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 interface QueryData {
   site: {
     siteMetadata: {
-      title: string;
-    };
-  };
+      title: string
+    }
+  }
 }
 
 interface IProps {
   location: {
-    pathname: string | undefined;
-  };
+    pathname: string | undefined
+  }
 }
 const NotFoundPage: React.FC<IProps> = ({ location }) => {
   return (
@@ -36,10 +36,10 @@ const NotFoundPage: React.FC<IProps> = ({ location }) => {
               <h1>該当のページが見つかりませんでした</h1>
             </SEO>
           </Layout>
-        );
+        )
       }}
     />
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

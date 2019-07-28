@@ -20,7 +20,7 @@ yarn add gatsby react react-dom gatsby-crudzoo
 
 ### Update package.json
 
-Add a new Scripts "develop" and "build" to your package.json
+Add a new Scripts "develop" and "build" to your package.json. And It is convenient to add cache clear command "clean"
 
 #### Example
 
@@ -50,54 +50,78 @@ module.exports = {
     keywords: [`blog`, `gatsby`],
     description: `site description`,
     siteUrl: `site url`,
+    mainColor: `#FF6347`,
     social: {
-      twitter: `your twitter name`
-    }
+      twitter: `your twitter name`,
+    },
   },
   plugins: [
     {
-      resolve: 'gatsby-crudzoo',
-      options: {}
-    }
-  ]
-};
+      resolve: "gatsby-crudzoo",
+      options: {},
+    },
+  ],
+}
 ```
 
 ### profile picture
 
 put on your profile picture on assets/profile-pic.jpg
 
-### create your first page
+### write your first article
 
 Write your first post at markdown
 
 #### Example
 
 ```
-// content/hello-world/index.mdx**
+// content/hello-world/index.mdx
 ---
-title: Hello world
-date: '2019-06-03T16:58:03.284Z'
-tags: ['blog']
-spoiler: 'hello world'
+id: "article-1"
+title: "Hello world"
+date: "2019-06-03T21:58:03.284Z"
+tags: ["blog", "self-introduction"]
+spoiler: "this is my first article"
+image: "./thumbnail.jpg"
 ---
 
 hello world!
 ```
 
+### Series folder
+
+You can create a list of articles by adding a configuration file in the series folder
+
+```json
+#
+{
+  "seriesId": "react",
+  "title": "sample title",
+  "spoiler": "my sample series",
+  "image": "sample.png",
+  "articles": ["article-1"] // Article id in content folder
+}
+```
+
 ### Folder Structure
 
+the folder structure is as follows
+
 ```
-    .
-    ├── content
-    │   └── hello-world
-    │       └── index.mdx
-    ├── assets
-    │   └── profile-pic.jpg
-    │
-    ├── gatsby-config.js
-    ├── package-lock.json
-    └── package.json
+  .
+  ├── content
+  │   └── hello-world
+  │        ├── thumbnail.jpg
+  │        └── index.mdx
+  ├── assets
+  │   └── profile-pic.jpg
+  ├── series
+  │   ├── sample.png
+  │   └── sample.json
+  │
+  ├── gatsby-config.js
+  ├── package-lock.json
+  └── package.json
 ```
 
 ### Start Developing

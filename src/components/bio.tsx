@@ -1,24 +1,24 @@
-import * as React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import Img, { FixedObject } from 'gatsby-image';
-import { getLocalizedData } from '../utils/i18n';
+import * as React from "react"
+import { StaticQuery, graphql } from "gatsby"
+import Img, { FixedObject } from "gatsby-image"
+import { getLocalizedData } from "../utils/i18n"
 interface BioData {
   avatar: {
     childImageSharp: {
-      fixed: FixedObject | undefined;
-    };
-  };
+      fixed: FixedObject | undefined
+    }
+  }
   site: {
     siteMetadata: {
-      title: string;
-      author: string;
-      description: string;
-      language: string;
+      title: string
+      author: string
+      description: string
+      language: string
       social: {
-        twitter: string;
-      };
-    };
-  };
+        twitter: string
+      }
+    }
+  }
 }
 const Bio: React.FC = () => {
   return (
@@ -50,33 +50,28 @@ const Bio: React.FC = () => {
         }
       `}
       render={(data: BioData) => {
-        const {
-          author,
-          language,
-          description,
-          social
-        } = data.site.siteMetadata;
+        const { author, language, description, social } = data.site.siteMetadata
 
-        const localizedData = getLocalizedData(language);
+        const localizedData = getLocalizedData(language)
         return (
           <div
             style={{
               display: `flex`,
               marginBottom: `60px`,
-              color: `var(--textNormal)`
+              color: `var(--textNormal)`,
             }}
           >
             <Img
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
               style={{
-                marginRight: '30px',
+                marginRight: "30px",
                 marginBottom: 0,
                 minWidth: 50,
-                borderRadius: `100%`
+                borderRadius: `100%`,
               }}
               imgStyle={{
-                borderRadius: `50%`
+                borderRadius: `50%`,
               }}
             />
             <div>
@@ -84,7 +79,7 @@ const Bio: React.FC = () => {
                 {localizedData.Bio.author}: {author}
                 <a
                   href={`https://twitter.com/${social.twitter}`}
-                  style={{ marginLeft: '10px' }}
+                  style={{ marginLeft: "10px" }}
                 >
                   Twitter
                 </a>
@@ -93,10 +88,10 @@ const Bio: React.FC = () => {
               <div>{description}</div>
             </div>
           </div>
-        );
+        )
       }}
     />
-  );
-};
+  )
+}
 
-export default Bio;
+export default Bio

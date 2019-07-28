@@ -1,7 +1,7 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react"
+import styled from "styled-components"
 
-const { ThemeToggler } = require('gatsby-plugin-dark-mode');
+const { ThemeToggler } = require("gatsby-plugin-dark-mode")
 
 const ToggleSlider = styled.span`
   position: absolute;
@@ -16,7 +16,7 @@ const ToggleSlider = styled.span`
   border-radius: 34px;
   &:before {
     position: absolute;
-    content: '';
+    content: "";
     height: 26px;
     width: 26px;
     left: 4px;
@@ -25,7 +25,7 @@ const ToggleSlider = styled.span`
     transition: 0.4s;
     border-radius: 50%;
   }
-`;
+`
 
 const ToggleSwitch = styled.label`
   position: relative;
@@ -52,37 +52,37 @@ const ToggleSwitch = styled.label`
       transform: translateX(26px);
     }
   }
-`;
+`
 
 const ThemeWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-`;
+`
 const ModeTitle = styled.div`
   color: var(--textNormal);
   margin-right: 1em;
   font-size: 20px;
-`;
+`
 
 const ToggleDarkMode: React.FC = () => {
   return (
     <ThemeToggler>
       {({ theme, toggleTheme }: { theme: string; toggleTheme: any }) => (
         <ThemeWrap>
-          <ModeTitle>{theme === 'dark' ? 'dark' : 'light'}</ModeTitle>
+          <ModeTitle>{theme === "dark" ? "dark" : "light"}</ModeTitle>
           <ToggleSwitch>
             <input
               type="checkbox"
-              onChange={e => toggleTheme(e.target.checked ? 'dark' : 'light')}
-              checked={theme === 'dark'}
+              onChange={e => toggleTheme(e.target.checked ? "dark" : "light")}
+              checked={theme === "dark"}
             />
             <ToggleSlider />
           </ToggleSwitch>
         </ThemeWrap>
       )}
     </ThemeToggler>
-  );
-};
+  )
+}
 
-export default ToggleDarkMode;
+export default ToggleDarkMode

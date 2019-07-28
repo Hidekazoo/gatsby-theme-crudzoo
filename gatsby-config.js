@@ -1,36 +1,39 @@
-const path = require('path')
-
+const path = require("path")
 module.exports = {
-  plugins: [{
+  plugins: [
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: ['.mdx', '.md'],
+        extensions: [".mdx", ".md"],
         defaultLayouts: {
           default: require.resolve(`./src/components/layout.tsx`),
         },
-        gatsbyRemarkPlugins: [{
-          resolve: 'gatsby-remark-images',
-          options: {
-            maxWidth: 1035,
-            sizeByPixelDensity: true,
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true,
+            },
           },
-        }, {
-          resolve: `gatsby-remark-prismjs`,
-          options: {
-            classPrefix: 'language-',
-            inlineCodeMarker: null,
-            aliases: {},
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+            },
           },
-        }, ],
-        plugins: [ `gatsby-remark-images` ],
-      }
+        ],
+        plugins: [`gatsby-remark-images`],
+      },
     },
     {
       resolve: `gatsby-plugin-typescript`,
       options: {
-        isTSX: true, // defaults to false
-        allExtensions: true, // defaults to false
-      }
+        isTSX: true,
+        allExtensions: true,
+      },
     },
     {
       resolve: `gatsby-plugin-page-creator`,
@@ -42,7 +45,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        path: path.resolve('content'),
+        path: path.resolve("content"),
         ignore: [`**/\.*`],
       },
     },
@@ -55,7 +58,15 @@ module.exports = {
         name: `assets`,
       },
     },
-    'gatsby-plugin-react-helmet',
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `series`,
+        name: `series`,
+      },
+    },
+    "gatsby-plugin-react-helmet",
     `gatsby-plugin-dark-mode`,
     {
       resolve: "gatsby-plugin-compile-es6-packages",
@@ -63,6 +74,6 @@ module.exports = {
         modules: ["gatsby-crudzoo"],
       },
     },
-    `gatsby-plugin-styled-components`
-  ]
+    `gatsby-plugin-styled-components`,
+  ],
 }

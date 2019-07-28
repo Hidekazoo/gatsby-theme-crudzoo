@@ -1,0 +1,45 @@
+import * as React from "react"
+import { Link } from "gatsby"
+import styled from "styled-components"
+
+import Series from "./series"
+import { ISeriesNode } from "../pages/index"
+
+interface IProps {
+  series: ISeriesNode[]
+}
+
+const SeriesListContainer = styled.div`
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+`
+
+const SeriesList: React.FC<IProps> = ({ series }) => {
+  return (
+    <SeriesListContainer style={{ width: "fit-content" }}>
+      {series.map(item => {
+        const frontmatter = item.node
+        const featuredImage = frontmatter.image
+          ? frontmatter.image.childImageSharp.fluid
+          : null
+
+        return (
+          <Link
+            key={item.node.id}
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              maxWidth: "250px",
+            }}
+            to={"/series/" + item.node.seriesId}
+          >
+            <Series title={frontmatter.title} featuredImage={featuredImage} />
+          </Link>
+        )
+      })}
+    </SeriesListContainer>
+  )
+}
+
+export default SeriesList
