@@ -73,7 +73,7 @@ const Article: React.FC<IProps> = ({
       <LeftContainer>
         <Link
           style={{ boxShadow: `none`, textDecoration: `none` }}
-          to={"/" + path}
+          to={"/blog/" + path}
         >
           <ArticleTitle>{title}</ArticleTitle>
         </Link>

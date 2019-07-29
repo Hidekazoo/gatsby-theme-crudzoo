@@ -106,7 +106,7 @@ const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
             <PostTitle>
               <Link
                 style={{ boxShadow: `none`, textDecoration: `none` }}
-                to={"/" + node.parent.relativeDirectory + "/"}
+                to={"/blog/" + node.parent.relativeDirectory + "/"}
               >
                 {title}
               </Link>
