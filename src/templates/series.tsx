@@ -1,10 +1,9 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { formatPostDate } from "../utils/i18n"
 import ToggleDarkMode from "../components/toggleDarkMode"
 import "../styles/global.css"
 
@@ -84,7 +83,6 @@ const PageTitle = styled.h1<{ mainColor: string }>`
 
 const PageDescription = styled.div`
   margin-bottom: 3em;
-  margin-top: -0.5em;
   padding-bottom: 1em;
   border-bottom: 1px solid var(--textNormal);
 `

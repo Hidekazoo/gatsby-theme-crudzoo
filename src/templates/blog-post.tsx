@@ -48,6 +48,7 @@ interface IProps {
 
 const PostTitle = styled.h1`
   color: var(--textNormal);
+  margin-bottom: 5px !important;
 `
 
 const PostDate = styled.p`

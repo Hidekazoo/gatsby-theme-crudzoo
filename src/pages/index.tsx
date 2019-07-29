@@ -107,7 +107,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
       <Section>
         <SectionTitle fontColor={mainColor}>Latest</SectionTitle>
         <LatestArticle
-          path={latestArticle.node.id}
+          path={latestArticle.node.parent.relativeDirectory}
           title={latestArticleFrontmatter.title}
           date={latestArticleFrontmatter.date}
           spoiler={latestArticleFrontmatter.spoiler}
