@@ -3,6 +3,7 @@ Gatsby-crudzoo is Gatsby theme for blog site.
 ## Demo site
 
 [demo](https://sharp-pike-0a4ab7.netlify.com/)
+
 demo site repository: https://github.com/Hidekazoo/gatsby-crudzoo-demo
 
 I also use gatsby-crudzoo theme on my website.
