@@ -13,6 +13,7 @@ const SeriesContainer = styled.article`
   flex-flow: column;
   align-items: center;
   width: 180px;
+  height: 160px;
 
   margin: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -24,7 +25,10 @@ const SeriesContainer = styled.article`
   }
   transition: 0.4s ease;
 `
-
+const SeriesImgSection = styled.div`
+  width: 150px;
+  height: 140px;
+`
 const SeriesTitle = styled.h2`
   font-size: 1rem !important;
   margin: 0;
@@ -33,9 +37,9 @@ const SeriesTitle = styled.h2`
 const Series: React.FC<IProps> = ({ title, featuredImage }) => {
   return (
     <SeriesContainer>
-      <div style={{ width: "150px" }}>
+      <SeriesImgSection>
         {featuredImage && <Img sizes={featuredImage} />}
-      </div>
+      </SeriesImgSection>
       <div>
         <SeriesTitle>{title}</SeriesTitle>
       </div>
