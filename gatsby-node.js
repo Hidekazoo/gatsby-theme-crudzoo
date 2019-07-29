@@ -24,7 +24,7 @@ exports.createPages = async ({ graphql, actions }) => {
   pages.forEach(page => {
     const id = page.id
     actions.createPage({
-      path: `/${page.parent.relativeDirectory}`,
+      path: `/blog/${page.parent.relativeDirectory}`,
       component: require.resolve("./src/templates/blog-post.tsx"),
       context: {
         slug: id,
