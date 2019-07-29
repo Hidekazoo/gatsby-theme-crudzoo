@@ -11,6 +11,7 @@ interface IProps {
 
 const SeriesListContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: fit-content;
   max-width: 100%;
   overflow-x: auto;

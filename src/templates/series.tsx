@@ -90,10 +90,6 @@ const PageDescription = styled.div`
 `
 
 const Section = styled.section``
-const SectionTitle = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-`
 
 const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
   const language = data.site.siteMetadata.language
@@ -153,6 +149,7 @@ export const query = graphql`
     allMdx(limit: 200, filter: { frontmatter: { id: { in: $articleIds } } }) {
       edges {
         node {
+          id
           parent {
             ... on File {
               relativePath

@@ -63,20 +63,21 @@ const TagPageTitle = styled.h1`
   width: fit-content;
 `
 
-const PostTitle = styled.h3`
+const PostTitle = styled.h2`
   font-size: 20px;
   margin-bottom: 5px;
   margin-top: 15px;
 `
 
-const PostDate = styled.p`
-  margin-top: 5px;
-  margin-bottom: 0;
+const PostDate = styled.div`
+  margin: 5px 0;
+
   font-size: 14px;
 `
 
-const PostSpoiler = styled.small`
+const PostSpoiler = styled.div`
   color: var(--textNormal);
+  line-height: 1.5rem;
 `
 const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
   const language = data.site.siteMetadata.language

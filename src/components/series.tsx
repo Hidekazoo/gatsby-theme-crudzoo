@@ -8,17 +8,21 @@ interface IProps {
   featuredImage: any
 }
 
-const SeriesContainer = styled.article<{ mainColor: string }>`
-  margin-bottom: 30px;
+const SeriesContainer = styled.article`
   display: flex;
   flex-flow: column;
   align-items: center;
-  width: 190px;
+  width: 180px;
 
-  margin: 0 10px;
-  border: 2px solid ${props => props.mainColor};
+  margin: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   padding: 10px;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  transition: 0.4s ease;
 `
 
 const SeriesTitle = styled.h2`
@@ -27,18 +31,8 @@ const SeriesTitle = styled.h2`
 `
 
 const Series: React.FC<IProps> = ({ title, featuredImage }) => {
-  const siteData = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          mainColor
-        }
-      }
-    }
-  `)
-  const mainColor = siteData.site.siteMetadata.mainColor
   return (
-    <SeriesContainer mainColor={mainColor}>
+    <SeriesContainer>
       <div style={{ width: "150px" }}>
         {featuredImage && <Img sizes={featuredImage} />}
       </div>
