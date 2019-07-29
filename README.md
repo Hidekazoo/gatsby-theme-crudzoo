@@ -1,6 +1,12 @@
 Gatsby-crudzoo is Gatsby theme for blog site.
 
-Demo: [https://crudzoo.com](https://crudzoo.com)
+## Demo site
+
+[demo](https://sharp-pike-0a4ab7.netlify.com/)
+demo site repository: https://github.com/Hidekazoo/gatsby-crudzoo-demo
+
+I also use gatsby-crudzoo theme on my website.
+[https://crudzoo.com](https://crudzoo.com)
 
 ## Getting started
 
@@ -36,7 +42,7 @@ Add a new Scripts "develop" and "build" to your package.json. And It is convenie
 
 ### create gatsby-config.js
 
-create gatsby-config.js and write your site settings
+create gatsby-config.js in your root directory and write your site settings
 
 #### Example
 
@@ -50,7 +56,7 @@ module.exports = {
     keywords: [`blog`, `gatsby`],
     description: `site description`,
     siteUrl: `site url`,
-    mainColor: `#FF6347`,
+    mainColor: `#e65100`,
     social: {
       twitter: `your twitter name`,
     },
@@ -70,7 +76,7 @@ put on your profile picture on assets/profile-pic.jpg
 
 ### write your first article
 
-Write your first post at markdown
+Write your first post at mdx on content/hello-world/index.mdx.
 
 #### Example
 
@@ -90,12 +96,11 @@ hello world!
 
 ### Series folder
 
-You can create a list of articles by adding a configuration file in the series folder
+By creating a json file in the series folder, You can create a list of articles called series
 
 ```json
-#
 {
-  "seriesId": "react",
+  "seriesId": "sample",
   "title": "sample title",
   "spoiler": "my sample series",
   "image": "sample.png",
