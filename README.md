@@ -76,12 +76,12 @@ put on your profile picture on assets/profile-pic.jpg
 
 ### write your first article
 
-Write your first post at mdx on content/hello-world/index.mdx.
+Write your first post at mdx on blog/hello-world/index.mdx.
 
 #### Example
 
 ```
-// content/hello-world/index.mdx
+// blog/hello-world/index.mdx
 ---
 id: "article-1"
 title: "Hello world"
@@ -114,7 +114,7 @@ the folder structure is as follows
 
 ```
   .
-  ├── content
+  ├── blog
   │   └── hello-world
   │        ├── thumbnail.jpg
   │        └── index.mdx
