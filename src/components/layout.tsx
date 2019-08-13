@@ -1,9 +1,8 @@
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
+import styled from "../styles/styled"
 import { getLocalizedData } from "../utils/i18n"
 import "../styles/code.css"
-import "../styles/layout.css"
 const { MDXProvider } = require("@mdx-js/react")
 
 const Header = styled.header`
@@ -19,11 +18,11 @@ const LayoutMain = styled.div<{ fontFamily: string }>`
   margin: 2rem auto;
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
   }
   h2 {
-    font-size: 1.2rem;
-    // margin: 2.6rem 0 0.2rem;
+    font-size: 1.25rem;
+    margin-top: 2rem;
   }
   h3 {
     font-size: 1.3rem;
@@ -31,7 +30,7 @@ const LayoutMain = styled.div<{ fontFamily: string }>`
   }
   p {
     font-size: 1rem;
-    margin: 1rem 0 1.2rem;
+    margin: 1rem 0;
     line-height: 1.8;
   }
 `

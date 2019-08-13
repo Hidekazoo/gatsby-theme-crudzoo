@@ -1,17 +1,16 @@
 body {
   --bg: white;
-  --tagBg: rgba(0, 0, 0, .05);
-  --textNormal: rgba(0, 0, 0, .84);
-  --textTitle: rgba(0, 0, 0, .84);
-  --textLink: rgba(0, 0, 0, .84);
-  --hr: hsla(0, 0%, 0%, 0.2);
+  --tagBg: rgba(0, 0, 0, 0.05);
+  --textNormal: #5f6368;
+  --textTitle: #202124;
+  --textLink: rgba(0, 0, 0, 0.84);
+  --hr: rgba(0, 0, 0, 0.2);
   background-color: var(--bg);
   font-size: 16px;
 
   --duration: 0.5s;
   --timing: ease;
-  transition:
-    color var(--duration) var(--timing),
+  transition: color var(--duration) var(--timing),
     background-color var(--duration) var(--timing);
 }
 
@@ -27,9 +26,13 @@ body.dark {
 
 h1 {
   line-height: 1.5;
+  color: var(--textTitle) !important;
 }
 
-h2,
+h2 {
+  color: var(--textTitle) !important;
+}
+
 h3,
 h4,
 p {

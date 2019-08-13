@@ -1,6 +1,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import styled from "styled-components"
+import styled from "../styles/styled"
+import mq from "../styles/media"
+
 import Img from "gatsby-image"
 import { formatPostDate } from "../utils/i18n"
 interface IProps {
@@ -16,7 +18,13 @@ const ArticleContainer = styled.article`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 20px;
+  padding: 0 0 20px 16px;
+
+  border-radius: 4px;
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  transition: 0.4s ease;
 `
 
 const LeftContainer = styled.div`
@@ -26,14 +34,14 @@ const RightContainer = styled.div`
   flex: 0 0 150px;
   min-width: 150px;
   margin-left: 10px;
-  @media (max-width: 480px) {
+  ${mq.small} {
     display: none;
   }
 `
 
 const ArticleTitle = styled.h2`
   margin: 0;
-  @media (max-width: 480px) {
+  ${mq.small} {
     font-size: 1.1rem !important;
   }
 `
@@ -41,14 +49,11 @@ const ArticleDate = styled.div`
   margin-top: 5px;
   margin-bottom: 0;
   font-size: 14px;
-}}
 `
 const ArticleLead = styled.div`
   color: var(--textNormal);
   font-size: 16px;
   margin-top: 10px;
-  @media (max-width: 480px) {
-  }
 `
 
 const Article: React.FC<IProps> = ({

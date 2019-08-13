@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-import styled from "styled-components"
+import styled from "../styles/styled"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { formatPostDate } from "../utils/i18n"

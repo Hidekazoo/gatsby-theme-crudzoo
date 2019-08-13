@@ -1,7 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import styled from "styled-components"
-import Img from "gatsby-image"
+import styled from "../styles/styled"
+
 import { getLocalizedData, formatPostDate } from "../utils/i18n"
 import Bio from "../components/bio"
 import ToggleDarkMode from "../components/toggleDarkMode"

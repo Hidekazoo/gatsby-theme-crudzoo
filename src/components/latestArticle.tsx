@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import styled from "styled-components"
+import styled from "../styles/styled"
+import mq from "../styles/media"
 import Img from "gatsby-image"
 import { formatPostDate } from "../utils/i18n"
 
@@ -17,7 +18,14 @@ const ArticleContainer = styled.article`
   display: flex;
   align-items: center;
 
-  @media (max-width: 480px) {
+  padding: 0 0 16px 16px;
+  border-radius: 4px;
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  transition: 0.4s ease;
+
+  ${mq.small} {
     flex-flow: column;
     align-items: flex-start;
   }
@@ -31,7 +39,7 @@ const RightContainer = styled.div`
   min-width: 150px;
   margin-left: 10px;
 
-  @media (max-width: 480px) {
+  ${mq.small} {
     display: none;
   }
 `
@@ -40,7 +48,7 @@ const ArticleTitle = styled.h2`
   font-size: 1.5rem !important;
   margin: 0;
 
-  @media (max-width: 480px) {
+  ${mq.small} {
     font-size: 1.2rem !important;
   }
 `
@@ -48,7 +56,6 @@ const ArticleDate = styled.div`
   margin-top: 5px;
   margin-bottom: 10px;
   font-size: 14px;
-}}
 `
 const ArticleLead = styled.div`
   color: var(--textNormal);

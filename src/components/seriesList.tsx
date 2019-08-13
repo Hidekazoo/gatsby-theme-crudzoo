@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import styled from "styled-components"
+import styled from "../styles/styled"
+import mq from "../styles/media"
 
 import Series from "./series"
 import { ISeriesNode } from "../pages/index"
@@ -15,6 +16,20 @@ const SeriesListContainer = styled.div`
   width: fit-content;
   max-width: 100%;
   overflow-x: auto;
+
+  ${mq.small} {
+    justify-content: center;
+  }
+`
+
+const SeriesLink = styled(Link)`
+  box-shadow: none;
+  text-decoration: none;
+  max-width: 250px;
+
+  ${mq.small} {
+    max-width: 100%;
+  }
 `
 
 const SeriesList: React.FC<IProps> = ({ series }) => {
@@ -27,19 +42,14 @@ const SeriesList: React.FC<IProps> = ({ series }) => {
           : null
 
         return (
-          <Link
+          <SeriesLink
             key={item.node.id}
             tabIndex={-1}
             aria-label={frontmatter.title}
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              maxWidth: "250px",
-            }}
             to={"/series/" + item.node.seriesId}
           >
             <Series title={frontmatter.title} featuredImage={featuredImage} />
-          </Link>
+          </SeriesLink>
         )
       })}
     </SeriesListContainer>

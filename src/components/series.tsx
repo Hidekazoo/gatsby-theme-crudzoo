@@ -1,6 +1,7 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
+
+import styled from "../styles/styled"
+import mq from "../styles/media"
 import Img from "gatsby-image"
 
 interface IProps {
@@ -24,6 +25,11 @@ const SeriesContainer = styled.article`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
   }
   transition: 0.4s ease;
+
+  ${mq.small} {
+    width: 70vw;
+    margin-bottom: 16px;
+  }
 `
 const SeriesImgSection = styled.div`
   width: 150px;

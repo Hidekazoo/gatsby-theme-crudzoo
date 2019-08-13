@@ -74,6 +74,6 @@ module.exports = {
         modules: ["gatsby-crudzoo"],
       },
     },
-    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-emotion`,
   ],
 }
