@@ -1,6 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import styled from "../styles/styled"
+import mq from "../styles/media"
 
 import { getLocalizedData, formatPostDate } from "../utils/i18n"
 import Bio from "../components/bio"
@@ -49,6 +50,11 @@ interface IProps {
 const PostTitle = styled.h1`
   color: var(--textNormal);
   margin-bottom: 5px !important;
+  font-size: 36px !important;
+
+  ${mq.small} {
+    font-size: 26px;
+  }
 `
 
 const PostDate = styled.p`

@@ -22,7 +22,6 @@ const LayoutMain = styled.div<{ fontFamily: string }>`
   }
   h2 {
     font-size: 1.25rem;
-    margin-top: 2rem;
   }
   h3 {
     font-size: 1.3rem;
@@ -33,6 +32,15 @@ const LayoutMain = styled.div<{ fontFamily: string }>`
     margin: 1rem 0;
     line-height: 1.8;
   }
+`
+
+const Header2 = styled.h2`
+  font-size: 1.4rem !important;
+  margin-top: 3.5rem;
+`
+
+const Header3 = styled.h3`
+  font-size: 1.25rem !important;
 `
 
 interface LayoutInterface {
@@ -105,6 +113,8 @@ const Layout: React.FC<LayoutInterface> = props => {
 
   const components = {
     p: (props: React.Props<{}>) => <p>{props.children}</p>,
+    h2: (props: React.Props<{}>) => <Header2>{props.children}</Header2>,
+    h3: (props: React.Props<{}>) => <Header3>{props.children}</Header3>,
   }
 
   return (
