@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, ThemeProvider } from "theme-ui"
+import { jsx } from "theme-ui"
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
@@ -52,10 +52,10 @@ const Layout: React.FC<LayoutInterface> = props => {
   if (location.pathname === rootPath) {
     header = (
       <h1
-        style={{
-          color: `var(--textNormal)`,
-          marginBottom: `30px`,
-          marginTop: 0,
+        sx={{
+          color: "text",
+          mb: 30,
+          mt: 0,
         }}
       >
         <Link
@@ -73,9 +73,9 @@ const Layout: React.FC<LayoutInterface> = props => {
   } else {
     header = (
       <h3
-        style={{
-          color: `var(--textNormal)`,
-          marginTop: 0,
+        sx={{
+          color: "text",
+          mt: 0,
         }}
       >
         <Link
