@@ -1,14 +1,16 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+
 import * as React from "react"
 import { graphql } from "gatsby"
-import styled from "../styles/styled"
-import mq from "../styles/media"
-
+import { Styled } from "theme-ui"
 import { getLocalizedData, formatPostDate } from "../utils/i18n"
 import Bio from "../components/bio"
 import ToggleDarkMode from "../components/toggleDarkMode"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TagList from "../components/tagList"
+
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
 interface IProps {
@@ -47,21 +49,6 @@ interface IProps {
   }
 }
 
-const PostTitle = styled.h1`
-  color: var(--textNormal);
-  margin-bottom: 5px !important;
-  font-size: 36px !important;
-
-  ${mq.small} {
-    font-size: 26px;
-  }
-`
-
-const PostDate = styled.p`
-  color: var(--textNormal);
-  margin: 0;
-`
-
 const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   const lang = data.site.siteMetadata.language
   const localizedData = getLocalizedData(lang)
@@ -77,32 +64,52 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location}>
-      <SEO lang={lang} title={title} description={spoiler} />
-      {/* <ToggleDarkMode /> */}
+    <Styled.root>
+      <Layout location={location}>
+        <SEO lang={lang} title={title} description={spoiler} />
+        {/* <ToggleDarkMode /> */}
 
-      <PostTitle>{title}</PostTitle>
+        <Styled.h1
+          sx={{
+            color: "text",
+            fontSize: [24, 24, 32],
+            lineHeight: `40px`,
+            fontWeight: "normal",
+          }}
+        >
+          {title}
+        </Styled.h1>
+        {/* <PostTitle>{title}</PostTitle> */}
 
-      <PostDate>
-        {date &&
-          `${localizedData.BlogPost.update}：${formatPostDate(date, lang)}`}
+        <Styled.p>
+          {date &&
+            `${localizedData.BlogPost.update}：${formatPostDate(date, lang)}`}
 
-        {lastUpdate && (
-          <span style={{ marginLeft: "10px" }}>
-            {`${localizedData.BlogPost.lastUpdate}: ${formatPostDate(
-              lastUpdate,
-              lang
-            )}`}
-          </span>
-        )}
-      </PostDate>
+          {lastUpdate && (
+            <span style={{ marginLeft: "10px" }}>
+              {`${localizedData.BlogPost.lastUpdate}: ${formatPostDate(
+                lastUpdate,
+                lang
+              )}`}
+            </span>
+          )}
+        </Styled.p>
 
-      {/* {featuredImage && <Img sizes={featuredImage} />} */}
-      <MDXRenderer>{pageData.body}</MDXRenderer>
-      <hr />
-      <TagList tags={pageData.frontmatter.tags} />
-      <Bio />
-    </Layout>
+        {/* {featuredImage && <Img sizes={featuredImage} />} */}
+        <MDXRenderer>{pageData.body}</MDXRenderer>
+        <hr
+          sx={{
+            backgroundColor: "gray",
+            border: "none",
+            height: "1px",
+            mt: 24,
+            mb: 32,
+          }}
+        />
+        <TagList tags={pageData.frontmatter.tags} />
+        <Bio />
+      </Layout>
+    </Styled.root>
   )
 }
 

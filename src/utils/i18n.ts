@@ -6,9 +6,6 @@ interface ILocale {
     update: string
     lastUpdate: string
   }
-  Font: {
-    fontFamily: string
-  }
 }
 
 export function getLocalizedData(lang: string): ILocale {
@@ -19,10 +16,6 @@ export function getLocalizedData(lang: string): ILocale {
     BlogPost: {
       update: "publish date",
       lastUpdate: "last update",
-    },
-    Font: {
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif',
     },
   }
 
@@ -35,10 +28,6 @@ export function getLocalizedData(lang: string): ILocale {
         BlogPost: {
           update: "公開日",
           lastUpdate: "最終更新日",
-        },
-        Font: {
-          fontFamily:
-            '"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif',
         },
       }
       return localizedData

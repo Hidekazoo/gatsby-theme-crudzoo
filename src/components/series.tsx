@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as React from "react"
 
 import styled from "../styles/styled"
@@ -35,10 +37,6 @@ const SeriesImgSection = styled.div`
   width: 150px;
   height: 140px;
 `
-const SeriesTitle = styled.h2`
-  font-size: 1rem !important;
-  margin: 0;
-`
 
 const Series: React.FC<IProps> = ({ title, featuredImage }) => {
   return (
@@ -47,7 +45,16 @@ const Series: React.FC<IProps> = ({ title, featuredImage }) => {
         {featuredImage && <Img sizes={featuredImage} />}
       </SeriesImgSection>
       <div>
-        <SeriesTitle>{title}</SeriesTitle>
+        <h2
+          sx={{
+            fontSize: 16,
+            color: "text",
+            fontWeight: "500",
+            mt: 0,
+          }}
+        >
+          {title}
+        </h2>
       </div>
     </SeriesContainer>
   )

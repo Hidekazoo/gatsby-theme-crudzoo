@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "../styles/styled"
@@ -20,9 +22,9 @@ const ArticleContainer = styled.article`
 
   padding: 0 0 16px 16px;
   border-radius: 4px;
-  &:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  }
+  // &:hover {
+  //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  // }
   transition: 0.4s ease;
 
   ${mq.small} {
@@ -42,25 +44,6 @@ const RightContainer = styled.div`
   ${mq.small} {
     display: none;
   }
-`
-
-const ArticleTitle = styled.h2`
-  font-size: 1.5rem !important;
-  margin: 0;
-
-  ${mq.small} {
-    font-size: 1.2rem !important;
-  }
-`
-const ArticleDate = styled.div`
-  margin-top: 5px;
-  margin-bottom: 10px;
-  font-size: 14px;
-`
-const ArticleLead = styled.div`
-  color: var(--textNormal);
-  font-size: 16px;
-  margin-top: 5px;
 `
 
 const LatestArticle: React.FC<IProps> = ({
@@ -84,13 +67,42 @@ const LatestArticle: React.FC<IProps> = ({
     <ArticleContainer>
       <LeftContainer>
         <Link
-          style={{ boxShadow: `none`, textDecoration: `none` }}
+          sx={{
+            color: `text`,
+            boxShadow: `none`,
+            textDecoration: `none`,
+          }}
           to={"/blog/" + path}
         >
-          <ArticleTitle>{title}</ArticleTitle>
+          <h2
+            sx={{
+              fontSize: [18, 24, 24],
+              fontWeight: 500,
+              mb: 0,
+              mt: 0,
+            }}
+          >
+            {title}
+          </h2>
         </Link>
-        <ArticleDate>{formatPostDate(date, language)}</ArticleDate>
-        <ArticleLead>{spoiler}</ArticleLead>
+
+        <p
+          sx={{
+            color: "textLead",
+            mt: 10,
+            mb: 0,
+          }}
+        >
+          {spoiler}
+        </p>
+        <div
+          sx={{
+            color: "textLead",
+            mt: 9,
+          }}
+        >
+          {formatPostDate(date, language)}
+        </div>
       </LeftContainer>
       {featuredImage && (
         <RightContainer>

@@ -14,40 +14,6 @@ body {
     background-color var(--duration) var(--timing);
 }
 
-/* body.dark {
-  -webkit-font-smoothing: antialiased;
-  --bg: #282c35;
-  --tagBg: #fff;
-  --textNormal: hsla(0, 0%, 100%, 0.88);
-  --textTitle: hsla(0, 0%, 100%, 0.88);
-  --textLink: hsla(0, 0%, 100%, 0.88);
-  --hr: hsla(0, 0%, 100%, 0.2);
-} */
-
-h1 {
-  line-height: 1.5;
-  color: var(--textTitle) !important;
-}
-
-h2 {
-  color: var(--textTitle) !important;
-}
-
-h3,
-h4,
-p {
-  color: var(--textNormal) !important;
-}
-
-li {
-  color: var(--textNormal) !important;
-}
-
-a {
-  color: var(--textLink);
-  text-decoration: underline;
-}
-
 a.gatsby-resp-image-link {
   box-shadow: none;
 }

@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "../styles/styled"
@@ -21,9 +23,7 @@ const ArticleContainer = styled.article`
   padding: 0 0 20px 16px;
 
   border-radius: 4px;
-  &:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  }
+
   transition: 0.4s ease;
 `
 
@@ -39,17 +39,6 @@ const RightContainer = styled.div`
   }
 `
 
-const ArticleTitle = styled.h2`
-  margin: 0;
-  ${mq.small} {
-    font-size: 1.1rem !important;
-  }
-`
-const ArticleDate = styled.div`
-  margin-top: 5px;
-  margin-bottom: 0;
-  font-size: 14px;
-`
 const ArticleLead = styled.div`
   color: var(--textNormal);
   font-size: 16px;
@@ -77,13 +66,34 @@ const Article: React.FC<IProps> = ({
     <ArticleContainer>
       <LeftContainer>
         <Link
-          style={{ boxShadow: `none`, textDecoration: `none` }}
+          sx={{
+            color: `text`,
+            boxShadow: `none`,
+            textDecoration: `none`,
+          }}
           to={"/blog/" + path}
         >
-          <ArticleTitle>{title}</ArticleTitle>
+          <h2
+            sx={{
+              fontSize: [18, 24, 24],
+              fontWeight: 500,
+              mb: 0,
+              mt: 0,
+            }}
+          >
+            {title}
+          </h2>
         </Link>
-        <ArticleDate>{formatPostDate(date, language)}</ArticleDate>
+
         <ArticleLead>{spoiler}</ArticleLead>
+        <div
+          sx={{
+            color: "textLead",
+            mt: 10,
+          }}
+        >
+          {formatPostDate(date, language)}
+        </div>
       </LeftContainer>
       {featuredImage && (
         <RightContainer>

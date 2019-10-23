@@ -1,10 +1,11 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "../styles/styled"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ToggleDarkMode from "../components/toggleDarkMode"
 import "../styles/global.css"
 
 import ArticleList from "../components/articleList"
@@ -91,7 +92,6 @@ const Section = styled.section``
 
 const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
   const language = data.site.siteMetadata.language
-  const mainColor = data.site.siteMetadata.mainColor
   const pageData = data.allSeriesJson.edges[0].node
   const pageTitle = pageData.title
   const pageDescription = pageData.spoiler
@@ -104,12 +104,31 @@ const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={language} title={pageTitle} />
-      {/* <ToggleDarkMode /> */}
 
       <Header>
-        <PageTitle mainColor={mainColor}>{pageTitle}</PageTitle>
+        <h1
+          sx={{
+            color: "primary",
+            fontSize: 24,
+            padding: "3px 5px",
+            mr: 10,
+            width: "fit-content",
+          }}
+        >
+          {pageTitle}
+        </h1>
         <div>{pageImage && <Img sizes={pageImage} />}</div>
-        <PageDescription>{pageDescription}</PageDescription>
+        <div
+          sx={{
+            color: "text",
+            borderBottom: "1px solid #ddd",
+            mt: 16,
+            mb: 16,
+            pb: 16,
+          }}
+        >
+          {pageDescription}
+        </div>
       </Header>
 
       <Section>

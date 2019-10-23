@@ -32,6 +32,7 @@
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-helmet": "^5.0.8",
+    "@types/theme-ui": "^0.2.3",
     "gatsby": "^2.16.5",
     "gatsby-image": "^2.1.0",
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
@@ -41,6 +42,7 @@
     "gatsby-plugin-page-creator": "^2.0.12",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.37",
+    "gatsby-plugin-theme-ui": "^0.2.43",
     "gatsby-plugin-typescript": "^2.1.2",
     "gatsby-remark-images": "^3.0.12",
     "gatsby-remark-prismjs": "^3.2.9",
@@ -52,7 +54,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "sharp": "^0.22.1"
+    "sharp": "^0.22.1",
+    "theme-ui": "^0.2.44"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

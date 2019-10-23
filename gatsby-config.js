@@ -1,25 +1,24 @@
-const path = require("path")
+const path = require(`path`)
 module.exports = {
   plugins: [
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [".mdx", ".md"],
+        extensions: [`.mdx`, `.md`],
         defaultLayouts: {
           default: require.resolve(`./src/components/layout.tsx`),
         },
         gatsbyRemarkPlugins: [
           {
-            resolve: "gatsby-remark-images",
+            resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1035,
-              sizeByPixelDensity: true,
             },
           },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
+              classPrefix: `language-`,
               inlineCodeMarker: null,
               aliases: {},
             },
@@ -45,7 +44,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `blog`,
-        path: path.resolve("blog"),
+        path: path.resolve(`blog`),
         ignore: [`**/.*`],
       },
     },
@@ -66,14 +65,15 @@ module.exports = {
         name: `series`,
       },
     },
-    "gatsby-plugin-react-helmet",
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-dark-mode`,
     {
-      resolve: "gatsby-plugin-compile-es6-packages",
+      resolve: `gatsby-plugin-compile-es6-packages`,
       options: {
-        modules: ["gatsby-crudzoo"],
+        modules: [`gatsby-crudzoo`],
       },
     },
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-theme-ui`,
   ],
 }

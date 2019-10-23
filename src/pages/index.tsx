@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
@@ -73,12 +75,20 @@ interface IProps {
 const Section = styled.section`
   margin-bottom: 60px;
 `
-const SectionTitle = styled.div<{ fontColor: string }>`
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: ${props => props.fontColor};
-  margin-bottom: 15px;
-`
+
+const SectionTitle: React.FC = ({ children }) => {
+  return (
+    <div
+      sx={{
+        color: "primary",
+        fontSize: 24,
+        mb: 16,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
 
 const TopPage: React.FC<IProps> = ({ data, location }) => {
   const language = data.site.siteMetadata.language
@@ -105,7 +115,7 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
       {/* <ToggleDarkMode /> */}
 
       <Section>
-        <SectionTitle fontColor={mainColor}>Latest</SectionTitle>
+        <SectionTitle>Latest</SectionTitle>
         <LatestArticle
           path={latestArticle.node.parent.relativeDirectory}
           title={latestArticleFrontmatter.title}
@@ -117,12 +127,12 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
 
       {seriesCount > 0 && (
         <Section>
-          <SectionTitle fontColor={mainColor}>Series</SectionTitle>
+          <SectionTitle>Series</SectionTitle>
           <SeriesList series={seriesData}></SeriesList>
         </Section>
       )}
       <Section>
-        <SectionTitle fontColor={mainColor}>Articles</SectionTitle>
+        <SectionTitle>Articles</SectionTitle>
         <ArticleList articles={postData} />
       </Section>
 
