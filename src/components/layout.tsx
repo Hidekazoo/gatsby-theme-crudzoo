@@ -7,26 +7,7 @@ import styled from "../styles/styled"
 import "../styles/code.css"
 const { MDXProvider } = require("@mdx-js/react")
 
-const Header = styled.header`
-  max-width: 90%;
-  width: 650px;
-  margin: 2rem auto;
-`
-const LayoutMain = styled.div`
-  display: block;
-  max-width: 90%;
-  width: 650px;
-  margin: 2rem auto;
-`
-
-// const Header2 = styled.h2`
-//   font-size: 1.4rem !important;
-//   margin-top: 3.5rem;
-// `
-
-// const Header3 = styled.h3`
-//   font-size: 1.25rem !important;
-// `
+const Header = styled.header``
 
 interface LayoutInterface {
   location: {
@@ -59,7 +40,7 @@ const Layout: React.FC<LayoutInterface> = props => {
         }}
       >
         <Link
-          style={{
+          sx={{
             boxShadow: `none`,
             textDecoration: `none`,
             color: `inherit`,
@@ -75,6 +56,7 @@ const Layout: React.FC<LayoutInterface> = props => {
       <h3
         sx={{
           color: "text",
+          fontSize: 32,
           mt: 0,
         }}
       >
@@ -93,17 +75,31 @@ const Layout: React.FC<LayoutInterface> = props => {
   }
   return (
     <React.Fragment>
-      <Header>{header}</Header>
-      <LayoutMain
+      <div
+        sx={{
+          maxWidth: "850px",
+          mt: 36,
+          mr: "auto",
+          ml: "auto",
+        }}
+      >
+        {header}
+      </div>
+
+      <div
         sx={{
           fontFamily: "sanSerif",
+          display: "block",
+          maxWidth: "850px",
+          margin: "0px auto",
+          padding: "10px 10px",
         }}
         role="main"
       >
         <MDXProvider>
           <section className={`container`}>{children}</section>
         </MDXProvider>
-      </LayoutMain>
+      </div>
     </React.Fragment>
   )
 }

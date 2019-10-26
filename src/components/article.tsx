@@ -75,7 +75,7 @@ const Article: React.FC<IProps> = ({
         >
           <h2
             sx={{
-              fontSize: [18, 24, 24],
+              fontSize: [18, 20, 20],
               fontWeight: 500,
               mb: 0,
               mt: 0,

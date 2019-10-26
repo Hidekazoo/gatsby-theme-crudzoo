@@ -9,7 +9,7 @@ export default {
   },
   fonts: {
     serif: ``,
-    sanSerif: `"Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif`,
+    sanSerif: `-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,"Helvetica Neue",Helvetica,sans-serif`,
   },
   lineHeights: {
     body: 1.5,
@@ -41,7 +41,7 @@ export default {
     },
     p: {
       fontSize: 16,
-      lineHeight: `24px`,
+      lineHeight: `30px`,
       mt: 16,
       mb: 16,
     },

@@ -75,13 +75,19 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
             fontSize: [24, 24, 32],
             lineHeight: `40px`,
             fontWeight: "normal",
+            mb: 10,
           }}
         >
           {title}
         </Styled.h1>
         {/* <PostTitle>{title}</PostTitle> */}
 
-        <Styled.p>
+        <Styled.p
+          sx={{
+            mt: 0,
+            mb: 30,
+          }}
+        >
           {date &&
             `${localizedData.BlogPost.update}：${formatPostDate(date, lang)}`}
 
