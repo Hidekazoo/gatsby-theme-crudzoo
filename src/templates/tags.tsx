@@ -1,10 +1,11 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-import styled from "../styles/styled"
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { formatPostDate } from "../utils/i18n"
-import ToggleDarkMode from "../components/toggleDarkMode"
 import "../styles/global.css"
 
 interface IProps {
@@ -46,39 +47,6 @@ interface IProps {
   }
 }
 
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--textNormal);
-  border-bottom: 1px solid var(--textNormal);
-  margin-bottom: 30px;
-`
-const TagPageTitle = styled.h1`
-  font-size: 20px;
-  padding: 3px 5px;
-  text-decoration: none;
-  margin-right: 10px;
-  width: fit-content;
-`
-
-const PostTitle = styled.h2`
-  font-size: 20px;
-  margin-bottom: 5px;
-  margin-top: 15px;
-`
-
-const PostDate = styled.div`
-  margin: 5px 0;
-
-  font-size: 14px;
-`
-
-const PostSpoiler = styled.div`
-  color: var(--textNormal);
-  line-height: 1.5rem;
-`
 const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
   const language = data.site.siteMetadata.language
 
@@ -89,10 +57,29 @@ const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={language} title={pageTitle} keywords={keywords} />
-      {/* <ToggleDarkMode /> */}
-      <Header>
-        <TagPageTitle>{pageTitle}</TagPageTitle>
-      </Header>
+      <div
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          fontSize: 20,
+          fontWeight: 500,
+          color: "text",
+          borderBottom: "1px solid #202124",
+          mb: 30,
+        }}
+      >
+        <h1
+          sx={{
+            fontSize: 24,
+            padding: "3px 5px",
+            textDecoration: "none",
+            marginRight: "10px",
+            width: "fit-content",
+          }}
+        >
+          {pageTitle}
+        </h1>
+      </div>
 
       {pageData.map(({ node }) => {
         const title = node.frontmatter.title
@@ -103,18 +90,41 @@ const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
               marginBottom: `30px`,
             }}
           >
-            <PostTitle>
+            <h2
+              sx={{
+                fontSize: 20,
+                mb: "5px",
+                mt: "15px",
+              }}
+            >
               <Link
-                style={{ boxShadow: `none`, textDecoration: `none` }}
+                sx={{
+                  boxShadow: `none`,
+                  textDecoration: `none`,
+                  color: `text`,
+                }}
                 to={"/blog/" + node.parent.relativeDirectory + "/"}
               >
                 {title}
               </Link>
-            </PostTitle>
-            <PostDate>
+            </h2>
+            <div
+              sx={{
+                margin: "5px 0",
+                fontSize: 14,
+              }}
+            >
               {formatPostDate(node.frontmatter.date, language)}
-            </PostDate>
-            <PostSpoiler>{node.frontmatter.spoiler}</PostSpoiler>
+            </div>
+            <div
+              sx={{
+                color: "textLead",
+                mt: 10,
+                mb: 0,
+              }}
+            >
+              {node.frontmatter.spoiler}
+            </div>
           </div>
         )
       })}

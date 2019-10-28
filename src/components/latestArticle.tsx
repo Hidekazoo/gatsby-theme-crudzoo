@@ -2,8 +2,6 @@
 import { jsx } from "theme-ui"
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import styled from "../styles/styled"
-import mq from "../styles/media"
 import Img from "gatsby-image"
 import { formatPostDate } from "../utils/i18n"
 
@@ -14,37 +12,6 @@ interface IProps {
   featuredImage: any
   path: string
 }
-
-const ArticleContainer = styled.article`
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-
-  padding: 0 0 16px 16px;
-  border-radius: 4px;
-  // &:hover {
-  //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  // }
-  transition: 0.4s ease;
-
-  ${mq.small} {
-    flex-flow: column;
-    align-items: flex-start;
-  }
-`
-
-const LeftContainer = styled.div`
-  flex: 1 1 auto;
-`
-const RightContainer = styled.div`
-  flex: 0 0 150px;
-  min-width: 150px;
-  margin-left: 10px;
-
-  ${mq.small} {
-    display: none;
-  }
-`
 
 const LatestArticle: React.FC<IProps> = ({
   title,
@@ -64,8 +31,22 @@ const LatestArticle: React.FC<IProps> = ({
   `)
   const language = siteData.site.siteMetadata.language
   return (
-    <ArticleContainer>
-      <LeftContainer>
+    <div
+      sx={{
+        mb: 50,
+        display: "flex",
+        alignItems: ["flex-start", "center", "center"],
+        padding: "0 0 16px 16px",
+        borderRadius: "4px",
+        transition: "0.4s ease",
+        flexFlow: ["column", "row", "row"],
+      }}
+    >
+      <div
+        sx={{
+          flex: "1 1 auto",
+        }}
+      >
         <Link
           sx={{
             color: `text`,
@@ -103,13 +84,20 @@ const LatestArticle: React.FC<IProps> = ({
         >
           {formatPostDate(date, language)}
         </div>
-      </LeftContainer>
+      </div>
       {featuredImage && (
-        <RightContainer>
+        <div
+          sx={{
+            flex: "0 0 150px",
+            minWidth: "150px",
+            ml: "10px",
+            display: ["none", "block", "block"],
+          }}
+        >
           <Img sizes={featuredImage} />
-        </RightContainer>
+        </div>
       )}
-    </ArticleContainer>
+    </div>
   )
 }
 

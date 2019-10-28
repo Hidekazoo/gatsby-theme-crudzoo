@@ -2,8 +2,6 @@
 import { jsx } from "theme-ui"
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import styled from "../styles/styled"
-import mq from "../styles/media"
 
 import Img from "gatsby-image"
 import { formatPostDate } from "../utils/i18n"
@@ -14,36 +12,6 @@ interface IProps {
   featuredImage: any
   path: string
 }
-
-const ArticleContainer = styled.article`
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 0 0 20px 16px;
-
-  border-radius: 4px;
-
-  transition: 0.4s ease;
-`
-
-const LeftContainer = styled.div`
-  flex: 1 1 auto;
-`
-const RightContainer = styled.div`
-  flex: 0 0 150px;
-  min-width: 150px;
-  margin-left: 10px;
-  ${mq.small} {
-    display: none;
-  }
-`
-
-const ArticleLead = styled.div`
-  color: var(--textNormal);
-  font-size: 16px;
-  margin-top: 10px;
-`
 
 const Article: React.FC<IProps> = ({
   title,
@@ -63,8 +31,22 @@ const Article: React.FC<IProps> = ({
   `)
   const language = siteData.site.siteMetadata.language
   return (
-    <ArticleContainer>
-      <LeftContainer>
+    <article
+      sx={{
+        mb: "30px",
+        display: "flex",
+        alignItems: "center",
+        borderBottom: "1px solid #ccc",
+        padding: "0 0 20px 16px",
+        borderRadius: "4px",
+        transition: "0.4s ease",
+      }}
+    >
+      <div
+        sx={{
+          flex: "1 1 auto",
+        }}
+      >
         <Link
           sx={{
             color: `text`,
@@ -85,7 +67,14 @@ const Article: React.FC<IProps> = ({
           </h2>
         </Link>
 
-        <ArticleLead>{spoiler}</ArticleLead>
+        <div
+          sx={{
+            fontSize: 16,
+            mt: 10,
+          }}
+        >
+          {spoiler}
+        </div>
         <div
           sx={{
             color: "textLead",
@@ -94,13 +83,20 @@ const Article: React.FC<IProps> = ({
         >
           {formatPostDate(date, language)}
         </div>
-      </LeftContainer>
+      </div>
       {featuredImage && (
-        <RightContainer>
+        <div
+          sx={{
+            flex: "0 0 150px",
+            minWidth: "150px",
+            ml: "10px",
+            display: ["none", "block", "block"],
+          }}
+        >
           <Img sizes={featuredImage} />
-        </RightContainer>
+        </div>
       )}
-    </ArticleContainer>
+    </article>
   )
 }
 

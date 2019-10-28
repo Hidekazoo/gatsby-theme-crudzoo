@@ -1,9 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import * as React from "react"
-
-import styled from "../styles/styled"
-import mq from "../styles/media"
 import Img from "gatsby-image"
 
 interface IProps {
@@ -11,39 +8,34 @@ interface IProps {
   featuredImage: any
 }
 
-const SeriesContainer = styled.article`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  width: 180px;
-  height: 160px;
-
-  margin: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  padding: 10px;
-
-  &:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  }
-  transition: 0.4s ease;
-
-  ${mq.small} {
-    width: 70vw;
-    margin-bottom: 16px;
-  }
-`
-const SeriesImgSection = styled.div`
-  width: 150px;
-  height: 140px;
-`
-
 const Series: React.FC<IProps> = ({ title, featuredImage }) => {
   return (
-    <SeriesContainer>
-      <SeriesImgSection>
+    <article
+      sx={{
+        display: "flex",
+        flexFlow: "column",
+        alignItems: "center",
+        width: ["70vw", "180px", "180px"],
+        height: "160px",
+        margin: "5px",
+        mb: [16, "5px", "5px"],
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+        borderRadius: "10px",
+        padding: "10px",
+        ":hover": {
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.7)",
+        },
+        transition: "0.4s ease",
+      }}
+    >
+      <div
+        sx={{
+          width: "150px",
+          height: "140px",
+        }}
+      >
         {featuredImage && <Img sizes={featuredImage} />}
-      </SeriesImgSection>
+      </div>
       <div>
         <h2
           sx={{
@@ -56,7 +48,7 @@ const Series: React.FC<IProps> = ({ title, featuredImage }) => {
           {title}
         </h2>
       </div>
-    </SeriesContainer>
+    </article>
   )
 }
 

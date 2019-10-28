@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import * as React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import Img, { FixedObject } from "gatsby-image"
@@ -55,7 +57,7 @@ const Bio: React.FC = () => {
         const localizedData = getLocalizedData(language)
         return (
           <div
-            style={{
+            sx={{
               display: `flex`,
               marginBottom: `60px`,
               color: `var(--textNormal)`,
@@ -64,7 +66,7 @@ const Bio: React.FC = () => {
             <Img
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
-              style={{
+              sx={{
                 marginRight: "30px",
                 marginBottom: 0,
                 minWidth: 50,
@@ -79,7 +81,7 @@ const Bio: React.FC = () => {
                 {localizedData.Bio.author}: {author}
                 <a
                   href={`https://twitter.com/${social.twitter}`}
-                  style={{ marginLeft: "10px" }}
+                  sx={{ ml: "10px" }}
                 >
                   Twitter
                 </a>
