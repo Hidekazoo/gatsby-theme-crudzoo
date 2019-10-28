@@ -69,27 +69,6 @@ interface IProps {
   }
 }
 
-const Header = styled.div`
-  color: var(--textNormal);
-  margin-top: -20px;
-`
-const PageTitle = styled.h1<{ mainColor: string }>`
-  font-size: 20px;
-  padding: 3px 5px;
-  text-decoration: none;
-  margin-right: 10px;
-  width: fit-content;
-  color: ${props => props.mainColor};
-`
-
-const PageDescription = styled.div`
-  margin-bottom: 3em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid var(--textNormal);
-`
-
-const Section = styled.section``
-
 const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
   const language = data.site.siteMetadata.language
   const pageData = data.allSeriesJson.edges[0].node
@@ -105,7 +84,11 @@ const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
     <Layout location={location}>
       <SEO lang={language} title={pageTitle} />
 
-      <Header>
+      <div
+        sx={{
+          mt: "-20px",
+        }}
+      >
         <h1
           sx={{
             color: "primary",
@@ -129,11 +112,11 @@ const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
         >
           {pageDescription}
         </div>
-      </Header>
+      </div>
 
-      <Section>
+      <div>
         <ArticleList articles={postData} />
-      </Section>
+      </div>
     </Layout>
   )
 }

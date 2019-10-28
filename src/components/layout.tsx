@@ -2,12 +2,8 @@
 import { jsx } from "theme-ui"
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-
-import styled from "../styles/styled"
 import "../styles/code.css"
 const { MDXProvider } = require("@mdx-js/react")
-
-const Header = styled.header``
 
 interface LayoutInterface {
   location: {
