@@ -1,6 +1,6 @@
 {
   "name": "gatsby-crudzoo",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "gatsby theme for crudzoo",
   "main": "index.ts",
   "license": "MIT",
