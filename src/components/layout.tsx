@@ -2,6 +2,7 @@
 import { jsx } from "theme-ui"
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
+import Search from "./search"
 import "../styles/code.css"
 const { MDXProvider } = require("@mdx-js/react")
 
@@ -10,6 +11,8 @@ interface LayoutInterface {
     pathname: string | undefined
   }
 }
+const searchIndices = [{ name: `Blogs`, title: `検索結果`, hitComp: `PostHit` }]
+
 const Layout: React.FC<LayoutInterface> = props => {
   const { location, children } = props
   const rootPath = `/`
@@ -19,12 +22,15 @@ const Layout: React.FC<LayoutInterface> = props => {
       site {
         siteMetadata {
           title
+          algoliaSearch
         }
       }
     }
   `)
 
   const siteTitle = siteData.site.siteMetadata.title
+  const algoliaSearch = siteData.site.siteMetadata.algoliaSearch
+
   let header
   if (location.pathname === rootPath) {
     header = (
@@ -69,6 +75,7 @@ const Layout: React.FC<LayoutInterface> = props => {
       </h3>
     )
   }
+
   return (
     <React.Fragment>
       <div
@@ -77,9 +84,15 @@ const Layout: React.FC<LayoutInterface> = props => {
           mt: 36,
           mr: "auto",
           ml: "auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         {header}
+        {algoliaSearch && (
+          <Search collapse indices={searchIndices} hitsAsGrid={false} />
+        )}
       </div>
 
       <div
