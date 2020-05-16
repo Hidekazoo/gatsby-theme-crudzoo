@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StaticQuery, graphql } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import SEO from "../components/Seo"
 
 interface QueryData {
   site: {

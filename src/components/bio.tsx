@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import * as React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 import Img, { FixedObject } from "gatsby-image"
-import { getLocalizedData } from "../utils/i18n"
+
 interface BioData {
   avatar: {
     childImageSharp: {
@@ -14,6 +14,7 @@ interface BioData {
     siteMetadata: {
       title: string
       author: string
+      job: string
       description: string
       language: string
       social: {
@@ -42,6 +43,7 @@ const Bio: React.FC = () => {
             siteMetadata {
               title
               author
+              job
               description
               language
               social {
@@ -52,44 +54,28 @@ const Bio: React.FC = () => {
         }
       `}
       render={(data: BioData) => {
-        const { author, language, description, social } = data.site.siteMetadata
+        const { author, description, social, job } = data.site.siteMetadata
 
-        const localizedData = getLocalizedData(language)
         return (
-          <div
-            sx={{
-              display: `flex`,
-              marginBottom: `60px`,
-              color: `var(--textNormal)`,
-            }}
-          >
-            <Img
-              fixed={data.avatar.childImageSharp.fixed}
-              alt={author}
-              sx={{
-                marginRight: "30px",
-                marginBottom: 0,
-                minWidth: 50,
-                borderRadius: `100%`,
-              }}
-              imgStyle={{
-                borderRadius: `50%`,
-              }}
-            />
-            <div>
-              <div>
-                {localizedData.Bio.author}: {author}
-                <a
-                  href={`https://twitter.com/${social.twitter}`}
-                  sx={{ ml: "10px" }}
-                >
-                  Twitter
-                </a>
+          <React.Fragment>
+            <Link
+              to={"/blog/about"}
+              className="rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md flex"
+            >
+              <Img
+                fixed={data.avatar.childImageSharp.fixed}
+                alt={author}
+                className="h-16 w-16 md:h-24 md:w-24 rounded-full"
+              />
+              <div className="flex flex-col justify-center ml-4 text-left">
+                <div className="text-lg">{author}</div>
+                <div className="text-primary text-base">{job}</div>
+                {/* <a href={`https://twitter.com/${social.twitter}`}>
+                  twitter: @{social.twitter}
+                </a> */}
               </div>
-              {` `}
-              <div>{description}</div>
-            </div>
-          </div>
+            </Link>
+          </React.Fragment>
         )
       }}
     />

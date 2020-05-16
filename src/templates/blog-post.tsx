@@ -3,13 +3,13 @@ import { jsx } from "theme-ui"
 
 import * as React from "react"
 import { graphql } from "gatsby"
-import { Styled } from "theme-ui"
-import { getLocalizedData, formatPostDate } from "../utils/i18n"
-import Bio from "../components/bio"
-import ToggleDarkMode from "../components/toggleDarkMode"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import TagList from "../components/tagList"
+// import { Styled } from "theme-ui"
+import { getLocalizedData } from "../utils/i18n"
+import Bio from "../components/Bio"
+
+import Layout from "../components/Layout"
+import SEO from "../components/Seo"
+import TagList from "../components/TagList"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
@@ -64,58 +64,30 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   }
 
   return (
-    <Styled.root>
-      <Layout location={location}>
-        <SEO lang={lang} title={title} description={spoiler} />
-        {/* <ToggleDarkMode /> */}
+    // <Styled.root>
+    <Layout location={location}>
+      <SEO lang={lang} title={title} description={spoiler} />
 
-        <Styled.h1
-          sx={{
-            color: "text",
-            fontSize: [24, 24, 32],
-            lineHeight: `40px`,
-            fontWeight: "normal",
-            mb: 10,
-          }}
-        >
-          {title}
-        </Styled.h1>
-        {/* <PostTitle>{title}</PostTitle> */}
-
-        <Styled.p
-          sx={{
-            mt: 0,
-            mb: 30,
-          }}
-        >
-          {date &&
-            `${localizedData.BlogPost.update}：${formatPostDate(date, lang)}`}
+      <article className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
+        <h1 className="text-3xl">{title}</h1>
+        <p className="text-gray-600 mt-3 mb-8">
+          {date && `${localizedData.BlogPost.update}: ${date}`}
 
           {lastUpdate && (
-            <span style={{ marginLeft: "10px" }}>
-              {`${localizedData.BlogPost.lastUpdate}: ${formatPostDate(
-                lastUpdate,
-                lang
-              )}`}
-            </span>
+            <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
           )}
-        </Styled.p>
+        </p>
 
-        {/* {featuredImage && <Img sizes={featuredImage} />} */}
         <MDXRenderer>{pageData.body}</MDXRenderer>
-        <hr
-          sx={{
-            backgroundColor: "gray",
-            border: "none",
-            height: "1px",
-            mt: 24,
-            mb: 32,
-          }}
-        />
+      </article>
+      <div className="w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pb-40 px-6 pt-4">
         <TagList tags={pageData.frontmatter.tags} />
-        <Bio />
-      </Layout>
-    </Styled.root>
+
+        <div className="flex flex-row justify-start mt-12">
+          <Bio />
+        </div>
+      </div>
+    </Layout>
   )
 }
 
@@ -132,12 +104,12 @@ export const query = graphql`
         node {
           parent {
             ... on File {
-              changeTime(formatString: "MMMM DD, YYYY")
+              changeTime(formatString: "Y年M月d日")
             }
           }
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "Y年M月d日")
             tags
             spoiler
             image {

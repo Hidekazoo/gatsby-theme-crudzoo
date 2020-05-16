@@ -5,44 +5,6 @@ export const Root = styled.div`
   display: grid;
   grid-gap: 1em;
 `
-export const Input = styled.input`
-  outline: none;
-  border: none;
-  font-size: 1em;
-  background: transparent;
-  transition: 0.3s;
-  border-radius: 3px;
-
-  ${props =>
-    props.collapse
-      ? `
-      padding: 8px;
-      border: 1px solid #ddd;
-      ${props =>
-        props.focus &&
-        `
-          cursor: text;
-          width: 5em;
-        `}
-      margin-left: ${props => (props.focus ? `-1.6em` : `-1em`)};
-      padding-left: ${props => (props.focus ? `1.6em` : `1em`)};
-      ::placeholder {
-        color: #ccc;
-      }
-    `
-      : `
-  background: #efefef;
-  width: 6em;
-  margin-left: -1.6em;
-  padding-left: 1.6em;
-`};
-`
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-`
 
 export const HitsWrapper = styled.div`
   display: ${props => (props.show ? `grid` : `none`)};

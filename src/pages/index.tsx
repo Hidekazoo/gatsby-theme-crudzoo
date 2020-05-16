@@ -1,18 +1,13 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
 import * as React from "react"
 import { graphql } from "gatsby"
-import styled from "@emotion/styled"
+import Layout from "../components/Layout"
 
-import Layout from "../components/layout"
-import ToggleDarkMode from "../components/toggleDarkMode"
-import Bio from "../components/bio"
-import SEO from "../components/seo"
+import Bio from "../components/Bio"
+import SEO from "../components/Seo"
 
-import ArticleList from "../components/articleList"
-import SeriesList from "../components/seriesList"
-import LatestArticle from "../components/latestArticle"
-
+import ArticleList from "../components/ArticleList"
+import SeriesList from "../components/SeriesList"
+import "../styles/tailwind.css"
 import "../styles/global.css"
 
 export interface ISeriesNode {
@@ -20,6 +15,7 @@ export interface ISeriesNode {
     id: string
     title: string
     seriesId: string
+    spoiler: string
     image: {
       childImageSharp: {
         fluid: any
@@ -57,9 +53,11 @@ interface IProps {
     site: {
       siteMetadata: {
         title: string
+        heroText: string
         language: string
         keywords: string[]
         mainColor: string
+        description: string
       }
     }
     allSeriesJson: {
@@ -72,72 +70,73 @@ interface IProps {
   }
 }
 
-const Section = styled.section`
-  margin-bottom: 60px;
-`
+const PrimaryColorSpan: React.FC = ({ children }) => {
+  return <span className="text-primary font-medium">{children}</span>
+}
 
-const SectionTitle: React.FC = ({ children }) => {
+interface HeroProps {
+  heroText: string
+  description: string
+}
+const Hero: React.FC<HeroProps> = ({ heroText, description }) => {
   return (
-    <div
-      sx={{
-        color: "primary",
-        fontSize: 24,
-        mb: 16,
-      }}
-    >
-      {children}
+    <div className="w-full max-w-screen-xl relative mx-auto px-6 pt-16 pb-40 md:pb-24">
+      <div className=" -mx-6">
+        <div className="px-6 text-left md:text-center max-w-2xl md:max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight">
+            <PrimaryColorSpan>{heroText}</PrimaryColorSpan>
+          </h1>
+          <p className="mt-6 leading-relaxed sm:text-lg md:text-xl text-gray-600">
+            {description}
+          </p>
+          <div className="flex mt-12 justify-start md:justify-center">
+            <Bio />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
+interface SectionProps {
+  isBgColor: boolean
+}
+const Section: React.FC<SectionProps> = ({ children, isBgColor }) => {
+  const bgColor = isBgColor && "bg-section"
+  return (
+    <div className={`mt-10 py-16 ${bgColor}`}>
+      <div className="max-w-screen-xl px-12 mx-auto md:max-w-4xl">
+        {children}
+      </div>
+    </div>
+  )
+}
+const SectionTitle: React.FC = ({ children }) => {
+  return <div className="text-primary text-4xl mb-10">{children}</div>
+}
+
 const TopPage: React.FC<IProps> = ({ data, location }) => {
-  const language = data.site.siteMetadata.language
-  const siteTitle = data.site.siteMetadata.title
-  const mainColor = data.site.siteMetadata.mainColor
+  const { language, title, description, heroText } = data.site.siteMetadata
 
   const seriesCount = data.allSeriesJson.totalCount
   const seriesData = data.allSeriesJson.edges
   const keywords = data.site.siteMetadata.keywords
-
-  const latestArticle = data.allMdx.edges[0]
-  const latestArticleFrontmatter = latestArticle.node.frontmatter
-  const latestArticlefeaturedImage = latestArticleFrontmatter.image
-    ? latestArticleFrontmatter.image.childImageSharp.fluid
-    : null
-
-  const postData = data.allMdx.edges.filter(
-    post => post.node.id !== latestArticle.node.id
-  )
+  const postData = data.allMdx.edges
 
   return (
     <Layout location={location}>
-      <SEO lang={language} title={siteTitle} keywords={keywords} />
-      {/* <ToggleDarkMode /> */}
-
-      <Section>
-        <SectionTitle>Latest</SectionTitle>
-        <LatestArticle
-          path={latestArticle.node.parent.relativeDirectory}
-          title={latestArticleFrontmatter.title}
-          date={latestArticleFrontmatter.date}
-          spoiler={latestArticleFrontmatter.spoiler}
-          featuredImage={latestArticlefeaturedImage}
-        />
-      </Section>
+      <SEO lang={language} title={title} keywords={keywords} />
+      <Hero heroText={heroText} description={description} />
 
       {seriesCount > 0 && (
-        <Section>
+        <Section isBgColor={true}>
           <SectionTitle>Series</SectionTitle>
           <SeriesList series={seriesData}></SeriesList>
         </Section>
       )}
-      <Section>
+      <Section isBgColor={false}>
         <SectionTitle>Articles</SectionTitle>
         <ArticleList articles={postData} />
-      </Section>
-
-      <Section>
-        <Bio />
       </Section>
     </Layout>
   )
@@ -150,6 +149,8 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        heroText
+        description
         language
         keywords
         mainColor
@@ -162,6 +163,7 @@ export const query = graphql`
           id
           title
           seriesId
+          spoiler
           image {
             childImageSharp {
               fluid(maxWidth: 300) {
@@ -185,7 +187,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "Y年M月d日")
             spoiler
             image {
               childImageSharp {

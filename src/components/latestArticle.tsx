@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import * as React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 import Img from "gatsby-image"
-import { formatPostDate } from "../utils/i18n"
 
 interface IProps {
   title: string
@@ -20,16 +19,6 @@ const LatestArticle: React.FC<IProps> = ({
   featuredImage,
   path,
 }) => {
-  const siteData = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          language
-        }
-      }
-    }
-  `)
-  const language = siteData.site.siteMetadata.language
   return (
     <div
       sx={{
@@ -83,7 +72,7 @@ const LatestArticle: React.FC<IProps> = ({
             mt: 9,
           }}
         >
-          {formatPostDate(date, language)}
+          {date}
         </div>
       </div>
       {featuredImage && (

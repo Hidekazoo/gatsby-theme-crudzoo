@@ -13,7 +13,7 @@ const blogQuery = `{
         frontmatter {
           title
           spoiler
-          date(formatString: "MMM D, YYYY")
+          date(formatString: "Y年M月d日")
           tags
         }
         excerpt(pruneLength: 5000)

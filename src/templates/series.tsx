@@ -1,13 +1,11 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
 import * as React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import SEO from "../components/Seo"
 import "../styles/global.css"
 
-import ArticleList from "../components/articleList"
+import ArticleList from "../components/ArticleList"
 
 interface IProps {
   pageContext: {
@@ -83,38 +81,22 @@ const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
     <Layout location={location}>
       <SEO lang={language} title={pageTitle} />
 
-      <div
-        sx={{
-          mt: "-20px",
-        }}
-      >
-        <h1
-          sx={{
-            color: "primary",
-            fontSize: 24,
-            padding: "3px 5px",
-            mr: 10,
-            width: "fit-content",
-          }}
-        >
-          {pageTitle}
-        </h1>
-        <div>{pageImage && <Img sizes={pageImage} />}</div>
-        <div
-          sx={{
-            color: "text",
-            borderBottom: "1px solid #ddd",
-            mt: 16,
-            mb: 16,
-            pb: 16,
-          }}
-        >
-          {pageDescription}
-        </div>
-      </div>
+      <div className="max-w-screen-xl px-12 mx-auto">
+        <div className="flex h-auto sm:flex-row h-64 my-10 md:max-w-4xl flex-col-reverse mx-auto">
+          <div className="sm:w-1/2 w-full">
+            <h1 className="text-primary text-3xl">{pageTitle}</h1>
+            <div className="text-gray-600 mt-4 leading-relaxed">
+              {pageDescription}
+            </div>
+          </div>
 
-      <div>
-        <ArticleList articles={postData} />
+          <div className="sm:w-1/2 w-full">
+            {pageImage && <Img sizes={pageImage} className="w-full" />}
+          </div>
+        </div>
+        <div className="py-10 mt-10 md:max-w-4xl mx-auto">
+          <ArticleList articles={postData} />
+        </div>
       </div>
     </Layout>
   )
@@ -153,12 +135,11 @@ export const query = graphql`
             ... on File {
               relativePath
               relativeDirectory
-              changeTime(formatString: "MMMM DD, YYYY")
             }
           }
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "Y年M月d日")
             spoiler
             image {
               childImageSharp {

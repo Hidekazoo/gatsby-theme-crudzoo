@@ -41,11 +41,13 @@ Add a new Scripts "develop" and "build" to your package.json. And It is convenie
 }
 ```
 
-### create gatsby-config.js
+### create setting files
 
-create gatsby-config.js in your root directory and write your site settings
+create setting files in your root directory.
 
-#### Example
+#### gatsby-config.js
+
+##### Example
 
 ```javascript
 //gatsby-config.js
@@ -54,13 +56,16 @@ module.exports = {
     language: `en`, // or `ja`
     title: `site title`,
     author: `your name`,
+    job: ``,
     keywords: [`blog`, `gatsby`],
+    heroText: ``,
     description: `site description`,
     siteUrl: `site url`,
     mainColor: `#e65100`,
     social: {
       twitter: `your twitter name`,
     },
+    algoliaSearch: false,
   },
   plugins: [
     {
@@ -68,6 +73,27 @@ module.exports = {
       options: {},
     },
   ],
+}
+```
+
+#### tailwind.config.js
+
+```javascript
+module.exports = {
+  purge: [],
+  theme: {
+    fontFamily: {
+      sanSerif: ``,
+    },
+    extend: {
+      colors: {
+        primary: "#0091ea",
+        section: "#0091ea0f",
+      },
+    },
+  },
+  variants: {},
+  plugins: [],
 }
 ```
 

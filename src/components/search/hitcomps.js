@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import * as React from "react"
+// eslint-disable-next-line no-unused-vars
+import React from "react"
 import { Highlight, Snippet } from "react-instantsearch-dom"
 import { Link } from "gatsby"
 

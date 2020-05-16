@@ -13,6 +13,11 @@ interface LayoutInterface {
 }
 const searchIndices = [{ name: `Blogs`, title: `検索結果`, hitComp: `PostHit` }]
 
+enum HeaderType {
+  TOP_PAGE = "TOP_PAGE",
+  ARTICLE_PAGE = "ARTICLE_PAGE",
+}
+
 const Layout: React.FC<LayoutInterface> = props => {
   const { location, children } = props
   const rootPath = `/`
@@ -31,86 +36,50 @@ const Layout: React.FC<LayoutInterface> = props => {
   const siteTitle = siteData.site.siteMetadata.title
   const algoliaSearch = siteData.site.siteMetadata.algoliaSearch
 
-  let header
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        sx={{
-          color: "text",
-          mb: 30,
-          mt: 0,
-        }}
-      >
-        <Link
-          sx={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <h3
-        sx={{
-          color: "text",
-          fontSize: 32,
-          mt: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {siteTitle}
-        </Link>
-      </h3>
-    )
-  }
-
   return (
     <React.Fragment>
-      <div
-        sx={{
-          maxWidth: "850px",
-          mt: 36,
-          mr: "auto",
-          ml: "auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        {header}
-        {algoliaSearch && (
-          <Search collapse indices={searchIndices} hitsAsGrid={false} />
-        )}
-      </div>
-
-      <div
-        sx={{
-          fontFamily: "sanSerif",
-          display: "block",
-          maxWidth: "850px",
-          margin: "0px auto",
-          padding: "10px 10px",
-        }}
-        role="main"
-      >
-        <MDXProvider>
-          <section className={`container`}>{children}</section>
-        </MDXProvider>
+      <Header
+        type={
+          location.pathname === rootPath
+            ? HeaderType.TOP_PAGE
+            : HeaderType.ARTICLE_PAGE
+        }
+        title={siteTitle}
+        isSearch={algoliaSearch}
+      />
+      <div className="w-full mx-auto" role="main">
+        <MDXProvider>{children}</MDXProvider>
       </div>
     </React.Fragment>
   )
 }
 
 export default Layout
+
+interface HeaderProps {
+  title: string
+  isSearch: boolean
+  type: HeaderType
+}
+const Header: React.FC<HeaderProps> = ({ title, isSearch, type }) => {
+  return (
+    <nav className="bg-white w-full max-w-screen-xl mx-auto" role="navigation">
+      <div className="container mx-auto p-4 flex flex-wrap items-center flex-no-wrap">
+        <div className="mr-4 md:mr-8 text-lg">
+          <Link to={`/`} className="sm:text-3xl text-xl">
+            {type === HeaderType.TOP_PAGE ? <h1>{title}</h1> : <h3>{title}</h3>}
+          </Link>
+        </div>
+        <div className="w-full w-auto flex-grow flex items-center">
+          <ul className="flex flex-row items-center mx-0 ml-auto mt-0 pt-0 border-0">
+            {isSearch && (
+              <li>
+                <Search collapse indices={searchIndices} hitsAsGrid={false} />
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  )
+}
