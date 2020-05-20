@@ -12,11 +12,8 @@ const blogQuery = `{
         objectID: id
         frontmatter {
           title
-          spoiler
-          date(formatString: "Y年M月d日")
-          tags
         }
-        excerpt(pruneLength: 5000)
+        excerpt(pruneLength: 3000)
       }
 	  }
 	}
