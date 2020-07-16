@@ -36,6 +36,18 @@ const Layout: React.FC<LayoutInterface> = props => {
   const siteTitle = siteData.site.siteMetadata.title
   const algoliaSearch = siteData.site.siteMetadata.algoliaSearch
 
+  const components = {
+    p: ({ children }: any) => (
+      <p className="text-base	text-gray-700 leading-normal my-6">{children}</p>
+    ),
+
+    "ul.li": ({ children }: any) => (
+      <li className="list-disc leading-normal mb-6 ml-4">{children}</li>
+    ),
+    "ol.li": ({ children }: any) => (
+      <li className="list-decimal my-3 ml-4">{children}</li>
+    ),
+  }
   return (
     <React.Fragment>
       <Header
@@ -48,7 +60,7 @@ const Layout: React.FC<LayoutInterface> = props => {
         isSearch={algoliaSearch}
       />
       <div className="w-full mx-auto" role="main">
-        <MDXProvider>{children}</MDXProvider>
+        <MDXProvider components={components}>{children}</MDXProvider>
       </div>
     </React.Fragment>
   )

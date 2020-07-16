@@ -34,6 +34,7 @@ interface IProps {
             frontmatter: {
               title: string
               date: Date
+              update: Date
               tags: string[]
               spoiler: string
               image: {
@@ -56,7 +57,9 @@ const BlogPostTemplate: React.FC<IProps> = ({ data, location }) => {
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
   const date = pageData.frontmatter.date
-  const lastUpdate = pageData.parent.changeTime
+  // const lastUpdate = pageData.parent.changeTime
+
+  const lastUpdate = pageData.frontmatter.update
 
   let featuredImage = null
   if (pageData.frontmatter.image !== null) {
@@ -104,12 +107,13 @@ export const query = graphql`
         node {
           parent {
             ... on File {
-              changeTime(formatString: "Y年M月d日")
+              changeTime(formatString: "Y年M月D日")
             }
           }
           frontmatter {
             title
-            date(formatString: "Y年M月d日")
+            date(formatString: "Y年M月D日")
+            update(formatString: "Y年M月D日")
             tags
             spoiler
             image {

@@ -139,7 +139,7 @@ export const query = graphql`
           }
           frontmatter {
             title
-            date(formatString: "Y年M月d日")
+            date(formatString: "Y年M月D日")
             spoiler
             image {
               childImageSharp {
