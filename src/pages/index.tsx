@@ -1,9 +1,10 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 
 import Bio from "../components/Bio"
 import SEO from "../components/Seo"
+import { Button } from "../components/Button"
 
 import ArticleList from "../components/ArticleList"
 import SeriesList from "../components/SeriesList"
@@ -101,7 +102,7 @@ const Hero: React.FC<HeroProps> = ({ heroText, description }) => {
 interface SectionProps {
   isBgColor: boolean
 }
-const Section: React.FC<SectionProps> = ({ children, isBgColor }) => {
+export const Section: React.FC<SectionProps> = ({ children, isBgColor }) => {
   const bgColor = isBgColor && "bg-section"
   return (
     <div className={`mt-10 py-16 ${bgColor}`}>
@@ -137,6 +138,11 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
       <Section isBgColor={false}>
         <SectionTitle>Articles</SectionTitle>
         <ArticleList articles={postData} />
+        <div className="flex justify-center">
+          <Link to="/blogs">
+            <Button>投稿一覧</Button>
+          </Link>
+        </div>
       </Section>
     </Layout>
   )
@@ -174,7 +180,7 @@ export const query = graphql`
         }
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 10) {
       edges {
         node {
           body

@@ -1,3 +1,5 @@
+const { paginate } = require("gatsby-awesome-pagination")
+
 exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
@@ -11,6 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
             }
             frontmatter {
+              title
               tags
             }
           }
@@ -18,16 +21,26 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+  const { createPage } = actions
+  paginate({
+    createPage,
+    items: result.data.allMdx.edges,
+    itemsPerPage: 10,
+    pathPrefix: "/blogs",
+    component: require.resolve("./src/templates/archive.tsx"),
+  })
 
   const pages = result.data.allMdx.edges.map(({ node }) => node)
   let tags = []
-  pages.forEach(page => {
+  pages.forEach((page, index) => {
     const id = page.id
     actions.createPage({
       path: `/blog/${page.parent.relativeDirectory}`,
       component: require.resolve("./src/templates/blog-post.tsx"),
       context: {
         slug: id,
+        prev: index === 0 ? null : pages[index - 1],
+        next: index === pages.length - 1 ? null : pages[index + 1],
       },
     })
     if (page.frontmatter.tags !== null) {
