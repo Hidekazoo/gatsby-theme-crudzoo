@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
-import Pager from "../components/pager"
+import Pager from "../components/Pager"
 import ArticleList from "../components/ArticleList"
 import { Section } from "../pages/index"
 export const pageQuery = graphql`
