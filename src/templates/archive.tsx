@@ -1,10 +1,13 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/Layout"
-import SEO from "../components/Seo"
 import Pager from "../components/Pager"
 import ArticleList from "../components/ArticleList"
-import { Section } from "../pages/index"
+import { Section } from "../components/Section"
+
+import { IArticleNode } from "../types/Article"
+import { ILocation } from "../types/Location"
+
 export const pageQuery = graphql`
   query($skip: Int!, $limit: Int!) {
     allMdx(
@@ -39,12 +42,16 @@ export const pageQuery = graphql`
     }
   }
 `
-interface IProps {
-  data: any
+interface IArchiveProps {
+  data: {
+    allMdx: {
+      edges: IArticleNode[]
+    }
+  }
   pageContext: any
-  location: any
+  location: ILocation
 }
-const Archive = ({ data, pageContext, location }: IProps) => {
+const Archive = ({ data, pageContext, location }: IArchiveProps) => {
   const postData = data.allMdx.edges
 
   return (

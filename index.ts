@@ -1,6 +1,5 @@
 export { default as Layout } from "./src/components/Layout"
-export { default as Box } from "./src/components/Box"
 export { default as SEO } from "./src/components/Seo"
-export { default as Bio } from "./src/components/Bio"
+export { Bio } from "./src/components/Bio"
 export { default as ToggleDarkMode } from "./src/components/toggleDarkMode"
 export { getLocalizedData, formatPostDate } from "./src/utils/i18n"

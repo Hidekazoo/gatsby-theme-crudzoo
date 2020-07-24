@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
 import * as React from "react"
 import { Link } from "gatsby"
 
@@ -11,22 +9,13 @@ const TagList: React.FC<IProps> = ({ tags }) => {
   if (tags === null) return <div />
 
   return (
-    <div
-      sx={{
-        margin: "15px 0 30px",
-      }}
-    >
+    <div className="mt-3 mb-4">
+      Tags:{" "}
       {tags.map(tag => (
         <Link
           key={tag}
           to={"/tags/" + tag}
-          sx={{
-            background: "rgba(0,0,0,.05)",
-            padding: "5px 10px",
-            textDecoration: "none",
-            color: "rgba(0, 0, 0, 0.87)",
-            marginRight: "10px",
-          }}
+          className="bg-gray-200 text-gray-600 px-2 py-1 mx-2"
         >
           {tag}
         </Link>

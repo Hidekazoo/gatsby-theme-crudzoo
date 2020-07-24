@@ -2,54 +2,22 @@ import * as React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 
-import Bio from "../components/Bio"
+import { Bio } from "../components/Bio"
 import SEO from "../components/Seo"
 import { Button } from "../components/Button"
+import { Section } from "../components/Section"
 
 import ArticleList from "../components/ArticleList"
 import SeriesList from "../components/SeriesList"
+
+import { IArticleNode } from "../types/Article"
+import { ISeriesNode } from "../types/Series"
+import { ILocation } from "../types/Location"
 import "../styles/tailwind.css"
 import "../styles/global.css"
 
-export interface ISeriesNode {
-  node: {
-    id: string
-    title: string
-    seriesId: string
-    spoiler: string
-    image: {
-      childImageSharp: {
-        fluid: any
-      }
-    } | null
-  }
-}
-
-export interface IArticleNode {
-  node: {
-    body: string
-    parent: {
-      name: string
-      relativeDirectory: string
-    }
-    id: string
-    frontmatter: {
-      title: string
-      date: Date
-      spoiler: string | undefined
-      image: {
-        childImageSharp: {
-          fluid: any
-        }
-      } | null
-    }
-  }
-}
-
-interface IProps {
-  location: {
-    pathname: string | undefined
-  }
+interface ITopPageProps {
+  location: ILocation
   data: {
     site: {
       siteMetadata: {
@@ -71,52 +39,7 @@ interface IProps {
   }
 }
 
-const PrimaryColorSpan: React.FC = ({ children }) => {
-  return <span className="text-primary font-medium">{children}</span>
-}
-
-interface HeroProps {
-  heroText: string
-  description: string
-}
-const Hero: React.FC<HeroProps> = ({ heroText, description }) => {
-  return (
-    <div className="w-full max-w-screen-xl relative mx-auto px-6 pt-16 pb-40 md:pb-24">
-      <div className=" -mx-6">
-        <div className="px-6 text-left md:text-center max-w-2xl md:max-w-3xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight">
-            <PrimaryColorSpan>{heroText}</PrimaryColorSpan>
-          </h1>
-          <p className="mt-6 leading-relaxed sm:text-lg md:text-xl text-gray-600">
-            {description}
-          </p>
-          <div className="flex mt-12 justify-start md:justify-center">
-            <Bio />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-interface SectionProps {
-  isBgColor: boolean
-}
-export const Section: React.FC<SectionProps> = ({ children, isBgColor }) => {
-  const bgColor = isBgColor && "bg-section"
-  return (
-    <div className={`mt-10 py-16 ${bgColor}`}>
-      <div className="max-w-screen-xl px-12 mx-auto md:max-w-4xl">
-        {children}
-      </div>
-    </div>
-  )
-}
-const SectionTitle: React.FC = ({ children }) => {
-  return <div className="text-primary text-4xl mb-10">{children}</div>
-}
-
-const TopPage: React.FC<IProps> = ({ data, location }) => {
+const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
   const { language, title, description, heroText } = data.site.siteMetadata
 
   const seriesCount = data.allSeriesJson.totalCount
@@ -147,8 +70,39 @@ const TopPage: React.FC<IProps> = ({ data, location }) => {
     </Layout>
   )
 }
-
 export default TopPage
+
+interface HeroProps {
+  heroText: string
+  description: string
+}
+const Hero: React.FC<HeroProps> = ({ heroText, description }) => {
+  return (
+    <div className="w-full max-w-screen-xl relative mx-auto px-6 pt-16 pb-40 md:pb-24">
+      <div className=" -mx-6">
+        <div className="px-6 text-left md:text-center max-w-2xl md:max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight">
+            <PrimaryColorSpan>{heroText}</PrimaryColorSpan>
+          </h1>
+          <p className="mt-6 leading-relaxed sm:text-lg md:text-xl text-gray-600">
+            {description}
+          </p>
+          <div className="flex mt-12 justify-start md:justify-center">
+            <Bio />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const SectionTitle: React.FC = ({ children }) => {
+  return <div className="text-primary text-4xl mb-10">{children}</div>
+}
+
+const PrimaryColorSpan: React.FC = ({ children }) => {
+  return <span className="text-primary font-medium">{children}</span>
+}
 
 export const query = graphql`
   query MDXQuery {

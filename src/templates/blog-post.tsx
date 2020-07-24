@@ -1,12 +1,12 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 import { getLocalizedData } from "../utils/i18n"
-import Bio from "../components/Bio"
+import { Bio } from "../components/Bio"
 
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
-import { Button } from "../components/Button"
+import { ILocation } from "../types/Location"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
@@ -30,9 +30,7 @@ interface INode {
   }
 }
 interface IProps {
-  location: {
-    pathname: string | undefined
-  }
+  location: ILocation
   data: {
     site: {
       siteMetadata: {
@@ -82,7 +80,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
   const date = pageData.frontmatter.date
   const { prev, next } = pageContext
 
-  const lastUpdate = pageData.frontmatter.update
+  const lastUpdate = pageData.parent.changeTime
 
   let featuredImage = null
   if (pageData.frontmatter.image !== null) {

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-import { IArticleNode } from "../pages/index"
+import { IArticleNode } from "../types/Article"
 
 interface ArticleListProps {
   articles: IArticleNode[]
@@ -32,7 +32,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
 }
 export default ArticleList
 
-interface ArticleProps {
+interface IArticleProps {
   title: string
   date: Date
   spoiler: string | undefined
@@ -40,7 +40,7 @@ interface ArticleProps {
   path: string
 }
 
-const Article: React.FC<ArticleProps> = ({
+const Article: React.FC<IArticleProps> = ({
   title,
   date,
   spoiler,

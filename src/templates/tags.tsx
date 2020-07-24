@@ -4,15 +4,15 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import ArticleList from "../components/ArticleList"
+import { ILocation } from "../types/Location"
+import { IArticleNode } from "../types/Article"
 import "../styles/global.css"
 
 interface IProps {
   pageContext: {
     tag: string
   }
-  location: {
-    pathname: string | undefined
-  }
+  location: ILocation
   data: {
     site: {
       siteMetadata: {
@@ -20,28 +20,7 @@ interface IProps {
       }
     }
     allMdx: {
-      edges: [
-        {
-          node: {
-            body: string
-            parent: {
-              name: string
-              relativeDirectory: string
-            }
-            id: string
-            frontmatter: {
-              title: string
-              date: Date
-              spoiler: string | undefined
-              image: {
-                childImageSharp: {
-                  fluid: any
-                }
-              } | null
-            }
-          }
-        }
-      ]
+      edges: IArticleNode[]
     }
   }
 }

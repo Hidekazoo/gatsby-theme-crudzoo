@@ -6,7 +6,7 @@ import SEO from "../components/Seo"
 import "../styles/global.css"
 
 import ArticleList from "../components/ArticleList"
-
+import { ILocation } from "../types/Location"
 interface IProps {
   pageContext: {
     seriesTitle: string
@@ -14,9 +14,7 @@ interface IProps {
     articleIds: string[]
     seriesImage: any
   }
-  location: {
-    pathname: string | undefined
-  }
+  location: ILocation
   data: {
     site: {
       siteMetadata: {

@@ -1,9 +1,29 @@
 const { paginate } = require("gatsby-awesome-pagination")
+const path = require("path")
+const fs = require("fs")
+const mkdirp = require("mkdirp")
+
+// initialize directory
+exports.onPreBootstrap = ({ store, reporter }) => {
+  const { program } = store.getState()
+  const dirs = [
+    path.join(program.directory, "blog"),
+    path.join(program.directory, "pages"),
+    path.join(program.directory, "series"),
+    path.join(program.directory, "assets"),
+  ]
+  dirs.forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      reporter.log(`creating the ${dir} directory`)
+      mkdirp.sync(dir)
+    }
+  })
+}
 
 exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
-      allMdx {
+      allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
         edges {
           node {
             id

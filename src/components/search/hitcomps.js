@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-// eslint-disable-next-line no-unused-vars
 import React from "react"
 import { Highlight, Snippet } from "react-instantsearch-dom"
 import { Link } from "gatsby"
@@ -11,20 +8,9 @@ export const PostHit = clickHandler => ({ hit }) => {
       <Link
         to={`/blog/` + hit.parent.relativeDirectory}
         onClick={clickHandler}
-        sx={{
-          color: `text`,
-          boxShadow: `none`,
-          textDecoration: `none`,
-        }}
+        className="text-gray-600"
       >
-        <h4
-          sx={{
-            fontSize: [16, 16, 16],
-            fontWeight: 500,
-            mb: 0,
-            mt: 0,
-          }}
-        >
+        <h4 className="text-md font-bold">
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </h4>
       </Link>
@@ -32,11 +18,7 @@ export const PostHit = clickHandler => ({ hit }) => {
         attribute="excerpt"
         hit={hit}
         tagName="mark"
-        sx={{
-          color: "textLead",
-          mt: 10,
-          mb: 0,
-        }}
+        className="text-gray-600 mb-1"
       />
     </div>
   )
