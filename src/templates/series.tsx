@@ -125,7 +125,10 @@ export const query = graphql`
         }
       }
     }
-    allMdx(limit: 200, filter: { frontmatter: { id: { in: $articleIds } } }) {
+    allMdx(
+      filter: { frontmatter: { id: { in: $articleIds } } }
+      sort: { fields: frontmatter___id, order: ASC }
+    ) {
       edges {
         node {
           id
