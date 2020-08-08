@@ -1,15 +1,13 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import Search from "./search"
+
+import { ILocation } from "../types/Location"
 import "../styles/code.css"
 const { MDXProvider } = require("@mdx-js/react")
 
-interface LayoutInterface {
-  location: {
-    pathname: string | undefined
-  }
+interface ILayoutProps {
+  location: ILocation
 }
 const searchIndices = [{ name: `Blogs`, title: `検索結果`, hitComp: `PostHit` }]
 
@@ -18,7 +16,7 @@ enum HeaderType {
   ARTICLE_PAGE = "ARTICLE_PAGE",
 }
 
-const Layout: React.FC<LayoutInterface> = props => {
+const Layout: React.FC<ILayoutProps> = props => {
   const { location, children } = props
   const rootPath = `/`
 

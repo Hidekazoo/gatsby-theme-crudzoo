@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
 import * as React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Img, { FixedObject } from "gatsby-image"
@@ -23,7 +21,7 @@ interface BioData {
     }
   }
 }
-const Bio: React.FC = () => {
+export const Bio: React.FC = () => {
   return (
     <StaticQuery
       query={graphql`
@@ -81,5 +79,3 @@ const Bio: React.FC = () => {
     />
   )
 }
-
-export default Bio
