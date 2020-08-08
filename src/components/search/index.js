@@ -1,4 +1,5 @@
 import * as React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import {
   InstantSearch,
   Index,
@@ -24,38 +25,59 @@ const Stats = connectStateResults(
 )
 
 export default function Search({ indices, collapse, hitsAsGrid }) {
+  const siteData = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          algoliaSearch
+        }
+      }
+    }
+  `)
+  const algoliaSearch = siteData.site.siteMetadata.algoliaSearch
+
   const ref = React.createRef(null)
   const [query, setQuery] = React.useState(``)
   const [focus, setFocus] = React.useState(false)
-  const searchClient = algoliasearch(
-    process.env.GATSBY_ALGOLIA_APP_ID,
-    process.env.GATSBY_ALGOLIA_SEARCH_KEY
-  )
+  let searchClient
+  if (algoliaSearch) {
+    searchClient = algoliasearch(
+      process.env.GATSBY_ALGOLIA_APP_ID,
+      process.env.GATSBY_ALGOLIA_SEARCH_KEY
+    )
+  }
+
   useOnClickOutside(ref, () => setFocus(false))
 
   return (
-    <div ref={ref} style={{ position: "relative" }}>
-      <InstantSearch
-        searchClient={searchClient}
-        indexName={indices[0].name}
-        onSearchStateChange={({ query }) => setQuery(query)}
-        root={{ Root, props: { ref } }}
-      >
-        <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
-        <HitsWrapper show={query.length > 0 && focus} asGrid={hitsAsGrid}>
-          {indices.map(({ name, title, hitComp }) => (
-            <Index key={name} indexName={name}>
-              <header>
-                <h3>{title}</h3>
-                <Stats />
-              </header>
-              <Results>
-                <Hits hitComponent={hitComps[hitComp](() => setFocus(false))} />
-              </Results>
-            </Index>
-          ))}
-        </HitsWrapper>
-      </InstantSearch>
-    </div>
+    <>
+      {!algoliaSearch ? null : (
+        <div ref={ref} style={{ position: "relative" }}>
+          <InstantSearch
+            searchClient={searchClient}
+            indexName={indices[0].name}
+            onSearchStateChange={({ query }) => setQuery(query)}
+            root={{ Root, props: { ref } }}
+          >
+            <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
+            <HitsWrapper show={query.length > 0 && focus} asGrid={hitsAsGrid}>
+              {indices.map(({ name, title, hitComp }) => (
+                <Index key={name} indexName={name}>
+                  <header>
+                    <h3>{title}</h3>
+                    <Stats />
+                  </header>
+                  <Results>
+                    <Hits
+                      hitComponent={hitComps[hitComp](() => setFocus(false))}
+                    />
+                  </Results>
+                </Index>
+              ))}
+            </HitsWrapper>
+          </InstantSearch>
+        </div>
+      )}
+    </>
   )
 }

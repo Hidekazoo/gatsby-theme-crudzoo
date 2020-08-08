@@ -1,13 +1,13 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-import { ISeriesNode } from "../pages/index"
+import { ISeriesNode } from "../types/Series"
 
-interface SeriesListProps {
+interface ISeriesListProps {
   series: ISeriesNode[]
 }
 
-const SeriesList: React.FC<SeriesListProps> = ({ series }) => {
+const SeriesList: React.FC<ISeriesListProps> = ({ series }) => {
   return (
     <div className="flex flex-wrap ">
       {series.map(item => {
