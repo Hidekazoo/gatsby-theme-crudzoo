@@ -5,11 +5,7 @@ const withDefaults = require("./src/utils/DefaultOptions")
 const { basePath, blogPath, seriesPath } = withDefaults({})
 require("dotenv").config()
 
-module.exports = ({
-  purgeCSS: {
-    purgeOnly = [path.join(__dirname, "src/styles/tailwind.css")],
-  } = {},
-}) => {
+module.exports = ({}) => {
   const plugins = []
   if (process.env.GATSBY_ALGOLIA_APP_ID) {
     plugins.push({
@@ -104,9 +100,13 @@ module.exports = ({
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
-        printRejected: true,
-        purgeOnly,
         tailwind: true,
+        content: [
+          path.join(
+            process.cwd(),
+            "node_modules/gatsby-crudzoo/src/**/!(*.d).{ts,js,jsx,tsx}"
+          ),
+        ],
       },
     }
   )
