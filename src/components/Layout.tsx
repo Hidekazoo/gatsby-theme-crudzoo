@@ -35,10 +35,28 @@ const Layout: React.FC<ILayoutProps> = props => {
   const algoliaSearch = siteData.site.siteMetadata.algoliaSearch
 
   const components = {
-    p: ({ children }: any) => (
-      <p className="text-base	text-gray-700 leading-normal my-6">{children}</p>
+    h2: ({ children }: any) => (
+      <h2 className="text-2xl text-gray-800 mt-10 mb-5 leading-normal">
+        {children}
+      </h2>
     ),
-
+    h3: ({ children }: any) => (
+      <h3 className="text-xl text-gray-800 mt-10">{children}</h3>
+    ),
+    h4: ({ children }: any) => (
+      <h4 className="text-lg text-gray-800 mt-10">{children}</h4>
+    ),
+    p: ({ children }: any) => (
+      <p className="text-base text-gray-700 leading-normal my-6">{children}</p>
+    ),
+    a: (props: any) => (
+      <a
+        className="text-base underline cursor-pointer text-blue-600"
+        {...props}
+      >
+        {props.children}
+      </a>
+    ),
     "ul.li": ({ children }: any) => (
       <li className="list-disc leading-normal mb-6 ml-4">{children}</li>
     ),
