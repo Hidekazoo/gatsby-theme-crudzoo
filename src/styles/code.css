@@ -1,6 +1,7 @@
 /**
  * Based on copypasta from Remy Bach and Sarah Drasner
  */
+/* purgecss start ignore */
 code[class*="language-"],
 pre[class*="language-"] {
   color: white;
@@ -150,3 +151,4 @@ pre[data-line] {
 .gatsby-highlight pre[class*="language-"] {
   margin: 0;
 }
+/* purgecss end ignore */
