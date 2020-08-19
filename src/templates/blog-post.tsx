@@ -115,7 +115,9 @@ const BlogPostTemplate: React.FC<IProps> = ({
           <div>
             {prev && (
               <>
-                <h2 className="text-gray-600 text-md mt-5">前の記事</h2>
+                <h2 className="text-gray-600 text-md mt-5 break-normal">
+                  前の記事
+                </h2>
                 <Link to={`/blog/${prev.parent.relativeDirectory}`} rel="prev">
                   {prev.frontmatter.title}
                 </Link>
@@ -126,12 +128,10 @@ const BlogPostTemplate: React.FC<IProps> = ({
           <div>
             {next && (
               <>
-                <h2 className="text-gray-600 text-md mt-5">次の記事</h2>
-                <Link
-                  to={`/blog/${next.parent.relativeDirectory}`}
-                  rel="next"
-                  className="w-56 truncate"
-                >
+                <h2 className="text-gray-600 text-md mt-5 break-all w-full leading-10">
+                  次の記事
+                </h2>
+                <Link to={`/blog/${next.parent.relativeDirectory}`} rel="next">
                   {next.frontmatter.title}
                 </Link>
               </>
