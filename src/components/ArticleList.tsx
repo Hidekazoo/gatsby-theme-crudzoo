@@ -3,6 +3,9 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 import { IArticleNode } from "../types/Article"
 
+import * as path from "path"
+import * as withDefaults from "../utils/DefaultOptions"
+import useBlogThemeConfig from "../hooks/usePluginOptions"
 interface ArticleListProps {
   articles: IArticleNode[]
 }
@@ -23,7 +26,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
             date={frontmatter.date}
             spoiler={frontmatter.spoiler}
             featuredImage={featuredImage}
-            path={article.node.parent.relativeDirectory}
+            articlePath={article.node.parent.relativeDirectory}
           />
         )
       })}
@@ -37,7 +40,7 @@ interface IArticleProps {
   date: Date
   spoiler: string | undefined
   featuredImage: any
-  path: string
+  articlePath: string
 }
 
 const Article: React.FC<IArticleProps> = ({
@@ -45,18 +48,24 @@ const Article: React.FC<IArticleProps> = ({
   date,
   spoiler,
   featuredImage,
-  path,
+  articlePath,
 }) => {
+  const { basePath, blogPath } = withDefaults({})
+  const blogThemeConfig = useBlogThemeConfig()
   return (
     <>
       <article className="md:flex mb-12 max-w-4xl border-b border-gray-400 pb-4">
         <div className="md:flex-shrink-0">
           <div className="hidden md:block">
-            <Img
-              className="rounded-lg md:w-32"
-              sizes={featuredImage}
-              alt={`${title}のサムネイル`}
-            />
+            {featuredImage ? (
+              <Img
+                className="rounded-lg md:w-32"
+                sizes={featuredImage}
+                alt={`${title}-thumbnail`}
+              />
+            ) : (
+              <div className="rounded-lg md:w-32" />
+            )}
           </div>
         </div>
         <div className="mt-4 md:mt-0 md:ml-6 ">
@@ -64,7 +73,7 @@ const Article: React.FC<IArticleProps> = ({
             {date}
           </div>
           <Link
-            to={"/blog/" + path}
+            to={path.join(basePath, blogPath, articlePath)}
             className="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
           >
             {title}

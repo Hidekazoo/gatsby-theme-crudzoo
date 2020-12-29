@@ -25,6 +25,7 @@ interface INode {
     tags: string[]
     spoiler: string
     link?: string
+    score?: number
     image: {
       childImageSharp: {
         fluid: any
@@ -81,6 +82,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
   const link = pageData.frontmatter.link ? pageData.frontmatter.link : ""
+  const score = pageData.frontmatter.score ? pageData.frontmatter.score : 0
   const date = pageData.frontmatter.date
   const { prev, next } = pageContext
 
@@ -101,7 +103,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
         />
         <div className="ml-6 flex flex-col">
           <h1 className="text-3xl mb-3">{title}</h1>
-          <StarRateBox score={4} />
+          <StarRateBox score={score} />
           <p className="text-gray-600 mt-3">{spoiler}</p>
           <p className="text-gray-600 mt-auto">
             {link && (
@@ -193,6 +195,7 @@ export const query = graphql`
             tags
             spoiler
             link
+            score
             image {
               childImageSharp {
                 fluid(maxWidth: 600) {
