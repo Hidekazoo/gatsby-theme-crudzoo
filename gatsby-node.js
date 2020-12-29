@@ -1,3 +1,4 @@
+// eslint-disable-next-line jsx-a11y/autocomplete-valid
 const { paginate } = require("gatsby-awesome-pagination")
 const path = require("path")
 const fs = require("fs")
@@ -40,6 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
             frontmatter {
               title
               tags
+              template
             }
           }
         }
@@ -62,9 +64,10 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
   let tags = []
   pages.forEach((page, index) => {
     const id = page.id
+    const component = page.frontmatter.template === "book-review" ? require.resolve("./src/templates/book-review.tsx") : require.resolve("./src/templates/blog-post.tsx")
     actions.createPage({
       path: path.join(basePath, blogPath, page.parent.relativeDirectory),
-      component: require.resolve("./src/templates/blog-post.tsx"),
+      component: component,
       context: {
         slug: id,
         prev: index === 0 ? null : pages[index - 1],
