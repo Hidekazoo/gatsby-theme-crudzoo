@@ -92,7 +92,6 @@ module.exports = ({}) => {
         modules: [`gatsby-crudzoo`],
       },
     },
-    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-postcss`,
       options: {},

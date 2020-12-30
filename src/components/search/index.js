@@ -8,7 +8,6 @@ import {
 } from "react-instantsearch-dom"
 import algoliasearch from "algoliasearch/lite"
 
-import { Root, HitsWrapper } from "./styles"
 import Input from "./input"
 import * as hitComps from "./hitcomps"
 import { useOnClickOutside } from "./useOutSideClick"
@@ -49,6 +48,16 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
 
   useOnClickOutside(ref, () => setFocus(false))
 
+  const Root = (
+    <div style={{ position: "relative", display: "grid", gridGap: "1em" }} />
+  )
+
+  const HitsWrapper = props => {
+    const { show, children } = props
+    console.log("aa", show)
+    if (!show) return null
+    return <div className="hits-wrapper">{children}</div>
+  }
   return (
     <>
       {!algoliaSearch ? null : (
