@@ -94,7 +94,11 @@ const Header: React.FC<HeaderProps> = ({ title, isSearch, type }) => {
     <nav className="bg-white w-full max-w-screen-xl mx-auto" role="navigation">
       <div className="container mx-auto p-4 flex flex-wrap items-center flex-no-wrap">
         <div className="mr-4 md:mr-8 text-lg">
-          <Link to={`/`} className="sm:text-3xl text-xl whitespace-nowrap">
+          <Link
+            to={`/`}
+            className="sm:text-3xl text-xl"
+            style={{ whiteSpace: "nowrap" }}
+          >
             {type === HeaderType.TOP_PAGE ? <h1>{title}</h1> : <h3>{title}</h3>}
           </Link>
         </div>
