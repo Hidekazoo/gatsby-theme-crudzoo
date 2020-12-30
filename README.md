@@ -156,7 +156,7 @@ the folder structure is as follows
 ```
   .
   ├── blog
-  │   └── hello-world
+  │   └── about
   │        ├── thumbnail.png
   │        └── index.mdx
   ├── assets
@@ -180,4 +180,23 @@ or using yarn
 
 ```
 yarn develop
+```
+
+## book-review template
+
+There is a template for book reviews. If you are writing a book review article, this may be useful.
+
+```
+---
+title: Sample Book
+date: "2020-12-31T12:26:28+09:00"
+tags: ["Book Review"]
+spoiler: "spoiler"
+image: ./thumbnail.jpg
+score: 5
+template: "book-review"
+link: "https://example.com"
+---
+
+your review
 ```
