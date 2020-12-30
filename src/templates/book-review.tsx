@@ -85,7 +85,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
   const date = pageData.frontmatter.date
   const { prev, next } = pageContext
 
-  const lastUpdate = pageData.parent.changeTime
+  const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
 
   const featuredImage = pageData.frontmatter.image
     ? pageData.frontmatter.image.childImageSharp.fluid
@@ -104,7 +104,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
           <h1 className="text-3xl mb-3">{title}</h1>
           <StarRateBox score={score} />
           <p className="text-gray-600 mt-3">{spoiler}</p>
-          <p className="text-gray-600 mt-auto">
+          <div className="text-gray-600 mt-auto">
             {link && (
               <div className="truncate mb-2">
                 Link：
@@ -113,11 +113,14 @@ const BookReviewTemplate: React.FC<IProps> = ({
                 </a>
               </div>
             )}
-            {date && `${localizedData.BlogPost.update}: ${date}`}
+            {date &&
+              `${
+                localizedData.BlogPost.update
+              }: ${localizedData.getLocalizedDate(date)}`}
             {lastUpdate && (
               <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
             )}
-          </p>
+          </div>
         </div>
       </div>
     )
@@ -144,7 +147,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
             {prev && (
               <>
                 <h2 className="text-gray-600 text-md mt-5 break-normal">
-                  前の記事
+                  {localizedData.Archive.prev}
                 </h2>
                 <Link to={`/blog/${prev.parent.relativeDirectory}`} rel="prev">
                   {prev.frontmatter.title}
@@ -157,7 +160,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
             {next && (
               <>
                 <h2 className="text-gray-600 text-md mt-5 break-all w-full leading-10">
-                  次の記事
+                  {localizedData.Archive.prev}
                 </h2>
                 <Link to={`/blog/${next.parent.relativeDirectory}`} rel="next">
                   {next.frontmatter.title}
@@ -184,12 +187,12 @@ export const query = graphql`
         node {
           parent {
             ... on File {
-              changeTime(formatString: "Y年M月D日")
+              changeTime
             }
           }
           frontmatter {
             title
-            date(formatString: "Y年M月D日")
+            date
             tags
             spoiler
             link

@@ -79,7 +79,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
   const date = pageData.frontmatter.date
   const { prev, next } = pageContext
 
-  const lastUpdate = pageData.parent.changeTime
+  const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
 
   return (
     <Layout location={location}>
@@ -88,7 +88,10 @@ const BlogPostTemplate: React.FC<IProps> = ({
       <article className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
         <h1 className="text-3xl">{title}</h1>
         <p className="text-gray-600 mt-3 mb-8">
-          {date && `${localizedData.BlogPost.update}: ${date}`}
+          {date &&
+            `${localizedData.BlogPost.update}: ${localizedData.getLocalizedDate(
+              date
+            )}`}
           {lastUpdate && (
             <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
           )}
@@ -148,12 +151,12 @@ export const query = graphql`
         node {
           parent {
             ... on File {
-              changeTime(formatString: "Y年M月D日")
+              changeTime
             }
           }
           frontmatter {
             title
-            date(formatString: "Y年M月D日")
+            date
             tags
             spoiler
             image {

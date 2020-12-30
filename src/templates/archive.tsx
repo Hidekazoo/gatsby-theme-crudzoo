@@ -27,7 +27,7 @@ export const pageQuery = graphql`
           id
           frontmatter {
             title
-            date(formatString: "Y年M月D日")
+            date
             spoiler
             image {
               childImageSharp {

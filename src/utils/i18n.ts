@@ -11,6 +11,9 @@ interface ILocale {
     prev: string
     next: string
   }
+  Date: {
+    format: string
+  }
 }
 
 export function getLocalizedData(lang: string): ILocale {
@@ -26,6 +29,9 @@ export function getLocalizedData(lang: string): ILocale {
       list: "All Articles",
       prev: "Prev",
       next: "Next",
+    },
+    Date: {
+      format: "MMMM DD, YYYY",
     },
   }
 
@@ -43,6 +49,9 @@ export function getLocalizedData(lang: string): ILocale {
           list: "投稿一覧",
           prev: "古い投稿へ",
           next: "新しい投稿へ",
+        },
+        Date: {
+          format: "YYYY年MM月DD日",
         },
       }
       return localizedData

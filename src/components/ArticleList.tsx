@@ -1,11 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
+
 import { IArticleNode } from "../types/Article"
 
 import * as path from "path"
 import * as withDefaults from "../utils/DefaultOptions"
-import useBlogThemeConfig from "../hooks/usePluginOptions"
+import { useLocalizeData } from "../hooks/useLocalize"
 interface ArticleListProps {
   articles: IArticleNode[]
 }
@@ -51,7 +52,8 @@ const Article: React.FC<IArticleProps> = ({
   articlePath,
 }) => {
   const { basePath, blogPath } = withDefaults({})
-  const blogThemeConfig = useBlogThemeConfig()
+  const { getLocalizedDate } = useLocalizeData()
+  const displayDate = getLocalizedDate(date)
   return (
     <>
       <article className="md:flex mb-12 max-w-4xl border-b border-gray-400 pb-4">
@@ -70,7 +72,7 @@ const Article: React.FC<IArticleProps> = ({
         </div>
         <div className="mt-4 md:mt-0 md:ml-6 ">
           <div className="text-sm text-primary text-primary-600 font-bold">
-            {date}
+            {displayDate}
           </div>
           <Link
             to={path.join(basePath, blogPath, articlePath)}
