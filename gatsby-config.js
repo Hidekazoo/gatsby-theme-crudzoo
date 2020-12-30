@@ -1,12 +1,31 @@
 const path = require(`path`)
-module.exports = {
-  plugins: [
+const queries = require("./src/utils/algolia")
+
+const withDefaults = require("./src/utils/DefaultOptions")
+const { seriesPath } = withDefaults({})
+require("dotenv").config()
+
+module.exports = ({}) => {
+  const plugins = []
+  if (process.env.GATSBY_ALGOLIA_APP_ID) {
+    plugins.push({
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 5000, // default: 1000
+        enablePartialUpdates: true,
+      },
+    })
+  }
+  plugins.push(
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
         defaultLayouts: {
-          default: require.resolve(`./src/components/layout.tsx`),
+          default: require.resolve(`./src/components/Layout.tsx`),
         },
         gatsbyRemarkPlugins: [
           {
@@ -61,8 +80,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `series`,
-        name: `series`,
+        path: seriesPath,
+        name: seriesPath,
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -73,7 +92,24 @@ module.exports = {
         modules: [`gatsby-crudzoo`],
       },
     },
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-theme-ui`,
-  ],
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {},
+    },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        tailwind: true,
+        content: [
+          path.join(
+            process.cwd(),
+            "node_modules/gatsby-crudzoo/src/**/!(*.d).{ts,js,jsx,tsx}"
+          ),
+        ],
+      },
+    }
+  )
+  return {
+    plugins,
+  }
 }

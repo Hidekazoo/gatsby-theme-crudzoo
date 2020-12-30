@@ -1,7 +1,7 @@
 {
   "seriesId": "sample",
-  "title": "Sample Series",
-  "spoiler": "Sample Series Description",
-  "image": "sample-thumb.png",
-  "articles": ["sample-1"]
+  "title": "sample title",
+  "spoiler": "my sample series",
+  "image": "sample.png",
+  "articles": ["article-1"]
 }

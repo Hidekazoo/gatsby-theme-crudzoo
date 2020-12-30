@@ -41,11 +41,13 @@ Add a new Scripts "develop" and "build" to your package.json. And It is convenie
 }
 ```
 
-### create gatsby-config.js
+### create setting files
 
-create gatsby-config.js in your root directory and write your site settings
+create setting files in your root directory.
 
-#### Example
+#### gatsby-config.js
+
+##### Example
 
 ```javascript
 //gatsby-config.js
@@ -54,13 +56,15 @@ module.exports = {
     language: `en`, // or `ja`
     title: `site title`,
     author: `your name`,
+    job: ``,
     keywords: [`blog`, `gatsby`],
+    heroText: ``,
     description: `site description`,
-    siteUrl: `site url`,
-    mainColor: `#e65100`,
+    siteUrl: `http://example.com`,
     social: {
       twitter: `your twitter name`,
     },
+    algoliaSearch: false,
   },
   plugins: [
     {
@@ -71,25 +75,61 @@ module.exports = {
 }
 ```
 
+#### tailwind.config.js
+
+```javascript
+module.exports = {
+  purge: [],
+  theme: {
+    fontFamily: {
+      sanSerif: ``,
+    },
+    extend: {
+      colors: {
+        primary: "#0091ea",
+        section: "#0091ea0f",
+      },
+    },
+  },
+  variants: {},
+  plugins: [],
+}
+```
+
 ### profile picture
 
 put on your profile picture on assets/profile-pic.jpg
 
 ### write your first article
 
-Write your first post at mdx on blog/hello-world/index.mdx.
+Write your first post at mdx on blog/hello-world/index.mdx and place the thumbnail file in the same folder.
+
+Include the following key in the first article to avoid graphql errors
+
+1. id
+1. title
+1. date
+1. tags
+1. spoiler
+1. image
+1. template
+1. link
+1. score
 
 #### Example
 
 ```
-// blog/hello-world/index.mdx
+// blog/about/index.mdx
 ---
 id: "article-1"
-title: "Hello world"
+title: "Profile Page"
 date: "2019-06-03T21:58:03.284Z"
-tags: ["blog", "self-introduction"]
+tags: ["profile", "self-introduction"]
 spoiler: "this is my first article"
-image: "./thumbnail.jpg"
+image: "./thumbnail.png"
+template: ""
+link: ""
+score: ""
 ---
 
 hello world!
@@ -117,7 +157,7 @@ the folder structure is as follows
   .
   ├── blog
   │   └── hello-world
-  │        ├── thumbnail.jpg
+  │        ├── thumbnail.png
   │        └── index.mdx
   ├── assets
   │   └── profile-pic.jpg

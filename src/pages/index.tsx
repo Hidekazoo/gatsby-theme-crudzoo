@@ -1,65 +1,32 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
 import * as React from "react"
-import { graphql } from "gatsby"
-import styled from "@emotion/styled"
+import { graphql, Link } from "gatsby"
+import Layout from "../components/Layout"
 
-import Layout from "../components/layout"
-import ToggleDarkMode from "../components/toggleDarkMode"
-import Bio from "../components/bio"
-import SEO from "../components/seo"
+import { Bio } from "../components/Bio"
+import SEO from "../components/Seo"
+import { Button } from "../components/Button"
+import { Section } from "../components/Section"
 
-import ArticleList from "../components/articleList"
-import SeriesList from "../components/seriesList"
-import LatestArticle from "../components/latestArticle"
+import ArticleList from "../components/ArticleList"
+import SeriesList from "../components/SeriesList"
+import { useLocalizeData } from "../hooks/useLocalize"
 
+import { IArticleNode } from "../types/Article"
+import { ISeriesNode } from "../types/Series"
+import { ILocation } from "../types/Location"
+import "../styles/tailwind.css"
 import "../styles/global.css"
 
-export interface ISeriesNode {
-  node: {
-    id: string
-    title: string
-    seriesId: string
-    image: {
-      childImageSharp: {
-        fluid: any
-      }
-    } | null
-  }
-}
-
-export interface IArticleNode {
-  node: {
-    body: string
-    parent: {
-      name: string
-      relativeDirectory: string
-    }
-    id: string
-    frontmatter: {
-      title: string
-      date: Date
-      spoiler: string | undefined
-      image: {
-        childImageSharp: {
-          fluid: any
-        }
-      } | null
-    }
-  }
-}
-
-interface IProps {
-  location: {
-    pathname: string | undefined
-  }
+interface ITopPageProps {
+  location: ILocation
   data: {
     site: {
       siteMetadata: {
         title: string
+        heroText: string
         language: string
         keywords: string[]
-        mainColor: string
+        description: string
       }
     }
     allSeriesJson: {
@@ -72,87 +39,80 @@ interface IProps {
   }
 }
 
-const Section = styled.section`
-  margin-bottom: 60px;
-`
-
-const SectionTitle: React.FC = ({ children }) => {
-  return (
-    <div
-      sx={{
-        color: "primary",
-        fontSize: 24,
-        mb: 16,
-      }}
-    >
-      {children}
-    </div>
-  )
-}
-
-const TopPage: React.FC<IProps> = ({ data, location }) => {
-  const language = data.site.siteMetadata.language
-  const siteTitle = data.site.siteMetadata.title
-  const mainColor = data.site.siteMetadata.mainColor
-
+const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
+  const { language, title, description, heroText } = data.site.siteMetadata
+  const localizedData = useLocalizeData()
   const seriesCount = data.allSeriesJson.totalCount
   const seriesData = data.allSeriesJson.edges
   const keywords = data.site.siteMetadata.keywords
-
-  const latestArticle = data.allMdx.edges[0]
-  const latestArticleFrontmatter = latestArticle.node.frontmatter
-  const latestArticlefeaturedImage = latestArticleFrontmatter.image
-    ? latestArticleFrontmatter.image.childImageSharp.fluid
-    : null
-
-  const postData = data.allMdx.edges.filter(
-    post => post.node.id !== latestArticle.node.id
-  )
+  const postData = data.allMdx.edges
 
   return (
     <Layout location={location}>
-      <SEO lang={language} title={siteTitle} keywords={keywords} />
-      {/* <ToggleDarkMode /> */}
-
-      <Section>
-        <SectionTitle>Latest</SectionTitle>
-        <LatestArticle
-          path={latestArticle.node.parent.relativeDirectory}
-          title={latestArticleFrontmatter.title}
-          date={latestArticleFrontmatter.date}
-          spoiler={latestArticleFrontmatter.spoiler}
-          featuredImage={latestArticlefeaturedImage}
-        />
-      </Section>
+      <SEO lang={language} title={title} keywords={keywords} />
+      <Hero heroText={heroText} description={description} />
 
       {seriesCount > 0 && (
-        <Section>
+        <Section isBgColor={true}>
           <SectionTitle>Series</SectionTitle>
           <SeriesList series={seriesData}></SeriesList>
         </Section>
       )}
-      <Section>
+      <Section isBgColor={false}>
         <SectionTitle>Articles</SectionTitle>
         <ArticleList articles={postData} />
-      </Section>
-
-      <Section>
-        <Bio />
+        <div className="flex justify-center">
+          <Link to="/blogs">
+            <Button>{localizedData.Archive.list}</Button>
+          </Link>
+        </div>
       </Section>
     </Layout>
   )
 }
-
 export default TopPage
+
+interface HeroProps {
+  heroText: string
+  description: string
+}
+const Hero: React.FC<HeroProps> = ({ heroText, description }) => {
+  return (
+    <div className="w-full max-w-screen-xl relative mx-auto px-6 pt-16 pb-40 md:pb-24">
+      <div className=" -mx-6">
+        <div className="px-6 text-left md:text-center max-w-2xl md:max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight">
+            <PrimaryColorSpan>{heroText}</PrimaryColorSpan>
+          </h1>
+          <p className="mt-6 leading-relaxed sm:text-lg md:text-xl text-gray-600">
+            {description}
+          </p>
+          <div className="flex mt-12 justify-start md:justify-center">
+            <Bio />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const SectionTitle: React.FC = ({ children }) => {
+  return <div className="text-primary text-4xl mb-10">{children}</div>
+}
+
+const PrimaryColorSpan: React.FC = ({ children }) => {
+  return <span className="text-primary font-medium">{children}</span>
+}
 
 export const query = graphql`
   query MDXQuery {
     site {
       siteMetadata {
         title
+        heroText
+        description
         language
         keywords
-        mainColor
       }
     }
     allSeriesJson {
@@ -162,6 +122,7 @@ export const query = graphql`
           id
           title
           seriesId
+          spoiler
           image {
             childImageSharp {
               fluid(maxWidth: 300) {
@@ -172,7 +133,7 @@ export const query = graphql`
         }
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 10) {
       edges {
         node {
           body
@@ -185,7 +146,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
+            date
             spoiler
             image {
               childImageSharp {

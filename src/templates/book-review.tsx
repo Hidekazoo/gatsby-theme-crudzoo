@@ -1,11 +1,13 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 import { Bio } from "../components/Bio"
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
+import { StarRateBox } from "../components/StarRateBox"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
@@ -21,6 +23,8 @@ interface INode {
     update: Date
     tags: string[]
     spoiler: string
+    link?: string
+    score?: number
     image: {
       childImageSharp: {
         fluid: any
@@ -66,7 +70,7 @@ interface IProps {
   }
 }
 
-const BlogPostTemplate: React.FC<IProps> = ({
+const BookReviewTemplate: React.FC<IProps> = ({
   data,
   location,
   pageContext,
@@ -76,26 +80,58 @@ const BlogPostTemplate: React.FC<IProps> = ({
   const pageData = data.allMdx.edges[0].node
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
+  const link = pageData.frontmatter.link ? pageData.frontmatter.link : ""
+  const score = pageData.frontmatter.score ? pageData.frontmatter.score : 0
   const date = pageData.frontmatter.date
   const { prev, next } = pageContext
 
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
+
+  const featuredImage = pageData.frontmatter.image
+    ? pageData.frontmatter.image.childImageSharp.fluid
+    : null
+
+  const renderTitle: React.FC<any> = () => {
+    return (
+      <div className="flex mb-12">
+        <Img
+          className="rounded-lg "
+          sizes={featuredImage}
+          alt={`${title}-thumbnail`}
+          style={{ minWidth: "30%" }}
+        />
+        <div className="ml-6 flex flex-col">
+          <h1 className="text-3xl mb-3">{title}</h1>
+          <StarRateBox score={score} />
+          <p className="text-gray-600 mt-3">{spoiler}</p>
+          <div className="text-gray-600 mt-auto">
+            {link && (
+              <div className="truncate mb-2">
+                Link：
+                <a href={link} target="_blank">
+                  {link}
+                </a>
+              </div>
+            )}
+            {date &&
+              `${
+                localizedData.BlogPost.update
+              }: ${localizedData.getLocalizedDate(date)}`}
+            {lastUpdate && (
+              <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <Layout location={location}>
       <SEO lang={lang} title={title} description={spoiler} />
 
       <article className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
-        <h1 className="text-3xl">{title}</h1>
-        <p className="text-gray-600 mt-3 mb-8">
-          {date &&
-            `${localizedData.BlogPost.update}: ${localizedData.getLocalizedDate(
-              date
-            )}`}
-          {lastUpdate && (
-            <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
-          )}
-        </p>
+        {renderTitle({ title, featuredImage })}
 
         <MDXRenderer>{pageData.body}</MDXRenderer>
       </article>
@@ -124,7 +160,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
             {next && (
               <>
                 <h2 className="text-gray-600 text-md mt-5 break-all w-full leading-10">
-                  {localizedData.Archive.next}
+                  {localizedData.Archive.prev}
                 </h2>
                 <Link to={`/blog/${next.parent.relativeDirectory}`} rel="next">
                   {next.frontmatter.title}
@@ -138,9 +174,9 @@ const BlogPostTemplate: React.FC<IProps> = ({
   )
 }
 
-export default BlogPostTemplate
+export default BookReviewTemplate
 export const query = graphql`
-  query BlogPostQuery($slug: String) {
+  query BookQuery($slug: String) {
     site {
       siteMetadata {
         language
@@ -159,6 +195,8 @@ export const query = graphql`
             date
             tags
             spoiler
+            link
+            score
             image {
               childImageSharp {
                 fluid(maxWidth: 600) {

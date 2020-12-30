@@ -14,6 +14,50 @@ body {
     background-color var(--duration) var(--timing);
 }
 
-a.gatsby-resp-image-link {
-  box-shadow: none;
+.hits-wrapper {
+  max-height: 80vh;
+  overflow: scroll;
+  z-index: 2;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5em);
+  width: 80vw;
+  max-width: 30em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 0.7em 1em 0.4em;
+  background: white;
+  border-radius: 3px;
+}
+.hits-wrapper > * + * {
+  padding-top: 1em !important;
+  border-top: 2px solid #ccc;
+}
+.hits-wrapper li + li {
+  margin-top: 0.7em;
+  padding-top: 0.7em;
+  border-top: 1px solid #efefef;
+}
+.hits-wrapper * {
+  margin-top: 0;
+  padding: 0;
+}
+.hits-wrapper ul {
+  list-style: none;
+}
+.hits-wrapper header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3em;
+}
+.hits-wrapper header h3 {
+  color: #0091ea;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+.hits-wrapper h3 {
+  margin: 0 0 0.5em;
+}
+.hits-wrapper h4 {
+  margin-bottom: 0.3em;
 }

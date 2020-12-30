@@ -1,15 +1,17 @@
 module.exports = {
   siteMetadata: {
-    language: `en`,
-    title: `example`,
-    author: `example`,
+    language: `en`, // or `ja`
+    title: `Site Title`,
+    author: `your name`,
+    job: `Engineer`,
     keywords: [`blog`, `gatsby`],
-    description: `example site description`,
+    heroText: `My Blog Site`,
+    description: `site description`,
     siteUrl: `http://example.com`,
-    mainColor: `#FF6347`,
     social: {
-      twitter: ``,
+      twitter: `your twitter name`,
     },
+    algoliaSearch: true,
   },
   plugins: [
     {
