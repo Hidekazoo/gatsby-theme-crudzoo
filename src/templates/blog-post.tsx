@@ -1,11 +1,10 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-import { getLocalizedData } from "../utils/i18n"
 import { Bio } from "../components/Bio"
-
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
+import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
@@ -73,7 +72,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
   pageContext,
 }) => {
   const lang = data.site.siteMetadata.language
-  const localizedData = getLocalizedData(lang)
+  const localizedData = useLocalizeData()
   const pageData = data.allMdx.edges[0].node
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
@@ -109,7 +108,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
             {prev && (
               <>
                 <h2 className="text-gray-600 text-md mt-5 break-normal">
-                  前の記事
+                  {localizedData.Archive.prev}
                 </h2>
                 <Link to={`/blog/${prev.parent.relativeDirectory}`} rel="prev">
                   {prev.frontmatter.title}
@@ -122,7 +121,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
             {next && (
               <>
                 <h2 className="text-gray-600 text-md mt-5 break-all w-full leading-10">
-                  次の記事
+                  {localizedData.Archive.next}
                 </h2>
                 <Link to={`/blog/${next.parent.relativeDirectory}`} rel="next">
                   {next.frontmatter.title}

@@ -2,7 +2,7 @@ const path = require(`path`)
 const queries = require("./src/utils/algolia")
 
 const withDefaults = require("./src/utils/DefaultOptions")
-const { basePath, blogPath, seriesPath } = withDefaults({})
+const { seriesPath } = withDefaults({})
 require("dotenv").config()
 
 module.exports = ({}) => {

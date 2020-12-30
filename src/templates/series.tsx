@@ -19,7 +19,6 @@ interface IProps {
     site: {
       siteMetadata: {
         language: string
-        mainColor: string
       }
     }
     allSeriesJson: {
@@ -107,7 +106,6 @@ export const query = graphql`
     site {
       siteMetadata {
         language
-        mainColor
       }
     }
     allSeriesJson(filter: { seriesId: { eq: $seriesId } }) {

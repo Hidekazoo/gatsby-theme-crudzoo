@@ -14,13 +14,11 @@ import { useOnClickOutside } from "./useOutSideClick"
 
 const Results = connectStateResults(
   ({ searchState: state, searchResults: res, children }) =>
-    res && res.nbHits > 0
-      ? children
-      : `'${state.query}' に該当する記事はありません `
+    res && res.nbHits > 0 ? children : `No results for '${state.query}'`
 )
 
 const Stats = connectStateResults(
-  ({ searchResults: res }) => res && res.nbHits > 0 && `${res.nbHits} 件`
+  ({ searchResults: res }) => res && res.nbHits > 0 && `${res.nbHits} posts`
 )
 
 export default function Search({ indices, collapse, hitsAsGrid }) {

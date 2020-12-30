@@ -60,8 +60,7 @@ module.exports = {
     keywords: [`blog`, `gatsby`],
     heroText: ``,
     description: `site description`,
-    siteUrl: `site url`,
-    mainColor: `#e65100`,
+    siteUrl: `http://example.com`,
     social: {
       twitter: `your twitter name`,
     },
@@ -103,7 +102,19 @@ put on your profile picture on assets/profile-pic.jpg
 
 ### write your first article
 
-Write your first post at mdx on blog/hello-world/index.mdx.
+Write your first post at mdx on blog/hello-world/index.mdx and place the thumbnail file in the same folder.
+
+Include the following key in the first article to avoid graphql errors
+
+1. id
+1. title
+1. date
+1. tags
+1. spoiler
+1. image
+1. template
+1. link
+1. score
 
 #### Example
 
@@ -115,7 +126,10 @@ title: "Hello world"
 date: "2019-06-03T21:58:03.284Z"
 tags: ["blog", "self-introduction"]
 spoiler: "this is my first article"
-image: "./thumbnail.jpg"
+image: "./thumbnail.png"
+template: ""
+link: ""
+score: ""
 ---
 
 hello world!
@@ -143,7 +157,7 @@ the folder structure is as follows
   .
   ├── blog
   │   └── hello-world
-  │        ├── thumbnail.jpg
+  │        ├── thumbnail.png
   │        └── index.mdx
   ├── assets
   │   └── profile-pic.jpg

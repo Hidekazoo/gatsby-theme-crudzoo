@@ -8,10 +8,9 @@ const withDefaults = require("./src/utils/DefaultOptions")
 // initialize directory
 exports.onPreBootstrap = ({ store, reporter }, options) => {
   const { program } = store.getState()
-  const { blogPath, tagsPath, seriesPath } = withDefaults(options)
+  const { blogPath, seriesPath } = withDefaults(options)
   const dirs = [
     path.join(program.directory, blogPath),
-    path.join(program.directory, tagsPath),
     path.join(program.directory, seriesPath),
     path.join(program.directory, "assets"),
   ]
@@ -64,7 +63,10 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
   let tags = []
   pages.forEach((page, index) => {
     const id = page.id
-    const component = page.frontmatter.template === "book-review" ? require.resolve("./src/templates/book-review.tsx") : require.resolve("./src/templates/blog-post.tsx")
+    const component =
+      page.frontmatter.template === "book-review"
+        ? require.resolve("./src/templates/book-review.tsx")
+        : require.resolve("./src/templates/blog-post.tsx")
     actions.createPage({
       path: path.join(basePath, blogPath, page.parent.relativeDirectory),
       component: component,

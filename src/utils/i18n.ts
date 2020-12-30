@@ -6,6 +6,11 @@ interface ILocale {
     update: string
     lastUpdate: string
   }
+  Archive: {
+    list: string
+    prev: string
+    next: string
+  }
 }
 
 export function getLocalizedData(lang: string): ILocale {
@@ -16,6 +21,11 @@ export function getLocalizedData(lang: string): ILocale {
     BlogPost: {
       update: "publish date",
       lastUpdate: "last update",
+    },
+    Archive: {
+      list: "All Articles",
+      prev: "Prev",
+      next: "Next",
     },
   }
 
@@ -28,6 +38,11 @@ export function getLocalizedData(lang: string): ILocale {
         BlogPost: {
           update: "公開日",
           lastUpdate: "最終更新日",
+        },
+        Archive: {
+          list: "投稿一覧",
+          prev: "古い投稿へ",
+          next: "新しい投稿へ",
         },
       }
       return localizedData

@@ -9,6 +9,7 @@ import { Section } from "../components/Section"
 
 import ArticleList from "../components/ArticleList"
 import SeriesList from "../components/SeriesList"
+import { useLocalizeData } from "../hooks/useLocalize"
 
 import { IArticleNode } from "../types/Article"
 import { ISeriesNode } from "../types/Series"
@@ -25,7 +26,6 @@ interface ITopPageProps {
         heroText: string
         language: string
         keywords: string[]
-        mainColor: string
         description: string
       }
     }
@@ -41,7 +41,7 @@ interface ITopPageProps {
 
 const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
   const { language, title, description, heroText } = data.site.siteMetadata
-
+  const localizedData = useLocalizeData()
   const seriesCount = data.allSeriesJson.totalCount
   const seriesData = data.allSeriesJson.edges
   const keywords = data.site.siteMetadata.keywords
@@ -63,7 +63,7 @@ const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
         <ArticleList articles={postData} />
         <div className="flex justify-center">
           <Link to="/blogs">
-            <Button>投稿一覧</Button>
+            <Button>{localizedData.Archive.list}</Button>
           </Link>
         </div>
       </Section>
@@ -113,7 +113,6 @@ export const query = graphql`
         description
         language
         keywords
-        mainColor
       }
     }
     allSeriesJson {

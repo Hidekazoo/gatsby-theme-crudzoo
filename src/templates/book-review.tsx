@@ -1,12 +1,11 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
-import { getLocalizedData } from "../utils/i18n"
 import { Bio } from "../components/Bio"
-
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
+import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
 import { StarRateBox } from "../components/StarRateBox"
 
@@ -77,7 +76,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
   pageContext,
 }) => {
   const lang = data.site.siteMetadata.language
-  const localizedData = getLocalizedData(lang)
+  const localizedData = useLocalizeData()
   const pageData = data.allMdx.edges[0].node
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
