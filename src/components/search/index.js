@@ -52,7 +52,6 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
 
   const HitsWrapper = props => {
     const { show, children } = props
-    console.log("aa", show)
     if (!show) return null
     return <div className="hits-wrapper">{children}</div>
   }
