@@ -1,18 +1,21 @@
 {
-  "name": "example",
+  "name": "gatsby-theme-crudzoo-example",
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "clean": "rm -rf node_modules .cache public"
+    "clean": "rm -rf .cache public"
   },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "gatsby": "^2.7.1",
-    "gatsby-crudzoo": "^0.0.2"
+    "gatsby": "^2.29.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "gatsby-crudzoo": "0.3"
   }
 }
