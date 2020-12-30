@@ -119,12 +119,12 @@ Include the following key in the first article to avoid graphql errors
 #### Example
 
 ```
-// blog/hello-world/index.mdx
+// blog/about/index.mdx
 ---
 id: "article-1"
-title: "Hello world"
+title: "Profile Page"
 date: "2019-06-03T21:58:03.284Z"
-tags: ["blog", "self-introduction"]
+tags: ["profile", "self-introduction"]
 spoiler: "this is my first article"
 image: "./thumbnail.png"
 template: ""
