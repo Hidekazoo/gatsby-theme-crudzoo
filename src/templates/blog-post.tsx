@@ -6,6 +6,7 @@ import SEO from "../components/Seo"
 import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
+import { Comments } from "../components/Comments"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
@@ -133,6 +134,10 @@ const BlogPostTemplate: React.FC<IProps> = ({
             )}
           </div>
         </nav>
+
+        <div>
+          <Comments />
+        </div>
       </div>
     </Layout>
   )
