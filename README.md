@@ -79,7 +79,11 @@ module.exports = {
 
 ```javascript
 module.exports = {
-  purge: [],
+  purge: [
+    "./src/**/*.tsx",
+    "./src/**/*.jsx",
+    "./node_modules/gatsby-crudzoo/**/*.tsx",
+  ],
   theme: {
     fontFamily: {
       sanSerif: ``,

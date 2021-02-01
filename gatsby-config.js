@@ -95,18 +95,6 @@ module.exports = ({}) => {
     {
       resolve: `gatsby-plugin-postcss`,
       options: {},
-    },
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        tailwind: true,
-        content: [
-          path.join(
-            process.cwd(),
-            "node_modules/gatsby-crudzoo/src/**/!(*.d).{ts,js,jsx,tsx}"
-          ),
-        ],
-      },
     }
   )
   return {
