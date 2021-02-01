@@ -1,6 +1,8 @@
 import * as React from "react"
 
-interface CommentsProps {}
-export const Comments: React.FC<CommentsProps> = () => {
+interface CommentsProps {
+  id: string
+}
+export const Comments: React.FC<CommentsProps> = props => {
   return null
 }

@@ -16,6 +16,7 @@ interface INode {
     relativeDirectory: string
   }
   body: string
+  id: string
   frontmatter: {
     title: string
     date: Date
@@ -78,6 +79,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
   const date = pageData.frontmatter.date
+  const id = pageData.id
   const { prev, next } = pageContext
 
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
@@ -136,7 +138,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
         </nav>
 
         <div>
-          <Comments />
+          <Comments id={id} />
         </div>
       </div>
     </Layout>
@@ -159,6 +161,7 @@ export const query = graphql`
               changeTime
             }
           }
+          id
           frontmatter {
             title
             date

@@ -8,7 +8,7 @@ import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
 import { StarRateBox } from "../components/StarRateBox"
-
+import { Comments } from "../components/Comments"
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
 interface INode {
@@ -17,6 +17,7 @@ interface INode {
     relativeDirectory: string
   }
   body: string
+  id: string
   frontmatter: {
     title: string
     date: Date
@@ -83,6 +84,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
   const link = pageData.frontmatter.link ? pageData.frontmatter.link : ""
   const score = pageData.frontmatter.score ? pageData.frontmatter.score : 0
   const date = pageData.frontmatter.date
+  const id = pageData.id
   const { prev, next } = pageContext
 
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
@@ -169,6 +171,9 @@ const BookReviewTemplate: React.FC<IProps> = ({
             )}
           </div>
         </nav>
+        <div>
+          <Comments id={id} />
+        </div>
       </div>
     </Layout>
   )
@@ -190,6 +195,7 @@ export const query = graphql`
               changeTime
             }
           }
+          id
           frontmatter {
             title
             date
