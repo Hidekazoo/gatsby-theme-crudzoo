@@ -137,9 +137,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
           </div>
         </nav>
 
-        <div>
-          <Comments id={id} />
-        </div>
+        <Comments id={id} title={title} />
       </div>
     </Layout>
   )
