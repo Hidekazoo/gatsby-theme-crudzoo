@@ -6,6 +6,7 @@ import SEO from "../components/Seo"
 import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
+import { Comments } from "../components/Comments"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
@@ -15,6 +16,7 @@ interface INode {
     relativeDirectory: string
   }
   body: string
+  id: string
   frontmatter: {
     title: string
     date: Date
@@ -77,6 +79,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
   const date = pageData.frontmatter.date
+  const id = pageData.id
   const { prev, next } = pageContext
 
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
@@ -133,6 +136,8 @@ const BlogPostTemplate: React.FC<IProps> = ({
             )}
           </div>
         </nav>
+
+        <Comments id={id} title={title} />
       </div>
     </Layout>
   )
@@ -154,6 +159,7 @@ export const query = graphql`
               changeTime
             }
           }
+          id
           frontmatter {
             title
             date
