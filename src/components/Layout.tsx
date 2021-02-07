@@ -58,10 +58,10 @@ const Layout: React.FC<ILayoutProps> = props => {
       </a>
     ),
     "ul.li": ({ children }: any) => (
-      <li className="list-disc leading-normal mb-6 ml-4">{children}</li>
+      <li className="list-disc leading-normal my-2 ml-4">{children}</li>
     ),
     "ol.li": ({ children }: any) => (
-      <li className="list-decimal my-3 ml-4">{children}</li>
+      <li className="list-decimal my-2 ml-4">{children}</li>
     ),
   }
   return (
