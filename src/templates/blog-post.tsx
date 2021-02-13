@@ -32,7 +32,7 @@ interface INode {
   }
   headings: {
     value: string
-    depth: string
+    depth: number
   }[]
 }
 interface IProps {
@@ -89,7 +89,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
 
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
 
-  const headings = pageData.headings
+  const headings = pageData.headings.filter(item => item.depth === 2)
   const { activeHeadingNumber } = useBlogScrollPosition()
 
   const renderTableOfContents = () => {
