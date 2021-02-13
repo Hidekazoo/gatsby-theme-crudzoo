@@ -7,6 +7,7 @@ import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
 import { Comments } from "../components/Comments"
+import { useBlogScrollPosition } from "../hooks/useBlogScrollPosition"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
@@ -29,6 +30,10 @@ interface INode {
       }
     }
   }
+  headings: {
+    value: string
+    depth: string
+  }[]
 }
 interface IProps {
   location: ILocation
@@ -84,24 +89,51 @@ const BlogPostTemplate: React.FC<IProps> = ({
 
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
 
+  const headings = pageData.headings
+  const { activeHeadingNumber } = useBlogScrollPosition()
+
+  const renderTableOfContents = () => {
+    let contents: React.ReactNode[] = []
+    const navigationClass =
+      "hidden xl:block fixed right-2 text-gray-600 w-64 xl:w-64 list-decimal"
+    for (let i = 0; i < headings.length; i++) {
+      const activeClass =
+        activeHeadingNumber === i ? "text-blue-400 font-bold" : ""
+      contents.push(
+        <li key={i} className={activeClass}>
+          <a href={`#${headings[i]["value"]}`}>{headings[i]["value"]}</a>
+        </li>
+      )
+    }
+    return (
+      <div style={{ position: "relative" }}>
+        <ul className={`${navigationClass}`} style={{ right: "16px" }}>
+          {contents}
+        </ul>
+      </div>
+    )
+  }
   return (
     <Layout location={location}>
       <SEO lang={lang} title={title} description={spoiler} />
+      <div className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
+        {renderTableOfContents()}
 
-      <article className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
-        <h1 className="text-3xl">{title}</h1>
-        <p className="text-gray-600 mt-3 mb-8">
-          {date &&
-            `${localizedData.BlogPost.update}: ${localizedData.getLocalizedDate(
-              date
-            )}`}
-          {lastUpdate && (
-            <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
-          )}
-        </p>
+        <article>
+          <h1 className="text-3xl">{title}</h1>
+          <p className="text-gray-600 mt-3 mb-8">
+            {date &&
+              `${
+                localizedData.BlogPost.update
+              }: ${localizedData.getLocalizedDate(date)}`}
+            {lastUpdate && (
+              <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
+            )}
+          </p>
 
-        <MDXRenderer>{pageData.body}</MDXRenderer>
-      </article>
+          <MDXRenderer>{pageData.body}</MDXRenderer>
+        </article>
+      </div>
       <div className="w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pb-40 px-6 pt-4">
         <TagList tags={pageData.frontmatter.tags} />
 
@@ -172,6 +204,10 @@ export const query = graphql`
                 }
               }
             }
+          }
+          headings {
+            value
+            depth
           }
           body
         }

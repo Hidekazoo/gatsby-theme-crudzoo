@@ -35,11 +35,17 @@ const Layout: React.FC<ILayoutProps> = props => {
   const algoliaSearch = siteData.site.siteMetadata.algoliaSearch
 
   const components = {
-    h2: ({ children }: any) => (
-      <h2 className="text-2xl text-gray-800 mt-10 mb-5 leading-normal">
-        {children}
-      </h2>
-    ),
+    h2: ({ children }: any) => {
+      return (
+        <h2
+          className="text-2xl text-gray-800 mt-10 mb-5 leading-normal"
+          data-id="heading"
+          id={children}
+        >
+          {children}
+        </h2>
+      )
+    },
     h3: ({ children }: any) => (
       <h3 className="text-xl text-gray-800 mt-10">{children}</h3>
     ),
