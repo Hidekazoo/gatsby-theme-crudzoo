@@ -1,23 +1,12 @@
 import * as React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Img, { FixedObject } from "gatsby-image"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 interface BioData {
   avatar: {
     childImageSharp: {
       fixed: FixedObject | undefined
-    }
-  }
-  site: {
-    siteMetadata: {
-      title: string
-      author: string
-      job: string
-      description: string
-      language: string
-      social: {
-        twitter: string
-      }
     }
   }
 }
@@ -37,22 +26,10 @@ export const Bio: React.FC = () => {
               }
             }
           }
-          site {
-            siteMetadata {
-              title
-              author
-              job
-              description
-              language
-              social {
-                twitter
-              }
-            }
-          }
         }
       `}
       render={(data: BioData) => {
-        const { author, description, social, job } = data.site.siteMetadata
+        const { author, job } = useSiteMetadata()
 
         return (
           <React.Fragment>
