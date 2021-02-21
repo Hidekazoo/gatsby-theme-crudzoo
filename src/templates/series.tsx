@@ -1,21 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import Layout from "../components/Layout"
-import SEO from "../components/Seo"
+import { SeriesLayout } from "./SeriesLayout"
 import "../styles/global.css"
-
-import ArticleList from "../components/ArticleList"
-import { ILocation } from "../types/Location"
-import { useSiteMetadata } from "../hooks/useSiteMetadata"
 interface IProps {
-  pageContext: {
-    seriesTitle: string
-    seriesDescriptoin: string
-    articleIds: string[]
-    seriesImage: any
-  }
-  location: ILocation
   data: {
     allSeriesJson: {
       edges: [
@@ -59,51 +46,21 @@ interface IProps {
   }
 }
 
-const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
-  const { language } = useSiteMetadata()
+const SeriesPageTemplate: React.FC<IProps> = ({ data }) => {
   const pageData = data.allSeriesJson.edges[0].node
-  const pageTitle = pageData.title
-  const pageDescription = pageData.spoiler
   const postData = data.allMdx.edges
 
   let pageImage = null
   if (pageData.image !== null) {
     pageImage = pageData.image!.childImageSharp.fluid
   }
-  return (
-    <Layout location={location}>
-      <SEO lang={language} title={pageTitle} />
-
-      <div className="max-w-screen-xl px-12 mx-auto">
-        <div className="flex h-auto sm:flex-row h-64 my-10 md:max-w-4xl flex-col-reverse mx-auto">
-          <div className="sm:w-1/2 w-full">
-            <h1 className="text-primary text-3xl">{pageTitle}</h1>
-            <div className="text-gray-600 mt-4 leading-relaxed">
-              {pageDescription}
-            </div>
-          </div>
-
-          <div className="sm:w-1/2 w-full">
-            {pageImage && <Img sizes={pageImage} className="w-full" />}
-          </div>
-        </div>
-        <div className="py-10 mt-10 md:max-w-4xl mx-auto">
-          <ArticleList articles={postData} />
-        </div>
-      </div>
-    </Layout>
-  )
+  return <SeriesLayout pageData={pageData} postData={postData} />
 }
 
 export default SeriesPageTemplate
 
 export const query = graphql`
   query SeriesQuery($articleIds: [String], $seriesId: String) {
-    site {
-      siteMetadata {
-        language
-      }
-    }
     allSeriesJson(filter: { seriesId: { eq: $seriesId } }) {
       edges {
         node {

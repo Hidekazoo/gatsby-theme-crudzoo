@@ -56,7 +56,7 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
     items: result.data.allMdx.edges,
     itemsPerPage: 10,
     pathPrefix: path.join(basePath, blogsPath),
-    component: require.resolve("./src/templates/archive.tsx"),
+    component: require.resolve("./src/templates/Archive.tsx"),
   })
 
   const pages = result.data.allMdx.edges.map(({ node }) => node)
@@ -65,8 +65,8 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
     const id = page.id
     const component =
       page.frontmatter.template === "book-review"
-        ? require.resolve("./src/templates/book-review.tsx")
-        : require.resolve("./src/templates/blog-post.tsx")
+        ? require.resolve("./src/templates/BookReview.tsx")
+        : require.resolve("./src/templates/BlogPost.tsx")
     actions.createPage({
       path: path.join(basePath, blogPath, page.parent.relativeDirectory),
       component: component,
@@ -110,7 +110,7 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
     const articleIds = seriesPage.articles
     actions.createPage({
       path: path.join(basePath, seriesPath, seriesId),
-      component: require.resolve("./src/templates/series.tsx"),
+      component: require.resolve("./src/templates/Series.tsx"),
       context: {
         articleIds,
         seriesId,

@@ -1,87 +1,27 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import { Bio } from "../components/Bio"
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
-import { ILocation } from "../types/Location"
+import { BlogPostProps } from "../types/BlogPost"
 import { StarRateBox } from "../components/StarRateBox"
 import { Comments } from "../components/Comments"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { BlogPostFooterNav } from "../components/BlogPostFooterNav"
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
-interface INode {
-  parent: {
-    changeTime: Date
-    relativeDirectory: string
-  }
-  body: string
-  id: string
-  frontmatter: {
-    title: string
-    date: Date
-    update: Date
-    tags: string[]
-    spoiler: string
-    link?: string
-    score?: number
-    image: {
-      childImageSharp: {
-        fluid: any
-      }
-    }
-  }
-}
-interface IProps {
-  location: ILocation
-  data: {
-    allMdx: {
-      edges: [
-        {
-          node: INode
-        }
-      ]
-    }
-  }
-  pageContext: {
-    prev: {
-      parent: {
-        relativeDirectory: string
-      }
-      frontmatter: {
-        title: string
-        tags: string[]
-      }
-    }
-    next: {
-      parent: {
-        relativeDirectory: string
-      }
-      frontmatter: {
-        title: string
-        tags: string[]
-      }
-    }
-  }
-}
-
-const BookReviewTemplate: React.FC<IProps> = ({
-  data,
-  location,
-  pageContext,
-}) => {
+export const BookReviewLayout: React.FC<BlogPostProps> = props => {
   const { language } = useSiteMetadata()
   const localizedData = useLocalizeData()
-  const pageData = data.allMdx.edges[0].node
+  const pageData = props.pageData
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
   const link = pageData.frontmatter.link ? pageData.frontmatter.link : ""
   const score = pageData.frontmatter.score ? pageData.frontmatter.score : 0
   const date = pageData.frontmatter.date
   const id = pageData.id
-  const { prev, next } = pageContext
 
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
 
@@ -139,72 +79,11 @@ const BookReviewTemplate: React.FC<IProps> = ({
         <div className="flex flex-row justify-start mt-6 mb-12">
           <Bio />
         </div>
-
-        <nav>
-          <div>
-            {prev && (
-              <>
-                <h2 className="text-gray-600 text-md mt-5 break-normal">
-                  {localizedData.Archive.prev}
-                </h2>
-                <Link to={`/blog/${prev.parent.relativeDirectory}`} rel="prev">
-                  {prev.frontmatter.title}
-                </Link>
-              </>
-            )}
-          </div>
-
-          <div>
-            {next && (
-              <>
-                <h2 className="text-gray-600 text-md mt-5 break-all w-full leading-10">
-                  {localizedData.Archive.prev}
-                </h2>
-                <Link to={`/blog/${next.parent.relativeDirectory}`} rel="next">
-                  {next.frontmatter.title}
-                </Link>
-              </>
-            )}
-          </div>
-        </nav>
+        <BlogPostFooterNav pageContext={props.pageContext} />
         <div>
-          <Comments id={id} />
+          <Comments id={id} title={title} />
         </div>
       </div>
     </Layout>
   )
 }
-
-export default BookReviewTemplate
-export const query = graphql`
-  query BookQuery($slug: String) {
-    allMdx(filter: { id: { eq: $slug } }) {
-      edges {
-        node {
-          parent {
-            ... on File {
-              changeTime
-            }
-          }
-          id
-          frontmatter {
-            title
-            date
-            tags
-            spoiler
-            link
-            score
-            image {
-              childImageSharp {
-                fluid(maxWidth: 600) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          body
-        }
-      }
-    }
-  }
-`
