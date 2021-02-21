@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import Search from "./search"
 
 import { ILocation } from "../types/Location"

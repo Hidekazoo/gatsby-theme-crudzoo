@@ -1,8 +1,8 @@
-import React from "react"
+import * as React from "react"
 import { Highlight, Snippet } from "react-instantsearch-dom"
 import { Link } from "gatsby"
 
-export const PostHit = clickHandler => ({ hit }) => {
+export const PostHit = (clickHandler: any) => ({ hit }: any) => {
   return (
     <div>
       <Link
