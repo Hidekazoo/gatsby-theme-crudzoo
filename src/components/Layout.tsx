@@ -1,9 +1,10 @@
 import * as React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import Search from "./search"
 
 import { ILocation } from "../types/Location"
 import "../styles/code.css"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 const { MDXProvider } = require("@mdx-js/react")
 
 interface ILayoutProps {
@@ -19,20 +20,7 @@ enum HeaderType {
 const Layout: React.FC<ILayoutProps> = props => {
   const { location, children } = props
   const rootPath = `/`
-
-  const siteData = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-          algoliaSearch
-        }
-      }
-    }
-  `)
-
-  const siteTitle = siteData.site.siteMetadata.title
-  const algoliaSearch = siteData.site.siteMetadata.algoliaSearch
+  const { title: siteTitle, algoliaSearch } = useSiteMetadata()
 
   const components = {
     h2: ({ children }: any) => (

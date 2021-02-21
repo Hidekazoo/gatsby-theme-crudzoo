@@ -16,19 +16,11 @@ import { ISeriesNode } from "../types/Series"
 import { ILocation } from "../types/Location"
 import "../styles/tailwind.css"
 import "../styles/global.css"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 interface ITopPageProps {
   location: ILocation
   data: {
-    site: {
-      siteMetadata: {
-        title: string
-        heroText: string
-        language: string
-        keywords: string[]
-        description: string
-      }
-    }
     allSeriesJson: {
       totalCount: number
       edges: ISeriesNode[]
@@ -40,11 +32,10 @@ interface ITopPageProps {
 }
 
 const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
-  const { language, title, description, heroText } = data.site.siteMetadata
+  const { language, title, description, heroText, keywords } = useSiteMetadata()
   const localizedData = useLocalizeData()
   const seriesCount = data.allSeriesJson.totalCount
   const seriesData = data.allSeriesJson.edges
-  const keywords = data.site.siteMetadata.keywords
   const postData = data.allMdx.edges
 
   return (
@@ -106,15 +97,6 @@ const PrimaryColorSpan: React.FC = ({ children }) => {
 
 export const query = graphql`
   query MDXQuery {
-    site {
-      siteMetadata {
-        title
-        heroText
-        description
-        language
-        keywords
-      }
-    }
     allSeriesJson {
       totalCount
       edges {

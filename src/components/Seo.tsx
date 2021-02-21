@@ -1,6 +1,6 @@
 import * as React from "react"
 import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 interface SEO {
   description?: string
@@ -8,41 +8,21 @@ interface SEO {
   keywords?: string[]
   title?: string
 }
-
-interface Site {
-  site: {
-    siteMetadata: {
-      title: string
-      language: string
-      description: string
-      author: string
-    }
-  }
-}
 const SEO: React.FC<SEO> = ({ description, lang, keywords = [], title }) => {
-  const { site }: Site = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            language
-            title
-            description
-            keywords
-            author
-          }
-        }
-      }
-    `
-  )
-  const metaDescription = description || site.siteMetadata.description
+  const {
+    title: siteMetaDataTitle,
+    description: siteMetaDataDescription,
+    author,
+  } = useSiteMetadata()
+
+  const metaDescription = description || siteMetaDataDescription
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${siteMetaDataTitle}`}
       meta={[
         {
           name: `description`,
@@ -50,7 +30,7 @@ const SEO: React.FC<SEO> = ({ description, lang, keywords = [], title }) => {
         },
         {
           property: `og:title`,
-          content: title || site.siteMetadata.title,
+          content: title || siteMetaDataTitle,
         },
         {
           property: `og:description`,
@@ -66,7 +46,7 @@ const SEO: React.FC<SEO> = ({ description, lang, keywords = [], title }) => {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: author,
         },
         {
           name: `twitter:title`,
