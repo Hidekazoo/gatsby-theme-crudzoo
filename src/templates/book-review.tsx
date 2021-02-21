@@ -9,6 +9,7 @@ import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
 import { StarRateBox } from "../components/StarRateBox"
 import { Comments } from "../components/Comments"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
 interface INode {
@@ -36,11 +37,6 @@ interface INode {
 interface IProps {
   location: ILocation
   data: {
-    site: {
-      siteMetadata: {
-        language: string
-      }
-    }
     allMdx: {
       edges: [
         {
@@ -76,7 +72,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
   location,
   pageContext,
 }) => {
-  const lang = data.site.siteMetadata.language
+  const { language } = useSiteMetadata()
   const localizedData = useLocalizeData()
   const pageData = data.allMdx.edges[0].node
   const title = pageData.frontmatter.title
@@ -130,7 +126,7 @@ const BookReviewTemplate: React.FC<IProps> = ({
 
   return (
     <Layout location={location}>
-      <SEO lang={lang} title={title} description={spoiler} />
+      <SEO lang={language} title={title} description={spoiler} />
 
       <article className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
         {renderTitle({ title, featuredImage })}
@@ -182,11 +178,6 @@ const BookReviewTemplate: React.FC<IProps> = ({
 export default BookReviewTemplate
 export const query = graphql`
   query BookQuery($slug: String) {
-    site {
-      siteMetadata {
-        language
-      }
-    }
     allMdx(filter: { id: { eq: $slug } }) {
       edges {
         node {

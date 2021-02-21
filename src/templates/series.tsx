@@ -7,6 +7,7 @@ import "../styles/global.css"
 
 import ArticleList from "../components/ArticleList"
 import { ILocation } from "../types/Location"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 interface IProps {
   pageContext: {
     seriesTitle: string
@@ -16,11 +17,6 @@ interface IProps {
   }
   location: ILocation
   data: {
-    site: {
-      siteMetadata: {
-        language: string
-      }
-    }
     allSeriesJson: {
       edges: [
         {
@@ -64,7 +60,7 @@ interface IProps {
 }
 
 const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
-  const language = data.site.siteMetadata.language
+  const { language } = useSiteMetadata()
   const pageData = data.allSeriesJson.edges[0].node
   const pageTitle = pageData.title
   const pageDescription = pageData.spoiler

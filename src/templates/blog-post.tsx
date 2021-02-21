@@ -7,6 +7,7 @@ import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
 import { ILocation } from "../types/Location"
 import { Comments } from "../components/Comments"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
@@ -33,11 +34,6 @@ interface INode {
 interface IProps {
   location: ILocation
   data: {
-    site: {
-      siteMetadata: {
-        language: string
-      }
-    }
     allMdx: {
       edges: [
         {
@@ -73,7 +69,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
   location,
   pageContext,
 }) => {
-  const lang = data.site.siteMetadata.language
+  const { language } = useSiteMetadata()
   const localizedData = useLocalizeData()
   const pageData = data.allMdx.edges[0].node
   const title = pageData.frontmatter.title
@@ -86,7 +82,7 @@ const BlogPostTemplate: React.FC<IProps> = ({
 
   return (
     <Layout location={location}>
-      <SEO lang={lang} title={title} description={spoiler} />
+      <SEO lang={language} title={title} description={spoiler} />
 
       <article className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
         <h1 className="text-3xl">{title}</h1>
@@ -146,11 +142,6 @@ const BlogPostTemplate: React.FC<IProps> = ({
 export default BlogPostTemplate
 export const query = graphql`
   query BlogPostQuery($slug: String) {
-    site {
-      siteMetadata {
-        language
-      }
-    }
     allMdx(filter: { id: { eq: $slug } }) {
       edges {
         node {

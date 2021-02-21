@@ -7,6 +7,7 @@ import ArticleList from "../components/ArticleList"
 import { ILocation } from "../types/Location"
 import { IArticleNode } from "../types/Article"
 import "../styles/global.css"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 interface IProps {
   pageContext: {
@@ -14,11 +15,6 @@ interface IProps {
   }
   location: ILocation
   data: {
-    site: {
-      siteMetadata: {
-        language: string
-      }
-    }
     allMdx: {
       edges: IArticleNode[]
     }
@@ -26,7 +22,7 @@ interface IProps {
 }
 
 const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
-  const language = data.site.siteMetadata.language
+  const { language } = useSiteMetadata()
 
   const pageTitle = pageContext.tag
   const keywords = ["key"]
