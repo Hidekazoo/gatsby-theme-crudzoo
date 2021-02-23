@@ -1,5 +1,4 @@
 import * as React from "react"
-
 interface SectionProps {
   isBgColor: boolean
 }
