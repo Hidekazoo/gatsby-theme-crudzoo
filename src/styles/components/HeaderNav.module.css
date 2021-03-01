@@ -1,0 +1,15 @@
+.headerNav {
+  padding: 0 var(--space-8x);
+}
+.headerNavList {
+  display: flex;
+}
+.headerNavItem {
+  font-size: 18px;
+  color: var(--text-primary);
+  padding: 0 var(--space-4x);
+  transition: 0.3s ease;
+}
+.headerNavItem > a:hover {
+  color: var(--primary);
+}

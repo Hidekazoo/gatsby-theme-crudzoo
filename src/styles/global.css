@@ -1,3 +1,21 @@
+:root {
+  --primary: #0091ea;
+  --dark: #2d2e3b;
+  --dark-purple: #503f5e;
+  --purple: #7943cc;
+  --red: #e05d6f;
+
+  --text-primary: #222326;
+  --text-secondary: #c1c3c6;
+
+  --space: 4px;
+  --space-2x: 8px;
+  --space-3x: 12px;
+  --space-4x: 16px;
+  --space-6x: 24px;
+  --space-8x: 32px;
+}
+
 body {
   --bg: white;
   --tagBg: rgba(0, 0, 0, 0.05);

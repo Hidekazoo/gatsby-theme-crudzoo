@@ -3,10 +3,10 @@
     "allowJs": true,
     "target": "es6",
     "module": "commonjs",
-    "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+    "lib": ["dom", "es6", "es2017"],
     "sourceMap": true,
-    "outDir": "./dist",
     "jsx": "react",
+    "outDir": "",
     "moduleResolution": "node",
     "removeComments": true,
     "noImplicitAny": true,
@@ -17,9 +17,10 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "baseUrl": "."
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*"],
+  "exclude": ["./dist"]
 }
