@@ -62,7 +62,7 @@ const Article: React.FC<IArticleProps> = ({
             {featuredImage ? (
               <Img
                 className="rounded-lg md:w-32"
-                sizes={featuredImage}
+                fluid={featuredImage}
                 alt={`${title}-thumbnail`}
               />
             ) : (

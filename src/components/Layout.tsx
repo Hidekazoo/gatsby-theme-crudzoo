@@ -5,6 +5,7 @@ import Search from "./search"
 import { ILocation } from "../types/Location"
 import "../styles/code.css"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { Header } from "../components/Header"
 const { MDXProvider } = require("@mdx-js/react")
 
 interface ILayoutProps {
@@ -54,7 +55,8 @@ const Layout: React.FC<ILayoutProps> = props => {
   }
   return (
     <React.Fragment>
-      <Header
+      <Header />
+      {/* <Header
         type={
           location.pathname === rootPath
             ? HeaderType.TOP_PAGE
@@ -62,7 +64,7 @@ const Layout: React.FC<ILayoutProps> = props => {
         }
         title={siteTitle}
         isSearch={algoliaSearch}
-      />
+      /> */}
       <div className="w-full mx-auto" role="main">
         <MDXProvider components={components}>{children}</MDXProvider>
       </div>
@@ -72,34 +74,34 @@ const Layout: React.FC<ILayoutProps> = props => {
 
 export default Layout
 
-interface HeaderProps {
-  title: string
-  isSearch: boolean
-  type: HeaderType
-}
-const Header: React.FC<HeaderProps> = ({ title, isSearch, type }) => {
-  return (
-    <nav className="bg-white w-full max-w-screen-xl mx-auto" role="navigation">
-      <div className="container mx-auto p-4 flex flex-wrap items-center flex-no-wrap">
-        <div className="mr-4 md:mr-8 text-lg">
-          <Link
-            to={`/`}
-            className="sm:text-3xl text-xl"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            {type === HeaderType.TOP_PAGE ? <h1>{title}</h1> : <h3>{title}</h3>}
-          </Link>
-        </div>
-        <div className="w-full w-auto flex-grow flex items-center">
-          <ul className="flex flex-row items-center mx-0 ml-auto mt-0 pt-0 border-0">
-            {isSearch && (
-              <li>
-                <Search collapse indices={searchIndices} hitsAsGrid={false} />
-              </li>
-            )}
-          </ul>
-        </div>
-      </div>
-    </nav>
-  )
-}
+// interface HeaderProps {
+//   title: string
+//   isSearch: boolean
+//   type: HeaderType
+// }
+// const Header: React.FC<HeaderProps> = ({ title, isSearch, type }) => {
+//   return (
+//     <nav className="bg-white w-full max-w-screen-xl mx-auto" role="navigation">
+//       <div className="container mx-auto p-4 flex flex-wrap items-center flex-no-wrap">
+//         <div className="mr-4 md:mr-8 text-lg">
+//           <Link
+//             to={`/`}
+//             className="sm:text-3xl text-xl"
+//             style={{ whiteSpace: "nowrap" }}
+//           >
+//             {type === HeaderType.TOP_PAGE ? <h1>{title}</h1> : <h3>{title}</h3>}
+//           </Link>
+//         </div>
+//         <div className="w-full w-auto flex-grow flex items-center">
+//           <ul className="flex flex-row items-center mx-0 ml-auto mt-0 pt-0 border-0">
+//             {isSearch && (
+//               <li>
+//                 <Search collapse indices={searchIndices} hitsAsGrid={false} />
+//               </li>
+//             )}
+//           </ul>
+//         </div>
+//       </div>
+//     </nav>
+//   )
+// }

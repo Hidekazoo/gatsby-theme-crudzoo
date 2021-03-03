@@ -1,0 +1,50 @@
+.homeHero {
+  height: 600px;
+  width: 100%;
+  background-color: var(--bg-gray);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.content {
+  /* width: 480px; */
+  padding: 0 32px;
+}
+.imgContent {
+  padding: 0 32px;
+  flex: 1 1;
+}
+
+.heroText {
+  font-size: 72px;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-6x);
+}
+
+.heroDescription {
+  font-size: 16px;
+  color: var(--text-primary);
+  line-height: 40px;
+  margin-bottom: var(--space-6x);
+}
+.checkText {
+  color: var(--primary);
+  padding-bottom: var(--space);
+  border-bottom: 1px solid var(--primary);
+}
+
+.bio {
+  width: 250px;
+}
+
+.heroImg {
+  width: 540px;
+  height: 540px;
+}

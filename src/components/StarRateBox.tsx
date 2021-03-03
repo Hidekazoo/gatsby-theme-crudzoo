@@ -20,7 +20,7 @@ const renderTitle = (title?: string) => {
   return title ? title : null
 }
 const renderStars = (score: number) => {
-  let stars: React.ReactNode[] = []
+  const stars: React.ReactNode[] = []
 
   for (let i = 0; i < score; i++) {
     stars.push(<StarIcon className={`fill-current text-yellow-500`} />)

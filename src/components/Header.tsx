@@ -11,16 +11,16 @@ const Logo = () => {
 const searchIndices = [{ name: `Blogs`, title: `Results`, hitComp: `PostHit` }]
 const routes = [
   {
-    path: "index",
-    title: "First-level Menu",
+    path: "/",
+    title: "Home",
   },
   {
-    path: "first",
-    title: "Second-level Menu",
+    path: "/about",
+    title: "About",
   },
   {
-    path: "second",
-    title: "Third-level Menu",
+    path: "/blogs",
+    title: "Blogs",
   },
 ]
 export const Header = () => {

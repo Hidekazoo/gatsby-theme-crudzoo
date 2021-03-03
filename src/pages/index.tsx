@@ -1,6 +1,8 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
+import { HomeHero } from "../components/HomeHero"
+import { HomeRecentArticlesSection } from "../components/HomeRecentArticlesSection"
 
 import { Bio } from "../components/Bio"
 import SEO from "../components/Seo"
@@ -17,6 +19,7 @@ import { ILocation } from "../types/Location"
 import "../styles/tailwind.css"
 import "../styles/global.css"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import cn from "classnames"
 
 interface ITopPageProps {
   location: ILocation
@@ -41,7 +44,9 @@ const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={language} title={title} keywords={keywords} />
-      <Hero heroText={heroText} description={description} />
+      <HomeHero />
+      <HomeRecentArticlesSection />
+      {/* <Hero heroText={heroText} description={description} /> */}
 
       {seriesCount > 0 && (
         <Section isBgColor={true}>

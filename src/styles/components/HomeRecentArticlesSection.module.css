@@ -1,0 +1,18 @@
+.container {
+  /* display: flex; */
+  width: 1280px;
+  margin: 0 auto;
+  padding: 96px 32px;
+  /* display: grid;
+  grid-template-columns: auto 300px;
+  gap: 130px; */
+}
+
+.content {
+  display: flex;
+  padding: 24px 0;
+}
+
+.layoutGrid {
+  /* grid-template-columns: repeat(12, minmax(0, 1fr)); */
+}

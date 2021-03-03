@@ -45,9 +45,6 @@ export const Bio: React.FC = () => {
               <div className="flex flex-col justify-center ml-4 text-left">
                 <div className="text-lg">{author}</div>
                 <div className="text-primary text-base">{job}</div>
-                {/* <a href={`https://twitter.com/${social.twitter}`}>
-                  twitter: @{social.twitter}
-                </a> */}
               </div>
             </Link>
           </React.Fragment>
