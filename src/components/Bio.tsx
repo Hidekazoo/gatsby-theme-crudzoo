@@ -38,7 +38,7 @@ export const Bio: React.FC = () => {
               className="rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md flex"
             >
               <Img
-                fixed={data.avatar.childImageSharp.fixed}
+                fixed={data.avatar.childImageSharp.fixed!}
                 alt={author}
                 className="h-16 w-16 md:h-24 md:w-24 rounded-full"
               />

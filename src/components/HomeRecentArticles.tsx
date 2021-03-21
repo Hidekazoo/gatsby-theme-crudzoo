@@ -1,40 +1,36 @@
 import React from "react"
-import { Link } from "gatsby"
 import cn from "classnames"
+import { HomeRecentArticle } from "./HomeRecentArticle"
 import styles from "../styles/components/HomeRecentArticles.module.css"
+import { IArticleNode } from "src/types/Article"
 
-const ArticleItem = () => {
-  return (
-    <Link to={`/`} className={cn(styles.articleItem)}>
-      <article>
-        <div className={cn(styles.articleImg)}>
-          {/* {featuredImage ? (
-          <Img
-            className="rounded-lg md:w-32"
-            fluid={featuredImage}
-            alt={`${title}-thumbnail`}
-          />
-        ) : ( */}
-          <div className={cn(styles.featuredImage)} />
-          {/* )} */}
-        </div>
-        <div className={cn(styles.articleInfo)}>
-          <h3 className={cn(styles.articleTitle)}>title</h3>
-          <div className={cn(styles.articleSpoiler)}>spoiler</div>
-          <div className={cn(styles.articleDate)}>2021年3月3日</div>
-        </div>
-      </article>
-    </Link>
-  )
+interface HomeRecentArticlesProps {
+  articles: IArticleNode[]
 }
-
-export const HomeRecentArticles = () => {
+export const HomeRecentArticles: React.FC<HomeRecentArticlesProps> = props => {
+  const { articles } = props
   return (
     <div className={cn(styles.articleList)}>
-      <ArticleItem />
-      <ArticleItem />
-      <ArticleItem />
-      <ArticleItem />
+      {articles.map(article => {
+        const frontmatter = article.node.frontmatter
+        const featuredImage = frontmatter.image
+          ? frontmatter.image.childImageSharp.fluid
+          : null
+
+        return (
+          <div className={cn(styles.article)}>
+            <HomeRecentArticle
+              key={article.node.id}
+              title={frontmatter.title}
+              tags={frontmatter.tags}
+              date={frontmatter.date}
+              spoiler={frontmatter.spoiler}
+              featuredImage={featuredImage}
+              articlePath={article.node.parent.relativeDirectory}
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }

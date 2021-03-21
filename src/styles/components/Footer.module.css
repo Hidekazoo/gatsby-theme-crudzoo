@@ -1,2 +1,14 @@
 .footer {
+  width: 100%;
+  height: 68px;
+  background: var(--dark);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.copyright {
+  color: #fff;
 }

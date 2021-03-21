@@ -1,0 +1,12 @@
+.container {
+  background-color: var(--bg-gray);
+  padding: var(--space-8x);
+  margin-top: var(--space-10x);
+}
+.navTitle {
+  color: var(--text-secondary);
+}
+.articleTitle {
+  font-size: 20px;
+  margin-bottom: var(--space-6x);
+}

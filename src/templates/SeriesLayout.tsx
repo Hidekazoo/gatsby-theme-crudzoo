@@ -5,6 +5,7 @@ import SEO from "../components/Seo"
 import "../styles/global.css"
 import ArticleList from "../components/ArticleList"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { IArticleNode } from "../types/Article"
 
 interface IProps {
   pageData: {
@@ -16,28 +17,7 @@ interface IProps {
       }
     } | null
   }
-  postData: [
-    {
-      node: {
-        body: string
-        parent: {
-          name: string
-          relativeDirectory: string
-        }
-        id: string
-        frontmatter: {
-          title: string
-          date: Date
-          spoiler: string | undefined
-          image: {
-            childImageSharp: {
-              fluid: any
-            }
-          } | null
-        }
-      }
-    }
-  ]
+  postData: IArticleNode[]
 }
 
 export const SeriesLayout: React.FC<IProps> = props => {
@@ -49,7 +29,7 @@ export const SeriesLayout: React.FC<IProps> = props => {
 
   let pageImage = null
   if (pageData.image !== null) {
-    pageImage = pageData.image!.childImageSharp.fluid
+    pageImage = pageData.image.childImageSharp.fluid
   }
   return (
     <Layout location={location}>

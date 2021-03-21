@@ -1,8 +1,9 @@
 import React from "react"
+import { Link } from "gatsby"
 import cn from "classnames"
 
 import { HeroImg } from "../components/icons/HeroImg"
-import { Bio } from "../components/Bio"
+import { Button } from "../components/Button"
 import styles from "../styles/components/HomeHero.module.css"
 
 const HeroText: React.FC<{ text: string }> = ({ text }) => {
@@ -24,10 +25,11 @@ const DescriptionComponent: React.FC = () => {
     <React.Fragment>
       <HeroDescription>
         Crudzooは学びをアウトプットしたい、色々な人に自分の書く文章を読んでもらいたい。そう思って作ったブログです。プログラムや趣味、好きなものについて書いています。
+        <br />
         <span className={cn(styles.checkText)}>
           記事のご意見、ご感想、指摘歓迎です。
         </span>
-        気になったことはなんでもどうぞ。書いている人について知りたい場合は次のボタンをクリック！
+        気になったことはなんでもどうぞ。
       </HeroDescription>
       <div className={cn(styles.bio)}>{/* <Bio /> */}</div>
     </React.Fragment>
@@ -44,6 +46,10 @@ export const HomeHero: React.FC<HomeHeroProps> = ({
         <div className={cn(styles.content)}>
           <HeroText text={heroText} />
           {description}
+
+          <Link to={`/blog/about`}>
+            <Button>運営者の情報をみる</Button>
+          </Link>
         </div>
         <div className={cn(styles.imgContent)}>
           <HeroImg className={styles.heroImg} />

@@ -19,6 +19,10 @@ export interface INode {
       }
     }
   }
+  headings: {
+    value: string
+    depth: number
+  }[]
 }
 
 export interface IPageContext {

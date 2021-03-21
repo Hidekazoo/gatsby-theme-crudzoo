@@ -68,6 +68,10 @@ export const query = graphql`
               }
             }
           }
+          headings {
+            value
+            depth
+          }
           body
         }
       }

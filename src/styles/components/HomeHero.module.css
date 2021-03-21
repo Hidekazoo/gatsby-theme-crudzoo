@@ -2,6 +2,7 @@
   height: 600px;
   width: 100%;
   background-color: var(--bg-gray);
+  display: flex;
 }
 
 .container {
@@ -13,12 +14,26 @@
 }
 
 .content {
-  /* width: 480px; */
+  flex: 0 0 100%;
   padding: 0 32px;
 }
+@media (min-width: 992px) {
+  .content {
+    padding: 0 32px;
+    flex: 0 0 60%;
+    display: block;
+  }
+}
+
 .imgContent {
-  padding: 0 32px;
-  flex: 1 1;
+  display: none;
+}
+@media (min-width: 992px) {
+  .imgContent {
+    padding: 0 32px;
+    flex: 0 0 40%;
+    display: block;
+  }
 }
 
 .heroText {
@@ -45,6 +60,13 @@
 }
 
 .heroImg {
-  width: 540px;
-  height: 540px;
+  width: 100%;
+  height: auto;
+}
+
+.button {
+  padding: 8px 24px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: 8px;
 }

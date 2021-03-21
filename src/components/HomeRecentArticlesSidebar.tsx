@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import cn from "classnames"
-
+import { Button } from "./Button"
 import styles from "../styles/components/HomeRecentArticlesSidebar.module.css"
 
 const SidebarItem: React.FC = props => {
@@ -13,9 +13,13 @@ const Series = () => {
     <div>
       <SidebarTitle title={`シリーズもお勧めです`} />
       <div>
-        例えば、React、ロードバイクといった関連する記事を、読みやすい順番で並べて一覧にしています
+        例えばロードバイクに関連する記事を読みやすい順番で並べて一覧にしています
       </div>
-      <button>シリーズ一覧</button>
+      <div className={cn(styles.seriesBtn)}>
+        <Link to={`/series`}>
+          <Button>シリーズ一覧</Button>
+        </Link>
+      </div>
     </div>
   )
 }
@@ -37,7 +41,9 @@ const Tags = () => {
 const TagListItem: React.FC = ({ children }) => {
   return (
     <li className={cn(styles.sidebarTagListItem)}>
-      <Link to={`/`}>{children}</Link>
+      <Link to={`/`} className={cn(styles.sidebarTagListItemLink)}>
+        {children}
+      </Link>
     </li>
   )
 }

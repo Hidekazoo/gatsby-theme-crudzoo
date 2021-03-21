@@ -20,6 +20,7 @@ import "../styles/tailwind.css"
 import "../styles/global.css"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import cn from "classnames"
+import { Home } from "../components/Home"
 
 interface ITopPageProps {
   location: ILocation
@@ -34,39 +35,44 @@ interface ITopPageProps {
   }
 }
 
-const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
-  const { language, title, description, heroText, keywords } = useSiteMetadata()
-  const localizedData = useLocalizeData()
-  const seriesCount = data.allSeriesJson.totalCount
-  const seriesData = data.allSeriesJson.edges
-  const postData = data.allMdx.edges
-
-  return (
-    <Layout location={location}>
-      <SEO lang={language} title={title} keywords={keywords} />
-      <HomeHero />
-      <HomeRecentArticlesSection />
-      {/* <Hero heroText={heroText} description={description} /> */}
-
-      {seriesCount > 0 && (
-        <Section isBgColor={true}>
-          <SectionTitle>Series</SectionTitle>
-          <SeriesList series={seriesData}></SeriesList>
-        </Section>
-      )}
-      <Section isBgColor={false}>
-        <SectionTitle>Articles</SectionTitle>
-        <ArticleList articles={postData} />
-        <div className="flex justify-center">
-          <Link to="/blogs">
-            <Button>{localizedData.Archive.list}</Button>
-          </Link>
-        </div>
-      </Section>
-    </Layout>
-  )
+const HomePage: React.FC<ITopPageProps> = ({ data, location }) => {
+  return <Home data={data} location={location} />
 }
-export default TopPage
+export default HomePage
+
+// const TopPage: React.FC<ITopPageProps> = ({ data, location }) => {
+//   const { language, title, description, heroText, keywords } = useSiteMetadata()
+//   const localizedData = useLocalizeData()
+//   const seriesCount = data.allSeriesJson.totalCount
+//   const seriesData = data.allSeriesJson.edges
+//   const postData = data.allMdx.edges
+
+//   return (
+//     <Layout location={location}>
+//       <SEO lang={language} title={title} keywords={keywords} />
+//       <HomeHero />
+//       <HomeRecentArticlesSection articles={postData} />
+//       {/* <Hero heroText={heroText} description={description} /> */}
+
+//       {seriesCount > 0 && (
+//         <Section isBgColor={true}>
+//           <SectionTitle>Series</SectionTitle>
+//           <SeriesList series={seriesData}></SeriesList>
+//         </Section>
+//       )}
+//       <Section isBgColor={false}>
+//         <SectionTitle>Articles</SectionTitle>
+//         <ArticleList articles={postData} />
+//         <div className="flex justify-center">
+//           <Link to="/blogs">
+//             <Button>{localizedData.Archive.list}</Button>
+//           </Link>
+//         </div>
+//       </Section>
+//     </Layout>
+//   )
+// }
+// export default TopPage
 
 interface HeroProps {
   heroText: string
@@ -102,25 +108,7 @@ const PrimaryColorSpan: React.FC = ({ children }) => {
 
 export const query = graphql`
   query MDXQuery {
-    allSeriesJson {
-      totalCount
-      edges {
-        node {
-          id
-          title
-          seriesId
-          spoiler
-          image {
-            childImageSharp {
-              fluid(maxWidth: 300) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 10) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 20) {
       edges {
         node {
           body
@@ -135,9 +123,10 @@ export const query = graphql`
             title
             date
             spoiler
+            tags
             image {
               childImageSharp {
-                fluid(maxWidth: 600) {
+                fluid(maxWidth: 300) {
                   ...GatsbyImageSharpFluid
                 }
               }

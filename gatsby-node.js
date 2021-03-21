@@ -72,8 +72,8 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
       component: component,
       context: {
         slug: id,
-        prev: index === 0 ? null : pages[index - 1],
-        next: index === pages.length - 1 ? null : pages[index + 1],
+        prev: index === pages.length - 1 ? null : pages[index + 1],
+        next: index === 0 ? null : pages[index - 1],
       },
     })
     if (page.frontmatter.tags !== null) {

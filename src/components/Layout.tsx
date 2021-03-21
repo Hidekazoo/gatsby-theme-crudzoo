@@ -6,16 +6,11 @@ import { ILocation } from "../types/Location"
 import "../styles/code.css"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import { Header } from "../components/Header"
+import { Footer } from "./Footer"
 const { MDXProvider } = require("@mdx-js/react")
 
 interface ILayoutProps {
   location: ILocation
-}
-const searchIndices = [{ name: `Blogs`, title: `Results`, hitComp: `PostHit` }]
-
-enum HeaderType {
-  TOP_PAGE = "TOP_PAGE",
-  ARTICLE_PAGE = "ARTICLE_PAGE",
 }
 
 const Layout: React.FC<ILayoutProps> = props => {
@@ -55,8 +50,11 @@ const Layout: React.FC<ILayoutProps> = props => {
   }
   return (
     <React.Fragment>
-      <Header />
-      {/* <Header
+      <div
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
+        <Header />
+        {/* <Header
         type={
           location.pathname === rootPath
             ? HeaderType.TOP_PAGE
@@ -65,8 +63,11 @@ const Layout: React.FC<ILayoutProps> = props => {
         title={siteTitle}
         isSearch={algoliaSearch}
       /> */}
-      <div className="w-full mx-auto" role="main">
-        <MDXProvider components={components}>{children}</MDXProvider>
+        {/* <div className="w-full mx-auto" role="main">
+          <MDXProvider components={components}>{children}</MDXProvider>
+        </div> */}
+        {children}
+        <Footer />
       </div>
     </React.Fragment>
   )

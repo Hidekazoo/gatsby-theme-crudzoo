@@ -1,4 +1,4 @@
 node_modules
-public
-example
+public/
+example/
 .cache

@@ -1,21 +1,36 @@
 :root {
+  /* --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px; */
+
   --primary: #0091ea;
+  --primary-hover: #0278c1;
   --dark: #2d2e3b;
   --dark-purple: #503f5e;
   --purple: #7943cc;
   --red: #e05d6f;
 
   --text-primary: #222326;
-  --text-secondary: #c1c3c6;
+  --text-secondary: #424242;
 
+  --bg-gray-1: rgba(9, 30, 66, 0.08);
   --bg-gray: #f9fafb;
 
   --space: 4px;
   --space-2x: 8px;
   --space-3x: 12px;
   --space-4x: 16px;
+  --space-5x: 20px;
   --space-6x: 24px;
+  --space-7x: 28px;
   --space-8x: 32px;
+  --space-9x: 36px;
+  --space-10x: 40px;
+
+  --default-transition: 0.3s ease-in-out;
+  --default-box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
 }
 
 body {
@@ -30,8 +45,8 @@ body {
 
   --duration: 0.5s;
   --timing: ease;
-  transition: color var(--duration) var(--timing),
-    background-color var(--duration) var(--timing);
+  /* transition: color var(--duration) var(--timing),
+    background-color var(--duration) var(--timing); */
 }
 
 .hits-wrapper {
