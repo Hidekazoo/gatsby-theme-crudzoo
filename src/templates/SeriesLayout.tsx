@@ -6,8 +6,10 @@ import "../styles/global.css"
 import ArticleList from "../components/ArticleList"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import { IArticleNode } from "../types/Article"
+import { ILocation } from "src/types/Location"
 
 interface IProps {
+  location: ILocation
   pageData: {
     title: string
     spoiler: string
@@ -32,7 +34,7 @@ export const SeriesLayout: React.FC<IProps> = props => {
     pageImage = pageData.image.childImageSharp.fluid
   }
   return (
-    <Layout location={location}>
+    <Layout location={props.location}>
       <SEO lang={language} title={pageTitle} />
 
       <div className="max-w-screen-xl px-12 mx-auto">
