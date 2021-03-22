@@ -1,3 +1,5 @@
+import { ILocation } from "./Location"
+
 export interface INode {
   parent: {
     changeTime: Date
@@ -47,6 +49,7 @@ export interface IPageContext {
 }
 
 export interface BlogPostProps {
+  location: ILocation
   pageData: INode
   pageContext: IPageContext
 }

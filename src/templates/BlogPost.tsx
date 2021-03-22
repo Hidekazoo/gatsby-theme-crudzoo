@@ -38,9 +38,15 @@ interface IProps {
 }
 
 const BlogPostTemplate: React.FC<IProps> = props => {
-  const { pageContext, data } = props
+  const { pageContext, data, location } = props
   const pageData = data.allMdx.edges[0].node
-  return <BlogPostLayout pageContext={pageContext} pageData={pageData} />
+  return (
+    <BlogPostLayout
+      pageContext={pageContext}
+      pageData={pageData}
+      location={location}
+    />
+  )
 }
 
 export default BlogPostTemplate

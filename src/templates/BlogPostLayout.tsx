@@ -1,6 +1,5 @@
 import * as React from "react"
 import { BlogPostProvider } from "../components/BlogPostProvider"
-import { Bio } from "../components/Bio"
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
@@ -49,7 +48,7 @@ export const BlogPostLayout: React.FC<BlogPostProps> = props => {
   }
 
   return (
-    <Layout location={location}>
+    <Layout location={props.location}>
       <div>
         <SEO lang={language} title={title} description={spoiler} />
         <div className={cn(styles.container)}>
