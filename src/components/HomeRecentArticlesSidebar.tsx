@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import cn from "classnames"
 import { Button } from "./Button"
+import { useTags } from "../hooks/useTags"
 import styles from "../styles/components/HomeRecentArticlesSidebar.module.css"
 
 const SidebarItem: React.FC = props => {
@@ -24,16 +25,16 @@ const Series = () => {
   )
 }
 
-const Tags = () => {
+const Tags: React.FC = () => {
+  const tags = useTags()
+
   return (
     <div>
       <SidebarTitle title={`Tags`} />
       <ul>
-        <TagListItem>React</TagListItem>
-        <TagListItem>JavaScript</TagListItem>
-        <TagListItem>UI/UX</TagListItem>
-        <TagListItem>Gatsby</TagListItem>
-        <TagListItem>ロードバイク</TagListItem>
+        {tags.map(tag => {
+          return <TagListItem>{tag}</TagListItem>
+        })}
       </ul>
     </div>
   )
@@ -53,7 +54,7 @@ export const SidebarTitle: React.FC<{ title: string }> = ({ title }) => {
 }
 
 interface HomeRecentArticlesSidebarProps {
-  items: React.ReactNode[]
+  items?: React.ReactNode[]
 }
 export const HomeRecentArticlesSidebar: React.FC<HomeRecentArticlesSidebarProps> = ({
   items = [<Series />, <Tags />],

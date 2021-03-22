@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const TagList: React.FC<IProps> = ({ tags }) => {
-  if (tags === null) return <div />
+  if (tags === null || tags.length === 0) return <div />
 
   return (
     <div className="mt-3 mb-4">
