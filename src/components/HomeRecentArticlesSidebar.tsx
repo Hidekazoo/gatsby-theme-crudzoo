@@ -42,7 +42,10 @@ const Tags: React.FC = () => {
 const TagListItem: React.FC = ({ children }) => {
   return (
     <li className={cn(styles.sidebarTagListItem)}>
-      <Link to={`/`} className={cn(styles.sidebarTagListItemLink)}>
+      <Link
+        to={`/tags/${children}`}
+        className={cn(styles.sidebarTagListItemLink)}
+      >
         {children}
       </Link>
     </li>
