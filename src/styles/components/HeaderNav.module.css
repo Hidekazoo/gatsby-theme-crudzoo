@@ -1,6 +1,13 @@
 .headerNav {
   padding: 0 var(--space-8x);
+  margin-left: auto;
 }
+@media (min-width: 576px) {
+  .headerNav {
+    margin-left: 0;
+  }
+}
+
 .headerNavList {
   display: flex;
 }
@@ -12,4 +19,41 @@
 }
 .headerNavItem > a:hover {
   color: var(--primary);
+}
+
+.nav {
+  display: none;
+}
+@media (min-width: 576px) {
+  .nav {
+    display: block;
+  }
+}
+
+.mobileNav {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: 100vh;
+  height: 100%;
+  width: 210px;
+  background-color: #fff;
+  z-index: 100;
+  box-shadow: var(--default-box-shadow);
+}
+@media (min-width: 576px) {
+  .mobileNav {
+    display: none;
+  }
+}
+
+.menuIcon {
+  cursor: pointer;
+  height: 36px;
+  width: 36px;
+}
+
+.menuIconClose {
+  display: none;
 }

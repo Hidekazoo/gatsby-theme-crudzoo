@@ -13,9 +13,10 @@ module.exports = ({}) => {
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
         apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries,
+        index: queries,
         chunkSize: 5000, // default: 1000
         enablePartialUpdates: true,
+        indexName: `gatsby-crudzoo`,
       },
     })
   }
