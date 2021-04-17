@@ -30,7 +30,7 @@ const Results = connectStateResults(StateResults)
 const Stats = connectStateResults(StatsResults)
 
 export default function Search({ indices, collapse, hitsAsGrid }: any) {
-  const { algoliaSearch } = useSiteMetadata()
+  const algoliaSearch = process.env.USE_ALGOLIA
 
   const ref = React.createRef<HTMLDivElement>()
   const [query, setQuery] = React.useState(``)
