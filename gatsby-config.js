@@ -7,7 +7,7 @@ require("dotenv").config()
 
 module.exports = ({}) => {
   const plugins = []
-  if (process.env.GATSBY_ALGOLIA_APP_ID) {
+  if (process.env.USE_ALGOLIA) {
     plugins.push({
       resolve: `gatsby-plugin-algolia`,
       options: {
@@ -16,7 +16,6 @@ module.exports = ({}) => {
         index: queries,
         chunkSize: 5000, // default: 1000
         enablePartialUpdates: true,
-        indexName: `gatsby-crudzoo`,
       },
     })
   }
