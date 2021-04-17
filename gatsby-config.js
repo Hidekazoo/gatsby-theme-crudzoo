@@ -7,7 +7,7 @@ require("dotenv").config()
 
 module.exports = ({}) => {
   const plugins = []
-  if (process.env.USE_ALGOLIA) {
+  if (process.env.USE_ALGOLIA === true) {
     plugins.push({
       resolve: `gatsby-plugin-algolia`,
       options: {
