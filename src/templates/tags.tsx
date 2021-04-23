@@ -6,7 +6,6 @@ import SEO from "../components/Seo"
 import ArticleList from "../components/ArticleList"
 import { ILocation } from "../types/Location"
 import { IArticleNode } from "../types/Article"
-import "../styles/global.css"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 interface IProps {

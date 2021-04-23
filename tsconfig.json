@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "target": "es6",
-    "module": "commonjs",
+    "module": "es5",
     "lib": ["dom", "es6", "es2017"],
     "sourceMap": true,
     "jsx": "react",

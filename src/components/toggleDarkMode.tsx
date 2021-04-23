@@ -1,7 +1,7 @@
 import * as React from "react"
 // import styled from "../styles/styled"
 
-const { ThemeToggler } = require("gatsby-plugin-dark-mode")
+// const { ThemeToggler } = require("gatsby-plugin-dark-mode")
 
 // const ToggleSlider = styled.span`
 //   position: absolute;

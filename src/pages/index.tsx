@@ -4,8 +4,6 @@ import { Home } from "../components/Home"
 import { IArticleNode } from "../types/Article"
 import { ISeriesNode } from "../types/Series"
 import { ILocation } from "../types/Location"
-import "../styles/tailwind.css"
-import "../styles/global.css"
 
 interface ITopPageProps {
   location: ILocation

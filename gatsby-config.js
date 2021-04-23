@@ -85,7 +85,6 @@ module.exports = ({}) => {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-dark-mode`,
     {
       resolve: `gatsby-plugin-compile-es6-packages`,
       options: {
@@ -94,7 +93,14 @@ module.exports = ({}) => {
     },
     {
       resolve: `gatsby-plugin-postcss`,
-      options: {},
+      options: {
+        cssLoaderOptions: {
+          esModule: false,
+          modules: {
+            namedExport: false,
+          },
+        },
+      },
     }
   )
   return {

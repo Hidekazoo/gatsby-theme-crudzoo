@@ -10,8 +10,7 @@ import { Button } from "./Button"
 import { IArticleNode } from "../types/Article"
 import { ISeriesNode } from "../types/Series"
 import { ILocation } from "../types/Location"
-import "../styles/tailwind.css"
-import "../styles/global.css"
+
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import cn from "classnames"
 

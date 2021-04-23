@@ -16,8 +16,6 @@ import { useLocalizeData } from "../hooks/useLocalize"
 import { IArticleNode } from "../types/Article"
 import { ISeriesNode } from "../types/Series"
 import { ILocation } from "../types/Location"
-import "../styles/tailwind.css"
-import "../styles/global.css"
 import { Series } from "../components/Series"
 
 interface ITopPageProps {

@@ -1,7 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { SeriesLayout } from "./SeriesLayout"
-import "../styles/global.css"
 import { ILocation } from "src/types/Location"
 interface IProps {
   location: ILocation

@@ -1,9 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import Search from "./search"
-
 import { ILocation } from "../types/Location"
-import "../styles/code.css"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import { Header } from "../components/Header"
 import { Footer } from "./Footer"
