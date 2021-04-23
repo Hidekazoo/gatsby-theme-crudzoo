@@ -1,2 +1,2 @@
-import "modern-normalize/modern-normalize.css"
+import "./src/styles/reset.css"
 import "./src/styles/global.css"
