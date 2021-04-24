@@ -1,0 +1,9 @@
+.container {
+  margin: var(--space-2x) 0;
+}
+
+.tag {
+  background-color: var(--bg-gray);
+  padding: var(--space-2x);
+  margin: 0 var(--space-2x);
+}

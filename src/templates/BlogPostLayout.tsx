@@ -14,18 +14,14 @@ import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import { useBlogScrollPosition } from "../hooks/useBlogScrollPosition"
 import { BlogPostProps } from "../types/BlogPost"
 import styles from "../styles/components/BlogPostLayout.module.css"
-
+import { INode, IPageContext } from "../types/BlogPost"
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
 export const BlogPostLayout: React.FC<BlogPostProps> = props => {
   const { language } = useSiteMetadata()
-  const localizedData = useLocalizeData()
   const pageData = props.pageData
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
-  const date = pageData.frontmatter.date
-  const id = pageData.id
-  const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
 
   const headings = pageData.headings.filter(item => item.depth === 2)
   const { activeHeadingNumber } = useBlogScrollPosition()
@@ -55,37 +51,62 @@ export const BlogPostLayout: React.FC<BlogPostProps> = props => {
       <Content>
         <div>
           <SEO lang={language} title={title} description={spoiler} />
-          <div className={cn(styles.container)}>
-            <div className={cn(styles.main)}>
-              <BlogPostProvider>
-                <article>
-                  <h1 className={cn(styles.title)}>{title}</h1>
-                  <p className={cn(styles.date)}>
-                    {date &&
-                      `${
-                        localizedData.BlogPost.update
-                      }: ${localizedData.getLocalizedDate(date)}`}
-                    {lastUpdate && (
-                      <span
-                        style={{ marginLeft: "8px" }}
-                      >{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
-                    )}
-                  </p>
-                  <MDXRenderer>{pageData.body}</MDXRenderer>
-                </article>
-              </BlogPostProvider>
-              <hr className={cn(styles.hr)} />
-              <div className={cn(styles.tags)}>
-                <TagList tags={pageData.frontmatter.tags} />
-
-                <BlogPostFooterNav pageContext={props.pageContext} />
-                <Comments id={id} title={title} />
-              </div>
-            </div>
-            {/* <div className={cn(styles.sidebar)}>{renderTableOfContents()}</div> */}
-          </div>
+          <BlogPostMain pageData={pageData} pageContext={props.pageContext} />
         </div>
       </Content>
     </Layout>
+  )
+}
+
+interface BlogPostMainProps {
+  pageData: INode
+  pageContext: IPageContext
+  titleComponent?: React.ReactNode
+}
+export const BlogPostMain: React.FC<BlogPostMainProps> = props => {
+  const { pageData, pageContext } = props
+  const localizedData = useLocalizeData()
+  const title = pageData.frontmatter.title
+  const date = pageData.frontmatter.date
+  const id = pageData.id
+  const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
+
+  return (
+    <div className={cn(styles.container)}>
+      <div className={cn(styles.main)}>
+        <BlogPostProvider>
+          <article>
+            {props.titleComponent ? (
+              props.titleComponent
+            ) : (
+              <React.Fragment>
+                <h1 className={cn(styles.title)}>{title}</h1>
+                <p className={cn(styles.date)}>
+                  {date &&
+                    `${
+                      localizedData.BlogPost.update
+                    }: ${localizedData.getLocalizedDate(date)}`}
+                  {lastUpdate && (
+                    <span
+                      style={{ marginLeft: "8px" }}
+                    >{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
+                  )}
+                </p>
+              </React.Fragment>
+            )}
+
+            <MDXRenderer>{pageData.body}</MDXRenderer>
+          </article>
+        </BlogPostProvider>
+        <hr className={cn(styles.hr)} />
+        <div className={cn(styles.tags)}>
+          <TagList tags={pageData.frontmatter.tags} />
+
+          <BlogPostFooterNav pageContext={pageContext} />
+          <Comments id={id} title={title} />
+        </div>
+      </div>
+      {/* <div className={cn(styles.sidebar)}>{renderTableOfContents()}</div> */}
+    </div>
   )
 }

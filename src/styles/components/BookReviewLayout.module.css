@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  margin-bottom: var(--space-10x);
+}
+
+.img {
+  min-width: 30%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--space-3x);
+}
+
+.title {
+  color: var(--text-primary);
+  font-size: 24px;
+  margin-bottom: var(--space-2x);
+}
+
+.starRate {
+  margin-bottom: var(--space-2x);
+}
+
+.spoiler {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+.link {
+  color: var(--primary);
+  margin-bottom: var(--space-2x);
+}
+
+.lastUpdate {
+  margin-left: var(--space-4x);
+}

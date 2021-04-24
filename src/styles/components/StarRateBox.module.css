@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+
+.star {
+  fill: #fbc02d;
+}

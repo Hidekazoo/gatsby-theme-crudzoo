@@ -38,10 +38,16 @@ interface IProps {
 }
 
 const BookReviewTemplate: React.FC<IProps> = props => {
-  const { pageContext, data } = props
+  const { pageContext, data, location } = props
   const pageData = data.allMdx.edges[0].node
 
-  return <BookReviewLayout pageContext={pageContext} pageData={pageData} />
+  return (
+    <BookReviewLayout
+      pageContext={pageContext}
+      pageData={pageData}
+      location={location}
+    />
+  )
 }
 
 export default BookReviewTemplate
