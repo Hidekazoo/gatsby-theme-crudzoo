@@ -15,7 +15,7 @@ interface ArticleListProps {
 const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
   return (
     <div className={cn(styles.articleList)}>
-      {articles.map(article => {
+      {articles.map((article) => {
         const frontmatter = article.node.frontmatter
         const featuredImage = frontmatter.image
           ? frontmatter.image.childImageSharp.fluid
@@ -62,10 +62,9 @@ const Article: React.FC<IArticleProps> = ({
     <>
       <article className={cn(styles.article)}>
         <div className={cn(styles.articleImg)}>
-          <div className="hidden md:block">
+          <div>
             {featuredImage ? (
               <Img
-                className="rounded-lg md:w-32"
                 fluid={featuredImage}
                 alt={`${title}-thumbnail`}
                 imgStyle={{
@@ -73,7 +72,7 @@ const Article: React.FC<IArticleProps> = ({
                 }}
               />
             ) : (
-              <div className="rounded-lg md:w-32" />
+              <div />
             )}
           </div>
         </div>
