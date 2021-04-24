@@ -1,9 +1,11 @@
-import * as React from "react"
-import { Link } from "gatsby"
 import cn from "classnames"
+import { Link } from "gatsby"
 import Img from "gatsby-image"
-import { ISeriesNode } from "../types/Series"
+import React from "react"
+
 import styles from "../styles/components/SeriesList.module.css"
+import { ISeriesNode } from "../types/Series"
+
 interface ISeriesListProps {
   series: ISeriesNode[]
 }
@@ -55,7 +57,7 @@ const Series: React.FC<SeriesProps> = ({
         <Link tabIndex={-1} aria-label={title} to={"/series/" + seriesId}>
           <Img
             className={cn(styles.seriesImg)}
-            sizes={featuredImage}
+            fluid={featuredImage}
             alt={`${title} image`}
             imgStyle={{
               objectFit: "cover",

@@ -1,5 +1,6 @@
-import React from "react"
 import cn from "classnames"
+import React from "react"
+
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import styles from "../styles/components/Footer.module.css"
 

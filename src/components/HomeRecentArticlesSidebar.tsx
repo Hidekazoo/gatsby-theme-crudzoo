@@ -1,9 +1,10 @@
-import React from "react"
-import { Link } from "gatsby"
 import cn from "classnames"
+import { Link } from "gatsby"
+import React from "react"
+
 import { useTags } from "../hooks/useTags"
-import { HomeSidebarBlock } from "./HomeSidebarBlock"
 import styles from "../styles/components/HomeRecentArticlesSidebar.module.css"
+import { HomeSidebarBlock } from "./HomeSidebarBlock"
 
 const SidebarItem: React.FC = props => {
   return <div className={cn(styles.sidebarItem)}>{props.children}</div>

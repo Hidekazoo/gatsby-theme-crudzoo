@@ -1,11 +1,12 @@
-import React from "react"
+import cn from "classnames"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-import cn from "classnames"
-import styles from "../styles/components/HomeRecentArticle.module.css"
 import * as path from "path"
-import * as withDefaults from "../utils/DefaultOptions"
+import React from "react"
+
 import { useLocalizeData } from "../hooks/useLocalize"
+import styles from "../styles/components/HomeRecentArticle.module.css"
+import * as withDefaults from "../utils/DefaultOptions"
 
 interface HomeRecentArticleProps {
   title: string

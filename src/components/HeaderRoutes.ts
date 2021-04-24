@@ -1,4 +1,5 @@
 import * as path from "path"
+
 import * as withDefaults from "../utils/DefaultOptions"
 
 const { basePath, blogPath, blogsPath } = withDefaults({})

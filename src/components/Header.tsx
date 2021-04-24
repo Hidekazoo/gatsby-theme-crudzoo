@@ -1,11 +1,12 @@
-import * as React from "react"
-import { Link } from "gatsby"
 import cn from "classnames"
-import Search from "./search"
+import { Link } from "gatsby"
+import React from "react"
+
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import styles from "../styles/components/Header.module.css"
 import { HeaderNav } from "./HeaderNav"
 import { routes } from "./HeaderRoutes"
-import styles from "../styles/components/Header.module.css"
-import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import Search from "./search"
 
 const Logo = () => {
   const { title } = useSiteMetadata()

@@ -1,15 +1,15 @@
 import React from "react"
-import Layout from "./Layout"
+
 import { Content } from "../components/Content"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { IArticleNode } from "../types/Article"
+import { ILocation } from "../types/Location"
+import { ISeriesNode } from "../types/Series"
 import { HomeHero } from "./HomeHero"
 import { HomeRecentArticlesSection } from "./HomeRecentArticlesSection"
+import Layout from "./Layout"
 import SEO from "./Seo"
 
-import { IArticleNode } from "../types/Article"
-import { ISeriesNode } from "../types/Series"
-import { ILocation } from "../types/Location"
-
-import { useSiteMetadata } from "../hooks/useSiteMetadata"
 interface HomeProps {
   location: ILocation
   data: {

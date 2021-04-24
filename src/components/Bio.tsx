@@ -1,6 +1,7 @@
-import * as React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Img, { FixedObject } from "gatsby-image"
+import React from "react"
+
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 interface BioData {

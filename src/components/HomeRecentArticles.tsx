@@ -1,8 +1,9 @@
-import React from "react"
 import cn from "classnames"
-import { HomeRecentArticle } from "./HomeRecentArticle"
-import styles from "../styles/components/HomeRecentArticles.module.css"
+import React from "react"
 import { IArticleNode } from "src/types/Article"
+
+import styles from "../styles/components/HomeRecentArticles.module.css"
+import { HomeRecentArticle } from "./HomeRecentArticle"
 
 interface HomeRecentArticlesProps {
   articles: IArticleNode[]

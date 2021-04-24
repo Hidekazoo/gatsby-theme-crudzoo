@@ -1,9 +1,10 @@
-import React from "react"
 import cn from "classnames"
-import { ILocation } from "../types/Location"
+import React from "react"
+
 import { Header } from "../components/Header"
-import { Footer } from "./Footer"
 import styles from "../styles/components/Layout.module.css"
+import { ILocation } from "../types/Location"
+import { Footer } from "./Footer"
 
 interface ILayoutProps {
   location: ILocation

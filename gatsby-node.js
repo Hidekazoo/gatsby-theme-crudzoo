@@ -155,7 +155,15 @@ exports.sourceNodes = (
   })
 }
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
+  const config = getConfig()
+  const miniCssExtractPlugin = config.plugins.find(
+    plugin => plugin.constructor.name === 'MiniCssExtractPlugin'
+  )
+  if (miniCssExtractPlugin) {
+    miniCssExtractPlugin.options.ignoreOrder = true
+  }
+  actions.replaceWebpackConfig(config)
   actions.setWebpackConfig({
     resolve: {
       alias: {
@@ -167,3 +175,4 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
   })
 }
+

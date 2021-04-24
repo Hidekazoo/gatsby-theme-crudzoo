@@ -100,6 +100,7 @@ module.exports = ({}) => {
             namedExport: false,
           },
         },
+        postCssPlugins: [require(`postcss-preset-env`)({ stage: 0 })],
       },
     }
   )

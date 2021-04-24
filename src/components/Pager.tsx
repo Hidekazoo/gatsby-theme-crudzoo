@@ -1,9 +1,11 @@
-import * as React from "react"
+import cn from "classnames"
 import { Link } from "gatsby"
-import { Button } from "./Button"
+import React from "react"
+
 import { useLocalizeData } from "../hooks/useLocalize"
 import styles from "../styles/components/Pager.module.css"
-import cn from "classnames"
+import { Button } from "./Button"
+
 interface IProps {
   pageContext: {
     previousPagePath: string

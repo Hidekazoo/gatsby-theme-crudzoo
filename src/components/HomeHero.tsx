@@ -1,10 +1,9 @@
-import React from "react"
-import { Link } from "gatsby"
 import cn from "classnames"
+import React from "react"
+
+import styles from "../styles/components/HomeHero.module.css"
 import { HeroImg } from "./HeroImg"
 import { HomeHeroDescription } from "./HomeHeroDescription"
-import { Button } from "../components/Button"
-import styles from "../styles/components/HomeHero.module.css"
 
 const HeroText: React.FC<{ text: string }> = ({ text }) => {
   return <div className={cn(styles.heroText)}>{text}</div>

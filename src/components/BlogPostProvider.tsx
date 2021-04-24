@@ -1,7 +1,7 @@
-import * as React from "react"
 import cn from "classnames"
+import React from "react"
+
 import styles from "../styles/components/BlogPostProvider.module.css"
-import "../styles/code.css"
 
 const { MDXProvider } = require("@mdx-js/react")
 

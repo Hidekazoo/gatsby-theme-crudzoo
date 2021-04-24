@@ -1,7 +1,8 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { useLocalizeData } from "../hooks/useLocalize"
 import cn from "classnames"
+import { Link } from "gatsby"
+import React from "react"
+
+import { useLocalizeData } from "../hooks/useLocalize"
 import styles from "../styles/components/BlogPostFooterNav.module.css"
 import { IPageContext } from "../types/BlogPost"
 

@@ -1,12 +1,13 @@
 import React from "react"
+import { ILocation } from "src/types/Location"
+
+import { Content } from "../components/Content"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { ISeriesNode } from "../types/Series"
 import Layout from "./Layout"
 import SEO from "./Seo"
-import { useSiteMetadata } from "../hooks/useSiteMetadata"
-import { TextHero } from "./TextHero"
-import { ILocation } from "src/types/Location"
-import { ISeriesNode } from "../types/Series"
 import SeriesList from "./SeriesList"
-import { Content } from "../components/Content"
+import { TextHero } from "./TextHero"
 
 interface SeriesProps {
   location: ILocation

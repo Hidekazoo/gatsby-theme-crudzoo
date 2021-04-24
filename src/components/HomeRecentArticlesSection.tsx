@@ -1,13 +1,15 @@
-import React from "react"
-import { Link } from "gatsby"
 import cn from "classnames"
-import { HomeSectionTitle } from "./HomeSectionTitle"
+import { Link } from "gatsby"
+import React from "react"
+import { IArticleNode } from "src/types/Article"
+
+import { useLocalizeData } from "../hooks/useLocalize"
+import styles from "../styles/components/HomeRecentArticlesSection.module.css"
+import { Button } from "./Button"
 import { HomeRecentArticles } from "./HomeRecentArticles"
 import { HomeRecentArticlesSidebar } from "./HomeRecentArticlesSidebar"
-import { Button } from "./Button"
-import styles from "../styles/components/HomeRecentArticlesSection.module.css"
-import { IArticleNode } from "src/types/Article"
-import { useLocalizeData } from "../hooks/useLocalize"
+import { HomeSectionTitle } from "./HomeSectionTitle"
+
 interface HomeRecentArticlesProps {
   articles: IArticleNode[]
 }

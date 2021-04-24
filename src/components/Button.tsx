@@ -1,5 +1,6 @@
-import * as React from "react"
 import cn from "classnames"
+import React from "react"
+
 import styles from "../styles/components/Button.module.css"
 
 interface ButtonProps {

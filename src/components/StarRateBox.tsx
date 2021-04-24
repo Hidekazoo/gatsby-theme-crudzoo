@@ -1,8 +1,10 @@
-import * as React from "react"
-import { StarIcon } from "./icons/StarIcon"
-import { StarHalfIcon } from "./icons/StarHalfIcon"
-import styles from "../styles/components/StarRateBox.module.css"
 import cn from "classnames"
+import React from "react"
+
+import styles from "../styles/components/StarRateBox.module.css"
+import { StarHalfIcon } from "./icons/StarHalfIcon"
+import { StarIcon } from "./icons/StarIcon"
+
 interface IProps {
   title?: string
   score: number

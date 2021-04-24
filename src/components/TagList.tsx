@@ -1,7 +1,9 @@
-import * as React from "react"
-import { Link } from "gatsby"
 import cn from "classnames"
+import { Link } from "gatsby"
+import React from "react"
+
 import styles from "../styles/components/TagList.module.css"
+
 interface IProps {
   tags: string[] | null
 }

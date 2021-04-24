@@ -1,5 +1,6 @@
-import React from "react"
 import cn from "classnames"
+import React from "react"
+
 import styles from "../styles/components/TextHero.module.css"
 
 interface TextHeroProps {
