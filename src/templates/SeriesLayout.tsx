@@ -1,11 +1,14 @@
-import * as React from "react"
+import React from "react"
+import cn from "classnames"
 import Img from "gatsby-image"
 import Layout from "../components/Layout"
+import { Content } from "../components/Content"
 import SEO from "../components/Seo"
 import ArticleList from "../components/ArticleList"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import { IArticleNode } from "../types/Article"
 import { ILocation } from "src/types/Location"
+import styles from "../styles/components/SeriesLayout.module.css"
 
 interface IProps {
   location: ILocation
@@ -36,23 +39,26 @@ export const SeriesLayout: React.FC<IProps> = props => {
     <Layout location={props.location}>
       <SEO lang={language} title={pageTitle} />
 
-      <div className="max-w-screen-xl px-12 mx-auto">
-        <div className="flex h-auto sm:flex-row h-64 my-10 md:max-w-4xl flex-col-reverse mx-auto">
-          <div className="sm:w-1/2 w-full">
-            <h1 className="text-primary text-3xl">{pageTitle}</h1>
-            <div className="text-gray-600 mt-4 leading-relaxed">
-              {pageDescription}
+      <div className={cn(styles.hero)}>
+        <div className={cn(styles.heroContainer)}>
+          <div className={cn(styles.left)}>
+            <div className={cn(styles.heroImg)}>
+              {pageImage && <Img fluid={pageImage} />}
             </div>
           </div>
-
-          <div className="sm:w-1/2 w-full">
-            {pageImage && <Img sizes={pageImage} className="w-full" />}
+          <div className={cn(styles.right)}>
+            <h1 className={cn(styles.heroTitle)}>{pageTitle}</h1>
+            <div className={cn(styles.heroDescription)}>{pageDescription}</div>
           </div>
         </div>
+      </div>
+
+      <Content>
+        <div className={cn(styles.container)}></div>
         <div className="py-10 mt-10 md:max-w-4xl mx-auto">
           <ArticleList articles={postData} />
         </div>
-      </div>
+      </Content>
     </Layout>
   )
 }

@@ -1,7 +1,9 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
+import { Content } from "../components/Content"
+import { TextHero } from "../components/TextHero"
 import SEO from "../components/Seo"
 import ArticleList from "../components/ArticleList"
 import { ILocation } from "../types/Location"
@@ -30,13 +32,10 @@ const TagPageTemplate: React.FC<IProps> = ({ pageContext, data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={language} title={pageTitle} keywords={keywords} />
-      <div className="max-w-screen-xl px-12 mx-auto">
-        <h1 className="text-3xl my-10">
-          Tag： <span className="text-primary ">{pageTitle}</span>
-        </h1>
-
+      <TextHero title={`Tag：${pageTitle}`} />
+      <Content>
         <ArticleList articles={pageData} />
-      </div>
+      </Content>
     </Layout>
   )
 }

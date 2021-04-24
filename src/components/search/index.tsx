@@ -10,7 +10,6 @@ import algoliasearch from "algoliasearch/lite"
 import Input from "./input"
 import { PostHit } from "./hitcomps"
 import { useOnClickOutside } from "./useOutSideClick"
-import { useSiteMetadata } from "../../hooks/useSiteMetadata"
 import { ReactNode } from "react"
 
 const StateResults: React.FC = ({

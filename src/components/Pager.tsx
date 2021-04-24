@@ -2,7 +2,8 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { Button } from "./Button"
 import { useLocalizeData } from "../hooks/useLocalize"
-
+import styles from "../styles/components/Pager.module.css"
+import cn from "classnames"
 interface IProps {
   pageContext: {
     previousPagePath: string
@@ -14,7 +15,7 @@ const Pager = ({ pageContext }: IProps) => {
   const localizedData = useLocalizeData()
 
   return (
-    <nav className="flex justify-between">
+    <nav className={cn(styles.nav)}>
       <div>
         {previousPagePath && (
           <Link to={previousPagePath}>
@@ -23,7 +24,7 @@ const Pager = ({ pageContext }: IProps) => {
         )}
       </div>
 
-      <div className="justify-end">
+      <div>
         {nextPagePath && (
           <Link to={nextPagePath}>
             <Button>{localizedData.Archive.prev}</Button>

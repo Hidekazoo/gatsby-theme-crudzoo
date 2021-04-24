@@ -1,28 +1,12 @@
 import React from "react"
 import { Link } from "gatsby"
 import cn from "classnames"
-import { Button } from "./Button"
 import { useTags } from "../hooks/useTags"
+import { HomeSidebarBlock } from "./HomeSidebarBlock"
 import styles from "../styles/components/HomeRecentArticlesSidebar.module.css"
 
 const SidebarItem: React.FC = props => {
   return <div className={cn(styles.sidebarItem)}>{props.children}</div>
-}
-
-const Series = () => {
-  return (
-    <div>
-      <SidebarTitle title={`シリーズもお勧めです`} />
-      <div>
-        例えばロードバイクに関連する記事を読みやすい順番で並べて一覧にしています
-      </div>
-      <div className={cn(styles.seriesBtn)}>
-        <Link to={`/series`}>
-          <Button>シリーズ一覧</Button>
-        </Link>
-      </div>
-    </div>
-  )
 }
 
 const Tags: React.FC = () => {
@@ -32,8 +16,8 @@ const Tags: React.FC = () => {
     <div>
       <SidebarTitle title={`Tags`} />
       <ul>
-        {tags.map(tag => {
-          return <TagListItem>{tag}</TagListItem>
+        {tags.map((tag, index) => {
+          return <TagListItem key={index}>{tag}</TagListItem>
         })}
       </ul>
     </div>
@@ -60,10 +44,11 @@ interface HomeRecentArticlesSidebarProps {
   items?: React.ReactNode[]
 }
 export const HomeRecentArticlesSidebar: React.FC<HomeRecentArticlesSidebarProps> = ({
-  items = [<Series />, <Tags />],
+  items = [<Tags />],
 }) => {
   return (
     <div>
+      <HomeSidebarBlock />
       {items.map((item, index) => {
         return <SidebarItem key={index}>{item}</SidebarItem>
       })}

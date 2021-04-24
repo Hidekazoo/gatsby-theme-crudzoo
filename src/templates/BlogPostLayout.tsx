@@ -1,6 +1,9 @@
-import * as React from "react"
+import React from "react"
+import cn from "classnames"
 import { BlogPostProvider } from "../components/BlogPostProvider"
 import Layout from "../components/Layout"
+import { Content } from "../components/Content"
+
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
@@ -11,7 +14,7 @@ import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import { useBlogScrollPosition } from "../hooks/useBlogScrollPosition"
 import { BlogPostProps } from "../types/BlogPost"
 import styles from "../styles/components/BlogPostLayout.module.css"
-import cn from "classnames"
+
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
 export const BlogPostLayout: React.FC<BlogPostProps> = props => {
@@ -49,36 +52,40 @@ export const BlogPostLayout: React.FC<BlogPostProps> = props => {
 
   return (
     <Layout location={props.location}>
-      <div>
-        <SEO lang={language} title={title} description={spoiler} />
-        <div className={cn(styles.container)}>
-          <div className={cn(styles.main)}>
-            <BlogPostProvider>
-              <article>
-                <h1 className={cn(styles.title)}>{title}</h1>
-                <p className={cn(styles.date)}>
-                  {date &&
-                    `${
-                      localizedData.BlogPost.update
-                    }: ${localizedData.getLocalizedDate(date)}`}
-                  {lastUpdate && (
-                    <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
-                  )}
-                </p>
-                <MDXRenderer>{pageData.body}</MDXRenderer>
-              </article>
-            </BlogPostProvider>
-            <hr className={cn(styles.hr)} />
-            <div className={cn(styles.tags)}>
-              <TagList tags={pageData.frontmatter.tags} />
+      <Content>
+        <div>
+          <SEO lang={language} title={title} description={spoiler} />
+          <div className={cn(styles.container)}>
+            <div className={cn(styles.main)}>
+              <BlogPostProvider>
+                <article>
+                  <h1 className={cn(styles.title)}>{title}</h1>
+                  <p className={cn(styles.date)}>
+                    {date &&
+                      `${
+                        localizedData.BlogPost.update
+                      }: ${localizedData.getLocalizedDate(date)}`}
+                    {lastUpdate && (
+                      <span
+                        style={{ marginLeft: "8px" }}
+                      >{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
+                    )}
+                  </p>
+                  <MDXRenderer>{pageData.body}</MDXRenderer>
+                </article>
+              </BlogPostProvider>
+              <hr className={cn(styles.hr)} />
+              <div className={cn(styles.tags)}>
+                <TagList tags={pageData.frontmatter.tags} />
 
-              <BlogPostFooterNav pageContext={props.pageContext} />
-              <Comments id={id} title={title} />
+                <BlogPostFooterNav pageContext={props.pageContext} />
+                <Comments id={id} title={title} />
+              </div>
             </div>
+            {/* <div className={cn(styles.sidebar)}>{renderTableOfContents()}</div> */}
           </div>
-          {/* <div className={cn(styles.sidebar)}>{renderTableOfContents()}</div> */}
         </div>
-      </div>
+      </Content>
     </Layout>
   )
 }

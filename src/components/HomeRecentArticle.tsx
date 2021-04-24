@@ -29,7 +29,6 @@ export const HomeRecentArticle: React.FC<HomeRecentArticleProps> = props => {
         <div className={cn(styles.articleImg)}>
           {featuredImage ? (
             <Img
-              // className="rounded-lg md:w-32"
               className={cn(styles.featuredImage)}
               fluid={featuredImage}
               alt={`${title}-thumbnail`}

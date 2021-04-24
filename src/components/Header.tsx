@@ -5,11 +5,13 @@ import Search from "./search"
 import { HeaderNav } from "./HeaderNav"
 import { routes } from "./HeaderRoutes"
 import styles from "../styles/components/Header.module.css"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 
 const Logo = () => {
+  const { title } = useSiteMetadata()
   return (
     <div className={cn(styles.headerLogo)}>
-      <Link to={`/`}>Crudzoo</Link>
+      <Link to={`/`}>{title}</Link>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Pager from "../components/Pager"
 import ArticleList from "../components/ArticleList"
-import { Section } from "../components/Section"
+import { Content } from "../components/Content"
 
 import { IArticleNode } from "../types/Article"
 import { ILocation } from "../types/Location"
@@ -56,10 +56,11 @@ const Archive = ({ data, pageContext, location }: IArchiveProps) => {
 
   return (
     <Layout location={location}>
-      <Section isBgColor={false}>
+      <Content>
         <ArticleList articles={postData} />
+
         <Pager pageContext={pageContext} />
-      </Section>
+      </Content>
     </Layout>
   )
 }

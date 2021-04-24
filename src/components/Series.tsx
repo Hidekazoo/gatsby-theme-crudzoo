@@ -2,11 +2,11 @@ import React from "react"
 import Layout from "./Layout"
 import SEO from "./Seo"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
-import cn from "classnames"
-import { SeriesHero } from "../components/SeriesHero"
+import { TextHero } from "./TextHero"
 import { ILocation } from "src/types/Location"
 import { ISeriesNode } from "../types/Series"
 import SeriesList from "./SeriesList"
+import { Content } from "../components/Content"
 
 interface SeriesProps {
   location: ILocation
@@ -24,8 +24,10 @@ export const Series: React.FC<SeriesProps> = ({ data, location }) => {
   return (
     <Layout location={location}>
       <SEO lang={language} title={title} keywords={keywords} />
-      <SeriesHero />
-      <SeriesList series={seriesData} />
+      <TextHero title={`Series`} />
+      <Content>
+        <SeriesList series={seriesData} />
+      </Content>
     </Layout>
   )
 }

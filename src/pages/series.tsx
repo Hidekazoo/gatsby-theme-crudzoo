@@ -1,18 +1,5 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
-import Layout from "../components/Layout"
-import { HomeHero } from "../components/HomeHero"
-import { HomeRecentArticlesSection } from "../components/HomeRecentArticlesSection"
-
-import { Bio } from "../components/Bio"
-import SEO from "../components/Seo"
-import { Button } from "../components/Button"
-import { Section } from "../components/Section"
-
-import ArticleList from "../components/ArticleList"
-import SeriesList from "../components/SeriesList"
-import { useLocalizeData } from "../hooks/useLocalize"
-
+import { graphql } from "gatsby"
 import { IArticleNode } from "../types/Article"
 import { ISeriesNode } from "../types/Series"
 import { ILocation } from "../types/Location"
@@ -31,10 +18,10 @@ interface ITopPageProps {
   }
 }
 
-const HomePage: React.FC<ITopPageProps> = ({ data, location }) => {
+const SeriesPage: React.FC<ITopPageProps> = ({ data, location }) => {
   return <Series data={data} location={location} />
 }
-export default HomePage
+export default SeriesPage
 
 export const query = graphql`
   query MDXQuery2 {

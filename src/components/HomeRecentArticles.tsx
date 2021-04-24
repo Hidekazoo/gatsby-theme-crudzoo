@@ -18,9 +18,8 @@ export const HomeRecentArticles: React.FC<HomeRecentArticlesProps> = props => {
           : null
 
         return (
-          <div className={cn(styles.article)}>
+          <div className={cn(styles.article)} key={article.node.id}>
             <HomeRecentArticle
-              key={article.node.id}
               title={frontmatter.title}
               tags={frontmatter.tags}
               date={frontmatter.date}

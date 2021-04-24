@@ -9,12 +9,9 @@ export const useSiteMetadata = (): ISiteMetaData => {
           language
           title
           author
-          job
           keywords
           heroText
           description
-          siteUrl
-          mainColor
           social {
             twitter
           }
