@@ -12,6 +12,10 @@ interface BlogPostFooterNavProps {
 export const BlogPostFooterNav: React.FC<BlogPostFooterNavProps> = props => {
   const { prev, next } = props.pageContext
   const localizedData = useLocalizeData()
+
+  if (!prev && !next) {
+    return null
+  }
   return (
     <nav className={cn(styles.container)}>
       <div>
