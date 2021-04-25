@@ -130,8 +130,6 @@ the folder structure is as follows
   │   └── about
   │        ├── thumbnail.png
   │        └── index.mdx
-  ├── assets
-  │   └── profile-pic.jpg
   ├── series
   │   ├── sample.png
   │   └── sample.json
@@ -182,14 +180,3 @@ Create in the next level `src/gatsby-crudzoo/components`
 - HomeSidebarBlock.tsx
 
 see demo site [repository](https://github.com/Hidekazoo/gatsby-crudzoo-demo)
-
-## Use Algolia
-
-add .env variable
-
-```
-GATSBY_USE_ALGOLIA=true
-GATSBY_ALGOLIA_APP_ID=
-GATSBY_ALGOLIA_SEARCH_KEY=
-ALGOLIA_ADMIN_KEY=
-```
