@@ -1,16 +1,15 @@
-import * as React from "react"
+import algoliasearch from "algoliasearch/lite"
+import React, { ReactNode } from "react"
 import {
   InstantSearch,
   Index,
   Hits,
   connectStateResults,
 } from "react-instantsearch-dom"
-import algoliasearch from "algoliasearch/lite"
 
-import Input from "./input"
 import { PostHit } from "./hitcomps"
+import Input from "./input"
 import { useOnClickOutside } from "./useOutSideClick"
-import { ReactNode } from "react"
 
 const StateResults: React.FC = ({
   searchState: state,
@@ -29,7 +28,7 @@ const Results = connectStateResults(StateResults)
 const Stats = connectStateResults(StatsResults)
 
 export default function Search({ indices, collapse, hitsAsGrid }: any) {
-  const algoliaSearch = process.env.USE_ALGOLIA
+  const algoliaSearch = process.env.GATSBY_USE_ALGOLIA
 
   const ref = React.createRef<HTMLDivElement>()
   const [query, setQuery] = React.useState(``)

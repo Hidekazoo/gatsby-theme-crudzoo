@@ -8,5 +8,4 @@ export interface ISiteMetaData {
   social: {
     twitter: string
   }
-  algoliaSearch: boolean
 }

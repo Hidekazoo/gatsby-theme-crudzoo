@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby"
+
 import { ISiteMetaData } from "../types/SiteMetaData"
 
 export const useSiteMetadata = (): ISiteMetaData => {
@@ -15,7 +16,6 @@ export const useSiteMetadata = (): ISiteMetaData => {
           social {
             twitter
           }
-          algoliaSearch
         }
       }
     }
