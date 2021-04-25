@@ -72,8 +72,8 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
       component: component,
       context: {
         slug: id,
-        prev: index === 0 ? null : pages[index - 1],
-        next: index === pages.length - 1 ? null : pages[index + 1],
+        prev: index === pages.length - 1 ? null : pages[index + 1],
+        next: index === 0 ? null : pages[index - 1],
       },
     })
     if (page.frontmatter.tags !== null) {
@@ -154,3 +154,25 @@ exports.sourceNodes = (
     },
   })
 }
+
+exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
+  const config = getConfig()
+  const miniCssExtractPlugin = config.plugins.find(
+    plugin => plugin.constructor.name === 'MiniCssExtractPlugin'
+  )
+  if (miniCssExtractPlugin) {
+    miniCssExtractPlugin.options.ignoreOrder = true
+  }
+  actions.replaceWebpackConfig(config)
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        path: require.resolve("path-browserify"),
+      },
+      fallback: {
+        fs: false,
+      },
+    },
+  })
+}
+

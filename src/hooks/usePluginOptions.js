@@ -5,7 +5,6 @@ const useBlogThemeConfig = () => {
     query {
       crudzooThemeConfig(id: { eq: "gatsby-theme-crudzoo-config" }) {
         webfontURL
-        b
       }
     }
   `)

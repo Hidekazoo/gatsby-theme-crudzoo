@@ -9,6 +9,7 @@ export interface IArticleNode {
     frontmatter: {
       title: string
       date: Date
+      tags: string[] | undefined
       spoiler: string | undefined
       image: {
         childImageSharp: {

@@ -1,0 +1,29 @@
+.h2 {
+  font-size: 32px;
+  line-height: 42px;
+  margin-top: 64px;
+}
+.h3 {
+}
+.h4 {
+}
+
+.p {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 32px;
+  margin-top: var(--space-5x);
+}
+
+.pre {
+  padding: var(--space-4x);
+  margin-top: var(--space-5x);
+}
+
+.a {
+}
+.ul {
+}
+.ol {
+}

@@ -7,13 +7,13 @@ require("dotenv").config()
 
 module.exports = ({}) => {
   const plugins = []
-  if (process.env.GATSBY_ALGOLIA_APP_ID) {
+  if (process.env.GATSBY_USE_ALGOLIA === true) {
     plugins.push({
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
         apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries,
+        index: queries,
         chunkSize: 5000, // default: 1000
         enablePartialUpdates: true,
       },
@@ -85,7 +85,6 @@ module.exports = ({}) => {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-dark-mode`,
     {
       resolve: `gatsby-plugin-compile-es6-packages`,
       options: {
@@ -94,7 +93,15 @@ module.exports = ({}) => {
     },
     {
       resolve: `gatsby-plugin-postcss`,
-      options: {},
+      options: {
+        cssLoaderOptions: {
+          esModule: false,
+          modules: {
+            namedExport: false,
+          },
+        },
+        postCssPlugins: [require(`postcss-preset-env`)({ stage: 0 })],
+      },
     }
   )
   return {

@@ -1,0 +1,8 @@
+.nav {
+  display: flex;
+  justify-content: center;
+}
+
+.nav div {
+  padding: 0 var(--space-4x);
+}

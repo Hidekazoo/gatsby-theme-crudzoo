@@ -1,10 +1,10 @@
-Gatsby-crudzoo is Gatsby theme for blog site.
+Gatsby-crudzoo is Gatsby theme for blog site. gatsby@3 supported
 
 ## Demo site
 
 [demo](https://sharp-pike-0a4ab7.netlify.com/)
 
-demo site repository: https://github.com/Hidekazoo/gatsby-crudzoo-demo
+[repository](https://github.com/Hidekazoo/gatsby-crudzoo-demo)
 
 I also use gatsby-crudzoo theme on my website.
 [https://crudzoo.com](https://crudzoo.com)
@@ -15,14 +15,14 @@ I also use gatsby-crudzoo theme on my website.
 
 ```
 npm init -y
-npm install gatsby react react-dom gatsby-crudzoo
+npm install gatsby react react-dom gatsby-crudzoo gatsby-plugin-postcss
 ```
 
 or using yarn
 
 ```
 yarn init -y
-yarn add gatsby react react-dom gatsby-crudzoo
+yarn add gatsby react react-dom gatsby-crudzoo gatsby-plugin-postcss
 ```
 
 ### Update package.json
@@ -50,21 +50,17 @@ create setting files in your root directory.
 ##### Example
 
 ```javascript
-//gatsby-config.js
 module.exports = {
   siteMetadata: {
-    language: `en`, // or `ja`
+    language: `en`,
     title: `site title`,
     author: `your name`,
-    job: ``,
     keywords: [`blog`, `gatsby`],
     heroText: ``,
     description: `site description`,
-    siteUrl: `http://example.com`,
     social: {
       twitter: `your twitter name`,
     },
-    algoliaSearch: false,
   },
   plugins: [
     {
@@ -74,35 +70,6 @@ module.exports = {
   ],
 }
 ```
-
-#### tailwind.config.js
-
-```javascript
-module.exports = {
-  purge: [
-    "./src/**/*.tsx",
-    "./src/**/*.jsx",
-    "./node_modules/gatsby-crudzoo/**/*.tsx",
-  ],
-  theme: {
-    fontFamily: {
-      sanSerif: ``,
-    },
-    extend: {
-      colors: {
-        primary: "#0091ea",
-        section: "#0091ea0f",
-      },
-    },
-  },
-  variants: {},
-  plugins: [],
-}
-```
-
-### profile picture
-
-put on your profile picture on assets/profile-pic.jpg
 
 ### write your first article
 
@@ -163,8 +130,6 @@ the folder structure is as follows
   │   └── about
   │        ├── thumbnail.png
   │        └── index.mdx
-  ├── assets
-  │   └── profile-pic.jpg
   ├── series
   │   ├── sample.png
   │   └── sample.json
@@ -204,3 +169,14 @@ link: "https://example.com"
 
 your review
 ```
+
+## Recommended override Components
+
+Use shadowing to use the original Component.
+Create in the next level `src/gatsby-crudzoo/components`
+
+- HeroImg.tsx
+- HomeHeroDescription.tsx
+- HomeSidebarBlock.tsx
+
+see demo site [repository](https://github.com/Hidekazoo/gatsby-crudzoo-demo)

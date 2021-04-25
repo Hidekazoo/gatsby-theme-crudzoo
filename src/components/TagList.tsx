@@ -1,22 +1,21 @@
-import * as React from "react"
+import cn from "classnames"
 import { Link } from "gatsby"
+import React from "react"
+
+import styles from "../styles/components/TagList.module.css"
 
 interface IProps {
   tags: string[] | null
 }
 
 const TagList: React.FC<IProps> = ({ tags }) => {
-  if (tags === null) return <div />
+  if (tags === null || tags.length === 0) return <div />
 
   return (
-    <div className="mt-3 mb-4">
+    <div className={cn(styles.container)}>
       Tags:{" "}
       {tags.map(tag => (
-        <Link
-          key={tag}
-          to={"/tags/" + tag}
-          className="bg-gray-200 text-gray-600 px-2 py-1 mx-2"
-        >
+        <Link key={tag} to={"/tags/" + tag} className={cn(styles.tag)}>
           {tag}
         </Link>
       ))}

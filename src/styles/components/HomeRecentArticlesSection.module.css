@@ -1,0 +1,41 @@
+.container {
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+@media (min-width: 992px) {
+  .content {
+    flex-direction: row;
+  }
+}
+
+.main {
+  flex: 0 0 100%;
+}
+@media (min-width: 992px) {
+  .main {
+    flex: 0 0 80%;
+  }
+}
+.sidebar {
+  flex: 0 0 100%;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    display: block;
+    flex: 0 0 20%;
+    margin-left: var(--space-4x);
+  }
+}
+
+.listButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-8x);
+}

@@ -1,0 +1,15 @@
+.articleList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article {
+  flex: 0 0 100%;
+  padding: var(--space-4x);
+}
+
+@media (min-width: 576px) {
+  .article {
+    flex: 0 0 33%;
+  }
+}

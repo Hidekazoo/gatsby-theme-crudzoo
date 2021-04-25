@@ -1,8 +1,9 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { SeriesLayout } from "./SeriesLayout"
-import "../styles/global.css"
+import { ILocation } from "src/types/Location"
 interface IProps {
+  location: ILocation
   data: {
     allSeriesJson: {
       edges: [
@@ -46,15 +47,12 @@ interface IProps {
   }
 }
 
-const SeriesPageTemplate: React.FC<IProps> = ({ data }) => {
+const SeriesPageTemplate: React.FC<IProps> = ({ data, location }) => {
   const pageData = data.allSeriesJson.edges[0].node
   const postData = data.allMdx.edges
-
-  let pageImage = null
-  if (pageData.image !== null) {
-    pageImage = pageData.image!.childImageSharp.fluid
-  }
-  return <SeriesLayout pageData={pageData} postData={postData} />
+  return (
+    <SeriesLayout pageData={pageData} postData={postData} location={location} />
+  )
 }
 
 export default SeriesPageTemplate

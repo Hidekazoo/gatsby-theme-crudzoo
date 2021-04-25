@@ -1,6 +1,9 @@
-import * as React from "react"
-import { Bio } from "../components/Bio"
+import React from "react"
+import cn from "classnames"
+import { BlogPostProvider } from "../components/BlogPostProvider"
 import Layout from "../components/Layout"
+import { Content } from "../components/Content"
+
 import SEO from "../components/Seo"
 import TagList from "../components/TagList"
 import { useLocalizeData } from "../hooks/useLocalize"
@@ -8,46 +11,102 @@ import { BlogPostFooterNav } from "../components/BlogPostFooterNav"
 import { Comments } from "../components/Comments"
 
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { useBlogScrollPosition } from "../hooks/useBlogScrollPosition"
 import { BlogPostProps } from "../types/BlogPost"
+import styles from "../styles/components/BlogPostLayout.module.css"
+import { INode, IPageContext } from "../types/BlogPost"
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
 export const BlogPostLayout: React.FC<BlogPostProps> = props => {
   const { language } = useSiteMetadata()
-  const localizedData = useLocalizeData()
   const pageData = props.pageData
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
+
+  const headings = pageData.headings.filter(item => item.depth === 2)
+  const { activeHeadingNumber } = useBlogScrollPosition()
+  const renderTableOfContents = () => {
+    const contents: React.ReactNode[] = []
+    for (let i = 0; i < headings.length; i++) {
+      const activeClass =
+        activeHeadingNumber === i ? "text-blue-400 font-bold" : ""
+      contents.push(
+        <li key={i} className={activeClass}>
+          <a href={`#${headings[i]["value"]}`}>{headings[i]["value"]}</a>
+        </li>
+      )
+    }
+    return (
+      <div className={cn(styles.tableOfContnts)}>
+        <ul>
+          <li>目次</li>
+          {contents}
+        </ul>
+      </div>
+    )
+  }
+
+  return (
+    <Layout location={props.location}>
+      <Content>
+        <div>
+          <SEO lang={language} title={title} description={spoiler} />
+          <BlogPostMain pageData={pageData} pageContext={props.pageContext} />
+        </div>
+      </Content>
+    </Layout>
+  )
+}
+
+interface BlogPostMainProps {
+  pageData: INode
+  pageContext: IPageContext
+  titleComponent?: React.ReactNode
+}
+export const BlogPostMain: React.FC<BlogPostMainProps> = props => {
+  const { pageData, pageContext } = props
+  const localizedData = useLocalizeData()
+  const title = pageData.frontmatter.title
   const date = pageData.frontmatter.date
   const id = pageData.id
-
   const lastUpdate = localizedData.getLocalizedDate(pageData.parent.changeTime)
 
   return (
-    <Layout location={location}>
-      <SEO lang={language} title={title} description={spoiler} />
-      <article className="min-h-screen w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pt-16 border-b border-gray-200 px-6">
-        <h1 className="text-3xl">{title}</h1>
-        <p className="text-gray-600 mt-3 mb-8">
-          {date &&
-            `${localizedData.BlogPost.update}: ${localizedData.getLocalizedDate(
-              date
-            )}`}
-          {lastUpdate && (
-            <span className="ml-4">{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
-          )}
-        </p>
-        <MDXRenderer>{pageData.body}</MDXRenderer>
-      </article>
-      <div className="w-full mx-auto max-w-3xl lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 pb-40 px-6 pt-4">
-        <TagList tags={pageData.frontmatter.tags} />
+    <div className={cn(styles.container)}>
+      <div className={cn(styles.main)}>
+        <BlogPostProvider>
+          <article>
+            {props.titleComponent ? (
+              props.titleComponent
+            ) : (
+              <React.Fragment>
+                <h1 className={cn(styles.title)}>{title}</h1>
+                <p className={cn(styles.date)}>
+                  {date &&
+                    `${
+                      localizedData.BlogPost.update
+                    }: ${localizedData.getLocalizedDate(date)}`}
+                  {lastUpdate && (
+                    <span
+                      style={{ marginLeft: "8px" }}
+                    >{`${localizedData.BlogPost.lastUpdate}: ${lastUpdate}`}</span>
+                  )}
+                </p>
+              </React.Fragment>
+            )}
 
-        <div className="flex flex-row justify-start mt-6 mb-12">
-          <Bio />
+            <MDXRenderer>{pageData.body}</MDXRenderer>
+          </article>
+        </BlogPostProvider>
+        <hr className={cn(styles.hr)} />
+        <div className={cn(styles.tags)}>
+          <TagList tags={pageData.frontmatter.tags} />
+
+          <BlogPostFooterNav pageContext={pageContext} />
+          <Comments id={id} title={title} />
         </div>
-
-        <BlogPostFooterNav pageContext={props.pageContext} />
-        <Comments id={id} title={title} />
       </div>
-    </Layout>
+      {/* <div className={cn(styles.sidebar)}>{renderTableOfContents()}</div> */}
+    </div>
   )
 }

@@ -1,0 +1,44 @@
+.articleList {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.layout {
+  flex: 0 0 100%;
+  padding: var(--space-4x);
+}
+@media (min-width: 576px) {
+  .layout {
+    flex: 0 0 50%;
+  }
+}
+@media (min-width: 992px) {
+  .layout {
+    flex: 0 0 33%;
+  }
+}
+
+.article {
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.articleImg {
+  max-height: 200px;
+  overflow: hidden;
+}
+.articleContent {
+  padding: var(--space-4x) 0;
+}
+.articleDate {
+  color: var(--text-secondary);
+}
+.articleTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+.articleSpoiler {
+  font-size: 16px;
+}

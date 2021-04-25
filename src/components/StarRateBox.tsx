@@ -1,6 +1,9 @@
-import * as React from "react"
-import { StarIcon } from "./icons/StarIcon"
+import cn from "classnames"
+import React from "react"
+
+import styles from "../styles/components/StarRateBox.module.css"
 import { StarHalfIcon } from "./icons/StarHalfIcon"
+import { StarIcon } from "./icons/StarIcon"
 
 interface IProps {
   title?: string
@@ -10,7 +13,7 @@ export const StarRateBox: React.FC<IProps> = ({ title = "", score }) => {
   if (!score || Number.isNaN(score)) return null
 
   return (
-    <div className="flex items-center">
+    <div className={cn(styles.container)}>
       {renderTitle()}
       {renderStars(score)}
     </div>
@@ -20,10 +23,10 @@ const renderTitle = (title?: string) => {
   return title ? title : null
 }
 const renderStars = (score: number) => {
-  let stars: React.ReactNode[] = []
+  const stars: React.ReactNode[] = []
 
   for (let i = 0; i < score; i++) {
-    stars.push(<StarIcon className={`fill-current text-yellow-500`} />)
+    stars.push(<StarIcon className={cn(styles.star)} />)
   }
   return stars
 }
