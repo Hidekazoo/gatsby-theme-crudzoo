@@ -10,7 +10,7 @@ export const routes = [
   },
   {
     path: "/series",
-    title: "Sereis",
+    title: "Series",
   },
   {
     path: path.join(basePath, blogsPath),
