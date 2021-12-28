@@ -1,0 +1,12 @@
+{
+  "name": "gatsby-theme-crudzoo-dev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Hidekazoo",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "example",
+    "packages/*"
+  ]
+}
