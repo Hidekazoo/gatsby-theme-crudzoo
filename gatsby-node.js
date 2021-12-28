@@ -14,7 +14,7 @@ exports.onPreBootstrap = ({ store, reporter }, options) => {
     path.join(program.directory, seriesPath),
     path.join(program.directory, "assets"),
   ]
-  dirs.forEach(dir => {
+  dirs.forEach((dir) => {
     if (!fs.existsSync(dir)) {
       reporter.log(`creating the ${dir} directory`)
       mkdirp.sync(dir)
@@ -82,7 +82,7 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
   })
 
   const uniqueTags = tags.filter((v, i) => tags.indexOf(v) === i)
-  uniqueTags.forEach(tag => {
+  uniqueTags.forEach((tag) => {
     actions.createPage({
       path: path.join(basePath, tagsPath, tag),
       component: require.resolve("./src/templates/tags.tsx"),
@@ -105,7 +105,7 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
     }
   `)
   const series = SeriesResult.data.allSeriesJson.edges.map(({ node }) => node)
-  series.forEach(seriesPage => {
+  series.forEach((seriesPage) => {
     const seriesId = seriesPage.seriesId
     const articleIds = seriesPage.articles
     actions.createPage({
@@ -130,35 +130,10 @@ exports.createSchemaCustomization = ({ actions }) => {
   `)
 }
 
-exports.sourceNodes = (
-  { actions, createContentDigest },
-  { webfontURL = ``, b = "" }
-) => {
-  const { createNode } = actions
-
-  const themeConfig = {
-    webfontURL,
-    b,
-  }
-
-  createNode({
-    ...themeConfig,
-    id: `gatsby-theme-crudzoo-config`,
-    parent: null,
-    children: [],
-    internal: {
-      type: `crudzooThemeConfig`,
-      contentDigest: createContentDigest(themeConfig),
-      content: JSON.stringify(themeConfig),
-      description: `Options for gatsby-theme-crudzoo`,
-    },
-  })
-}
-
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
   const config = getConfig()
   const miniCssExtractPlugin = config.plugins.find(
-    plugin => plugin.constructor.name === 'MiniCssExtractPlugin'
+    (plugin) => plugin.constructor.name === "MiniCssExtractPlugin"
   )
   if (miniCssExtractPlugin) {
     miniCssExtractPlugin.options.ignoreOrder = true
@@ -175,4 +150,3 @@ exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
     },
   })
 }
-
