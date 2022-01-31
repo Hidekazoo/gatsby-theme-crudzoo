@@ -1,18 +1,18 @@
-import React from "react"
 import cn from "classnames"
 import Img from "gatsby-image"
-import Layout from "../components/Layout"
-import SEO from "../components/Seo"
-import { useLocalizeData } from "../hooks/useLocalize"
-import { BlogPostProps } from "../types/BlogPost"
-import { StarRateBox } from "../components/StarRateBox"
-import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import React from "react"
 
 import { Content } from "../components/Content"
-import { BlogPostMain } from "../templates/BlogPostLayout"
+import Layout from "../components/Layout"
+import SEO from "../components/Seo"
+import { StarRateBox } from "../components/StarRateBox"
+import { useLocalizeData } from "../hooks/useLocalize"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import styles from "../styles/components/BookReviewLayout.module.css"
+import { BlogPostMain } from "../templates/BlogPostLayout"
+import { BlogPostProps } from "../types/BlogPost"
 
-export const BookReviewLayout: React.FC<BlogPostProps> = props => {
+export const BookReviewLayout: React.FC<BlogPostProps> = (props) => {
   const { language } = useSiteMetadata()
   const localizedData = useLocalizeData()
   const pageData = props.pageData
@@ -66,7 +66,7 @@ export const BookReviewLayout: React.FC<BlogPostProps> = props => {
   }
 
   return (
-    <Layout location={location}>
+    <Layout location={props.location}>
       <Content>
         <div>
           <SEO lang={language} title={title} description={spoiler} />
