@@ -11,7 +11,6 @@ module.exports = {
     social: {
       twitter: `your twitter name`,
     },
-    algoliaSearch: true,
   },
   plugins: [
     {
@@ -19,4 +18,4 @@ module.exports = {
       options: {},
     },
   ],
-}
+};
