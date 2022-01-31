@@ -1,6 +1,6 @@
 {
   "name": "gatsby-crudzoo",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "gatsby theme for crudzoo",
   "main": "index.ts",
   "license": "MIT",
@@ -18,8 +18,7 @@
     "build": "gatsby build",
     "format": "prettier --write src/**/*.{ts,tsx,js,jsx,css}",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "prepare": "husky install"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
