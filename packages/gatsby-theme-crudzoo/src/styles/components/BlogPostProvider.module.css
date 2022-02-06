@@ -43,3 +43,7 @@
   list-style: decimal;
   margin: var(--space-2x) var(--space-5x);
 }
+
+.strong {
+  font-weight: 600;
+}

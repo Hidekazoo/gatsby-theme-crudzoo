@@ -4,15 +4,18 @@ import { IArticleNode } from "src/types/Article"
 
 import styles from "../styles/components/HomeRecentArticles.module.css"
 import { HomeRecentArticle } from "./HomeRecentArticle"
+import { Article } from "./article"
 
 interface HomeRecentArticlesProps {
   articles: IArticleNode[]
 }
-export const HomeRecentArticles: React.FC<HomeRecentArticlesProps> = props => {
+export const HomeRecentArticles: React.FC<HomeRecentArticlesProps> = (
+  props
+) => {
   const { articles } = props
   return (
     <div className={cn(styles.articleList)}>
-      {articles.map(article => {
+      {articles.map((article) => {
         const frontmatter = article.node.frontmatter
         const featuredImage = frontmatter.image
           ? frontmatter.image.childImageSharp.fluid
@@ -20,7 +23,7 @@ export const HomeRecentArticles: React.FC<HomeRecentArticlesProps> = props => {
 
         return (
           <div className={cn(styles.article)} key={article.node.id}>
-            <HomeRecentArticle
+            <Article
               title={frontmatter.title}
               tags={frontmatter.tags}
               date={frontmatter.date}
@@ -28,6 +31,14 @@ export const HomeRecentArticles: React.FC<HomeRecentArticlesProps> = props => {
               featuredImage={featuredImage}
               articlePath={article.node.parent.relativeDirectory}
             />
+            {/* <HomeRecentArticle
+              title={frontmatter.title}
+              tags={frontmatter.tags}
+              date={frontmatter.date}
+              spoiler={frontmatter.spoiler}
+              featuredImage={featuredImage}
+              articlePath={article.node.parent.relativeDirectory}
+            /> */}
           </div>
         )
       })}
