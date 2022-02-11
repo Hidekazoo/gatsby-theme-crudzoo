@@ -1,7 +1,8 @@
-import React from "react"
 import { render, screen } from "@testing-library/react"
-import { Footer } from "../Footer"
+import React from "react"
+
 import { mockData } from "../../hooks/__mocks__/useSiteMetadata"
+import { Footer } from "../footer"
 
 jest.mock("../../hooks/useSiteMetadata")
 

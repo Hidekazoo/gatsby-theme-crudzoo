@@ -1,14 +1,15 @@
-import React from "react"
 import cn from "classnames"
 import Img from "gatsby-image"
-import Layout from "../components/Layout"
-import { Content } from "../components/Content"
-import SEO from "../components/Seo"
-import ArticleList from "../components/ArticleList"
-import { useSiteMetadata } from "../hooks/useSiteMetadata"
-import { IArticleNode } from "../types/Article"
+import React from "react"
 import { ILocation } from "src/types/Location"
+
+import ArticleList from "../components/article-list"
+import { Content } from "../components/content"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import styles from "../styles/components/SeriesLayout.module.css"
+import { IArticleNode } from "../types/Article"
 
 interface IProps {
   location: ILocation
@@ -24,7 +25,7 @@ interface IProps {
   postData: IArticleNode[]
 }
 
-export const SeriesLayout: React.FC<IProps> = props => {
+export const SeriesLayout: React.FC<IProps> = (props) => {
   const { language } = useSiteMetadata()
   const { pageData, postData } = props
 

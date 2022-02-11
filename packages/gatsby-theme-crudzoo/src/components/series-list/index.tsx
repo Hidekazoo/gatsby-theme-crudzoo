@@ -1,0 +1,74 @@
+import cn from "classnames"
+import { Link } from "gatsby"
+import Img from "gatsby-image"
+import React from "react"
+
+import { ISeriesNode } from "../../types/Series"
+import styles from "./SeriesList.module.css"
+
+interface ISeriesListProps {
+  series: ISeriesNode[]
+}
+
+const SeriesList: React.FC<ISeriesListProps> = ({ series }) => {
+  return (
+    <div className={cn(styles.wrapper)}>
+      <div className={cn(styles.container)}>
+        <div className={cn(styles.list)}>
+          {series.map((item) => {
+            const frontmatter = item.node
+            const featuredImage = frontmatter.image
+              ? frontmatter.image.childImageSharp.fluid
+              : null
+            return (
+              <Series
+                key={item.node.id}
+                title={frontmatter.title}
+                featuredImage={featuredImage}
+                seriesId={item.node.seriesId}
+                spoiler={item.node.spoiler}
+              />
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SeriesList
+
+interface SeriesProps {
+  title: string
+  spoiler: string
+  seriesId: string
+  featuredImage: any
+}
+
+const Series: React.FC<SeriesProps> = ({
+  title,
+  featuredImage,
+  seriesId,
+  spoiler,
+}) => {
+  return (
+    <div className={cn(styles.seriesCard)}>
+      <div className={cn(styles.seriesContnt)}>
+        <Link tabIndex={-1} aria-label={title} to={"/series/" + seriesId}>
+          <Img
+            className={cn(styles.seriesImg)}
+            fluid={featuredImage}
+            alt={`${title} image`}
+            imgStyle={{
+              objectFit: "cover",
+            }}
+          />
+          <div className={cn(styles.seriesInfo)}>
+            <div className={cn(styles.seriesTitle)}>{title}</div>
+            <p className={cn(styles.seriesSpoiler)}>{spoiler}</p>
+          </div>
+        </Link>
+      </div>
+    </div>
+  )
+}

@@ -1,10 +1,10 @@
 import { graphql } from "gatsby"
 import * as React from "react"
 
-import ArticleList from "../components/ArticleList"
-import { Content } from "../components/Content"
-import Layout from "../components/Layout"
-import Pager from "../components/Pager"
+import ArticleList from "../components/article-list"
+import { Content } from "../components/content"
+import Layout from "../components/layout"
+import Pager from "../components/pager"
 import { IArticleNode } from "../types/Article"
 import { ILocation } from "../types/Location"
 

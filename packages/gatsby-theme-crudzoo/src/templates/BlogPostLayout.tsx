@@ -1,29 +1,29 @@
-import React from "react"
 import cn from "classnames"
-import { BlogPostProvider } from "../components/BlogPostProvider"
-import Layout from "../components/Layout"
-import { Content } from "../components/Content"
+import React from "react"
 
-import SEO from "../components/Seo"
-import TagList from "../components/TagList"
-import { useLocalizeData } from "../hooks/useLocalize"
-import { BlogPostFooterNav } from "../components/BlogPostFooterNav"
 import { Comments } from "../components/Comments"
-
-import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { BlogPostFooterNav } from "../components/blog-post/BlogPostFooterNav"
+import { BlogPostProvider } from "../components/blog-post/BlogPostProvider"
+import { Content } from "../components/content"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import TagList from "../components/tag-list"
 import { useBlogScrollPosition } from "../hooks/useBlogScrollPosition"
-import { BlogPostProps } from "../types/BlogPost"
+import { useLocalizeData } from "../hooks/useLocalize"
+import { useSiteMetadata } from "../hooks/useSiteMetadata"
 import styles from "../styles/components/BlogPostLayout.module.css"
+import { BlogPostProps } from "../types/BlogPost"
 import { INode, IPageContext } from "../types/BlogPost"
+
 const { MDXRenderer } = require("gatsby-plugin-mdx")
 
-export const BlogPostLayout: React.FC<BlogPostProps> = props => {
+export const BlogPostLayout: React.FC<BlogPostProps> = (props) => {
   const { language } = useSiteMetadata()
   const pageData = props.pageData
   const title = pageData.frontmatter.title
   const spoiler = pageData.frontmatter.spoiler
 
-  const headings = pageData.headings.filter(item => item.depth === 2)
+  const headings = pageData.headings.filter((item) => item.depth === 2)
   const { activeHeadingNumber } = useBlogScrollPosition()
   const renderTableOfContents = () => {
     const contents: React.ReactNode[] = []
@@ -63,7 +63,7 @@ interface BlogPostMainProps {
   pageContext: IPageContext
   titleComponent?: React.ReactNode
 }
-export const BlogPostMain: React.FC<BlogPostMainProps> = props => {
+export const BlogPostMain: React.FC<BlogPostMainProps> = (props) => {
   const { pageData, pageContext } = props
   const localizedData = useLocalizeData()
   const title = pageData.frontmatter.title
