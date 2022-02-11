@@ -1,9 +1,10 @@
-import * as React from "react"
 import { graphql } from "gatsby"
+import * as React from "react"
+
 import { Home } from "../components/Home"
 import { IArticleNode } from "../types/Article"
-import { ISeriesNode } from "../types/Series"
 import { ILocation } from "../types/Location"
+import { ISeriesNode } from "../types/Series"
 
 interface ITopPageProps {
   location: ILocation
@@ -43,8 +44,9 @@ export const query = graphql`
             tags
             image {
               childImageSharp {
-                fluid(maxWidth: 300) {
+                fluid(maxWidth: 400) {
                   ...GatsbyImageSharpFluid
+                  aspectRatio
                 }
               }
             }

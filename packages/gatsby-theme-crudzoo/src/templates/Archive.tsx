@@ -1,15 +1,15 @@
-import * as React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/Layout"
-import Pager from "../components/Pager"
+import * as React from "react"
+
 import ArticleList from "../components/ArticleList"
 import { Content } from "../components/Content"
-
+import Layout from "../components/Layout"
+import Pager from "../components/Pager"
 import { IArticleNode } from "../types/Article"
 import { ILocation } from "../types/Location"
 
 export const pageQuery = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip
@@ -28,6 +28,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date
+            tags
             spoiler
             image {
               childImageSharp {
