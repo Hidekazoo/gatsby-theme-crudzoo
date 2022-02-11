@@ -51,16 +51,16 @@ export const Article: React.FC<IArticleProps> = ({
           <div className={cn(styles.articleContent)}>
             <div className={cn(styles.articleDate)}>{displayDate}</div>
             <div className={cn(styles.title)}>{title}</div>
-            <div className={cn(styles.tags)}>
-              {tags &&
-                tags.map((tag, index) => {
-                  return (
-                    <div key={index} className={cn(styles.tag)}>
-                      {tag}
-                    </div>
-                  )
-                })}
-            </div>
+          </div>
+          <div className={cn(styles.tags)}>
+            {tags &&
+              tags.map((tag, index) => {
+                return (
+                  <div key={index} className={cn(styles.tag)}>
+                    {tag}
+                  </div>
+                )
+              })}
           </div>
         </article>
       </Link>

@@ -2,7 +2,9 @@
   margin: 0 auto;
   background-color: #fff;
   border-radius: 4px;
-  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  height: 340px;
 }
 
 .article:hover .articleImg {
@@ -29,7 +31,6 @@
 .title {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: var(--space-8x);
   transition: 0.1s ease;
 }
 .articleSpoiler {
@@ -38,7 +39,7 @@
 
 .tags {
   display: flex;
-  margin-top: var(--space-4x);
+  margin-top: auto;
 }
 .tag {
   width: fit-content;
