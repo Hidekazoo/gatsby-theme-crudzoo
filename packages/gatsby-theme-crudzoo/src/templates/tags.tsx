@@ -1,14 +1,14 @@
-import * as React from "react"
 import { graphql } from "gatsby"
+import * as React from "react"
 
-import Layout from "../components/Layout"
-import { Content } from "../components/Content"
-import { TextHero } from "../components/TextHero"
-import SEO from "../components/Seo"
-import ArticleList from "../components/ArticleList"
-import { ILocation } from "../types/Location"
-import { IArticleNode } from "../types/Article"
+import ArticleList from "../components/article-list"
+import { Content } from "../components/content"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import { TextHero } from "../components/text-hero"
 import { useSiteMetadata } from "../hooks/useSiteMetadata"
+import { IArticleNode } from "../types/Article"
+import { ILocation } from "../types/Location"
 
 interface IProps {
   pageContext: {

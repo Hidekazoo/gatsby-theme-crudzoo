@@ -1,9 +1,10 @@
-import * as React from "react"
 import { graphql } from "gatsby"
+import * as React from "react"
+
+import { Series } from "../components/series-list/Series"
 import { IArticleNode } from "../types/Article"
-import { ISeriesNode } from "../types/Series"
 import { ILocation } from "../types/Location"
-import { Series } from "../components/Series"
+import { ISeriesNode } from "../types/Series"
 
 interface ITopPageProps {
   location: ILocation
