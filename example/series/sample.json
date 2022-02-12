@@ -1,7 +1,7 @@
 {
   "seriesId": "sample",
-  "title": "sample title",
-  "spoiler": "my sample series",
-  "image": "sample.png",
+  "title": "Series Demo",
+  "spoiler": "Series is used when you want to create a summary of a particular article. Unlike tags, you can freely choose the articles you want to display.",
+  "image": "sample.jpg",
   "articles": ["article-1"]
 }

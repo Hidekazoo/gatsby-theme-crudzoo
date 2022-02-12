@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
     language: `en`, // or `ja`
-    title: `Site Title`,
+    title: `gatsby-theme-crudzoo demo site`,
     author: `your name`,
     job: `Engineer`,
-    keywords: [`blog`, `gatsby`],
+    keywords: [`blog`],
     heroText: `My Blog Site`,
-    description: `site description`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida neque convallis a cras.`,
     siteUrl: `http://example.com`,
     social: {
       twitter: `your twitter name`,
