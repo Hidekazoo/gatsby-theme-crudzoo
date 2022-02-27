@@ -52,7 +52,7 @@
     "path-browserify": "^1.0.1",
     "postcss": "^8.2.12",
     "postcss-preset-env": "^7.1.0",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.27.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
