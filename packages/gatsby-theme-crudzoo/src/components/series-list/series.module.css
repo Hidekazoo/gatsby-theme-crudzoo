@@ -1,24 +1,13 @@
-.wrapper {
-  /* background-color: var(--bg-gray); */
-  width: 100%;
-}
-.container {
+.seriesCard {
+  /* width: 360px; */
 }
 
-.list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  column-gap: var(--space-6x);
-  row-gap: 48px;
-}
 @media (min-width: 992px) {
-  .list {
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  .seriesCard {
+    width: 360px;
   }
 }
 
-.seriesCard {
-}
 .seriesCard:hover .seriesTitle {
   color: var(--primary);
 }
@@ -44,9 +33,6 @@
   font-size: 24px;
   line-height: 30px;
   padding: 0 0 var(--space-4x);
-  /* font-weight: 600; */
-  /* text-align: center; */
-  /* margin-bottom: var(--space-2x); */
 }
 .seriesSpoiler {
   font-size: 16px;
