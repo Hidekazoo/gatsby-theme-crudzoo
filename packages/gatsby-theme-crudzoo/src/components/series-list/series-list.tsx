@@ -2,7 +2,7 @@ import cn from "classnames"
 import React from "react"
 
 import { ISeriesNode } from "../../types/Series"
-import { Series } from "./Series"
+import { Series } from "./series"
 import styles from "./series-list.module.css"
 
 interface ISeriesListProps {
