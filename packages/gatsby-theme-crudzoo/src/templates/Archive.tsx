@@ -5,6 +5,7 @@ import ArticleList from "../components/article-list"
 import { Content } from "../components/content"
 import Layout from "../components/layout"
 import Pager from "../components/pager"
+import { TextHero } from "../components/text-hero"
 import { IArticleNode } from "../types/Article"
 import { ILocation } from "../types/Location"
 
@@ -57,6 +58,7 @@ const Archive = ({ data, pageContext, location }: IArchiveProps) => {
 
   return (
     <Layout location={location}>
+      <TextHero title={`Blogs`} />
       <Content>
         <ArticleList articles={postData} />
 

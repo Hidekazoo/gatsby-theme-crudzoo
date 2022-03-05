@@ -1,6 +1,6 @@
 {
   "name": "gatsby-crudzoo",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "gatsby theme for crudzoo",
   "main": "index.ts",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.9.8",
     "dotenv": "^10.0.0",
-    "gatsby": "^4.4.0",
+    "gatsby": "^4.7.1",
     "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-image": "^3.3.0",
     "gatsby-plugin-algolia": "^0.25.0",

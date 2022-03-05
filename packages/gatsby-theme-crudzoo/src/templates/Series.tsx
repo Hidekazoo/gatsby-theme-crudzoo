@@ -1,7 +1,10 @@
-import * as React from "react"
 import { graphql } from "gatsby"
+import * as React from "react"
+
+import { IArticleNode } from "../types/Article"
+import { ILocation } from "../types/Location"
 import { SeriesLayout } from "./SeriesLayout"
-import { ILocation } from "src/types/Location"
+
 interface IProps {
   location: ILocation
   data: {
@@ -21,28 +24,7 @@ interface IProps {
       ]
     }
     allMdx: {
-      edges: [
-        {
-          node: {
-            body: string
-            parent: {
-              name: string
-              relativeDirectory: string
-            }
-            id: string
-            frontmatter: {
-              title: string
-              date: Date
-              spoiler: string | undefined
-              image: {
-                childImageSharp: {
-                  fluid: any
-                }
-              } | null
-            }
-          }
-        }
-      ]
+      edges: IArticleNode[]
     }
   }
 }
